@@ -14,6 +14,9 @@ header {
     justify-content: space-between; }
     header nav ul li:not(:last-child) {
       margin-right: 30px; }
+    @media screen and (max-width: 900px) {
+      header nav ul {
+        display: none; } }
 
 .main {
   position: relative;
@@ -44,7 +47,7 @@ header {
         transition: color 1s cubic-bezier(0.075, 0.82, 0.165, 1); }
         .main > ul > li h2:active {
           transform: translate(-50%, -50%) scale(1.5);
-          color: 2; }
+          color: 3; }
           .main > ul > li h2:active ~ canvas {
             filter: grayscale(1) blur(10px); }
       .main > ul > li canvas {
@@ -55,15 +58,25 @@ header {
     position: fixed;
     top: 50%;
     transform: translateY(-50%);
-    width: 60px;
-    height: 60px;
     display: flex;
     align-items: center;
     justify-content: center;
-    transform: scaleY(3.5) scaleX(3); }
+    font-size: 2em;
+    opacity: 0.5;
+    transition: opacity 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+    .main .button:hover {
+      opacity: 1; }
     .main .button.left {
+      display: none;
       left: 30px; }
     .main .button.right {
       right: 30px; }
+    @media screen and (max-width: 900px) {
+      .main .button {
+        font-size: 1.2em; }
+        .main .button.left {
+          left: 10px; }
+        .main .button.right {
+          right: 10px; } }
 
 /*# sourceMappingURL=style.css.map */
