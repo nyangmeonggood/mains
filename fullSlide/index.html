@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>fullSlide</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../scss/css reset.css" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>
+        <?xml version="1.0" encoding="utf-8"?>
+        <svg
+          version="1.1"
+          class="logoIcon"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          x="0px"
+          y="0px"
+          viewBox="0 0 370 370"
+          style="enable-background: new 0 0 370 370"
+          xml:space="preserve"
+        >
+          <style type="text/css">
+            .st0 {
+              fill: #e00808;
+            }
+            .st1 {
+              fill: #ffcc33;
+            }
+            .st2 {
+              fill: #0bceda;
+            }
+          </style>
+          <g>
+            <circle class="st0" cx="138.2" cy="111.9" r="108" />
+          </g>
+          <g>
+            <polygon class="st1" points="280,366.1 134.7,330.9 244.7,220.9 	" />
+          </g>
+          <g>
+            <rect
+              x="303.7"
+              y="78.5"
+              transform="matrix(0.955 -0.2966 0.2966 0.955 -35.5975 99.0756)"
+              class="st2"
+              width="10"
+              height="176.8"
+            />
+          </g>
+        </svg>
+      </h1>
+      <nav>
+        <ul>
+          <li>HOME</li>
+          <li>SHOP</li>
+          <li>LOCATION</li>
+        </ul>
+      </nav>
+    </header>
+
+    <section class="main">
+      <ul class="mainContent"></ul>
+      <button class="button left"><span><</span></button>
+      <button class="button right"><span>></span></button>
+    </section>
+
+    <script>
+      const $mainContent = document.querySelector(".mainContent");
+      const content = [
+        { name: "circle" },
+        { name: "rectangle" },
+        { name: "triangle" },
+      ];
+
+      const color = ["#e00808", "#ffcc33", "#0bceda"];
+
+      const maxObj = 10,
+        windowWidth = document.body.clientWidth,
+        windowHeight = document.body.clientHeight;
+
+      const setMain = () => {
+        $mainContent.style.width = `${100 * content.length}%`;
+        content.map((item) => {
+          var $li = document.createElement("li"),
+            $h2 = document.createElement("h2"),
+            $canvas = document.createElement("canvas");
+
+          $h2.innerText = item.name;
+          $h2.classList.add("title");
+          $canvas.classList.add(item.name);
+          $canvas.classList.add("canvas");
+          $li.style.width = `${100 / content.length}%`;
+
+          $li.appendChild($h2);
+          $li.appendChild($canvas);
+          $mainContent.appendChild($li);
+        });
+      };
+
+      const draw = () => {
+        $circle = document.querySelector("canvas.circle").getContext("2d");
+        $triangle = document.querySelector("canvas.triangle").getContext("2d");
+        $rectangle = document
+          .querySelector("canvas.rectangle")
+          .getContext("2d");
+
+        $circle.clearRect(0, 0, windowWidth, windowHeight);
+        $triangle.clearRect(0, 0, windowWidth, windowHeight);
+        $rectangle.clearRect(0, 0, windowWidth, windowHeight);
+
+        for (var i = 0; i < maxObj; i++) {
+          $circle.save();
+          $circle.fillStyle = color[Math.floor(Math.random() * color.length)];
+          $circle.beginPath();
+          $circle.arc(
+            Math.floor(Math.random() * windowWidth),
+            Math.floor(Math.random() * windowHeight),
+            Math.floor(Math.random() * 100),
+            0,
+            2 * Math.PI
+          );
+          $circle.fill();
+          $circle.restore();
+        }
+
+        for (var j = 0; j < maxObj; j++) {
+          $triangle.save();
+          $triangle.fillStyle = color[Math.floor(Math.random() * color.length)];
+
+          var size = Math.floor(Math.random() * 100),
+            width = Math.floor(Math.random() * windowWidth),
+            height = Math.floor(Math.random() * windowHeight);
+
+          $triangle.beginPath();
+          $triangle.moveTo(
+            width + size * Math.cos(0),
+            height + size * Math.sin(0)
+          );
+
+          for (var k = 1; k <= 3; k += 1) {
+            $triangle.lineTo(
+              width + size * Math.cos((k * 2 * Math.PI) / 3),
+              height + size * Math.sin((k * 2 * Math.PI) / 3)
+            );
+          }
+          $triangle.fill();
+          $triangle.restore();
+        }
+
+        for (var i = 0; i < maxObj; i++) {
+          $rectangle.save();
+          $rectangle.fillStyle =
+            color[Math.floor(Math.random() * color.length)];
+
+          var size = Math.floor(Math.random() * 100),
+            width = Math.floor(Math.random() * windowWidth),
+            height = Math.floor(Math.random() * windowHeight);
+
+          $rectangle.beginPath();
+          $rectangle.moveTo(
+            width + size * Math.cos(0),
+            height + size * Math.sin(0)
+          );
+
+          for (var l = 1; l <= 4; l += 1) {
+            $rectangle.lineTo(
+              width + size * Math.cos((l * 2 * Math.PI) / 4),
+              height + size * Math.sin((l * 2 * Math.PI) / 4)
+            );
+          }
+          $rectangle.fill();
+          $rectangle.restore();
+        }
+      };
+
+      const canvasResize = () => {
+        Object.values(document.getElementsByClassName("canvas")).map((item) => {
+          item.width = windowWidth;
+          item.height = windowHeight;
+        });
+
+        draw();
+      };
+      window.addEventListener("resize", canvasResize, false);
+
+      var i = 0;
+
+      const clickEvent = () => {
+        Object.values(document.getElementsByClassName("title")).map((item) => {
+          item.addEventListener("pointerdown", () => {
+            item.style.color = color[Math.floor(Math.random() * color.length)];
+          });
+          item.addEventListener("pointerup", () => {
+            item.style.color = "#2d3436";
+            draw();
+          });
+        });
+
+        document.querySelector(".left").addEventListener("click", () => {
+          i--;
+          moveSlide();
+        });
+
+        document.querySelector(".right").addEventListener("click", () => {
+          i++;
+          moveSlide();
+        });
+
+        const moveSlide = () => {
+          if (i < 0) {
+            i = 0;
+          }
+          if (i > content.length - 1) i = content.length - 1;
+          $mainContent.style.left = `${i * -100}%`;
+        };
+      };
+
+      function init() {
+        setMain();
+        clickEvent();
+        canvasResize();
+      }
+      init();
+    </script>
+  </body>
+</html>
