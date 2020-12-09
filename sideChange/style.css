@@ -1,0 +1,170 @@
+* {
+  user-select: none; }
+
+.main {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  font-family: "Roboto", sans-serif, "SF Pro KR", "SF Pro Display", "SF Pro Icons", "Apple Gothic", "HY Gulim", "MalgunGothic", "HY Dotum", "Lexi Gulim", "Helvetica Neue", "Helvetica", "Arial", sans-serif; }
+  .main .left,
+  .main .right {
+    overflow: hidden;
+    position: relative;
+    height: 100%; }
+    .main .left > ul > li,
+    .main .right > ul > li {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%; }
+      .main .left > ul > li.active,
+      .main .right > ul > li.active {
+        z-index: 10; }
+
+.main > .left {
+  width: 35%;
+  background-color: #dfe6e9; }
+  .main > .left .textSlide {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    height: 60%;
+    background-color: inherit;
+    color: white; }
+    .main > .left .textSlide li {
+      overflow: hidden;
+      width: 100%;
+      height: 100%;
+      background-color: inherit; }
+      .main > .left .textSlide li h2 {
+        font-size: 70px;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: -2em;
+        transition: letter-spacing 0.5s; }
+      .main > .left .textSlide li span {
+        color: #dbdbdb;
+        display: inline-block;
+        margin-bottom: 40px; }
+      .main > .left .textSlide li p {
+        letter-spacing: -0.01em;
+        font-size: 18px;
+        line-height: 1.5em; }
+      .main > .left .textSlide li button {
+        font-weight: bold;
+        color: white;
+        padding: 20px 40px;
+        border-radius: 60px; }
+      .main > .left .textSlide li.active h2 {
+        letter-spacing: -0.01em;
+        transition-delay: 0.3s; }
+
+.main > .right {
+  width: 65%; }
+  .main > .right .imgSlide li {
+    background-color: white; }
+    .main > .right .imgSlide li:hover img {
+      transform: translate(-50%, -50%) rotateY(180deg);
+      opacity: 0.2;
+      z-index: 0; }
+    .main > .right .imgSlide li:hover h2 {
+      transform: translate(-50%, -50%) rotateY(0deg);
+      opacity: 1;
+      z-index: 1;
+      filter: grayscale(0); }
+    .main > .right .imgSlide li img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: block;
+      width: 50%;
+      z-index: 1;
+      backface-visibility: visible; }
+    .main > .right .imgSlide li h2 {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      font-size: 14vw;
+      font-weight: 900;
+      word-break: break-all;
+      text-transform: uppercase;
+      text-align: center;
+      backface-visibility: visible;
+      transform: translate(-50%, -50%) rotateY(180deg);
+      opacity: 0.2;
+      filter: grayscale(1); }
+    .main > .right .imgSlide li img,
+    .main > .right .imgSlide li h2 {
+      transition: 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+      transition-property: opacity, transform; }
+
+@media screen and (max-width: 900px) {
+  .main {
+    position: relative;
+    width: 100%;
+    display: block; }
+    .main > .left,
+    .main > .right {
+      width: 100% !important; }
+    .main > .left {
+      background-color: rgba(0, 0, 0, 0.3) !important; }
+    .main > .right {
+      top: 0;
+      left: 0;
+      position: absolute;
+      z-index: -1; }
+    .main > .left .textSlide,
+    .main > .left .textSlide li {
+      background-color: initial; }
+    .main > .left .textSlide li {
+      opacity: 0; }
+      .main > .left .textSlide li p {
+        margin-bottom: 20px; }
+      .main > .left .textSlide li > button {
+        background-color: white;
+        padding: 10px 20px; }
+      .main > .left .textSlide li.active {
+        opacity: 1; }
+      .main > .left .textSlide li h2 {
+        font-size: 3.5em; }
+    .main > .right .imgSlide li img {
+      width: 70%; } }
+.scrollspy {
+  position: absolute;
+  bottom: 30px;
+  width: 70%;
+  left: 15%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 100; }
+  .scrollspy button {
+    opacity: 0.4;
+    color: white;
+    font-size: 20px; }
+    .scrollspy button:hover {
+      opacity: 1; }
+  .scrollspy > ul {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; }
+    .scrollspy > ul li {
+      width: 12px;
+      height: 12px;
+      border-radius: 100%;
+      background-color: #dbdbdb;
+      opacity: 0.4;
+      cursor: pointer; }
+      .scrollspy > ul li.active {
+        opacity: 1; }
+      .scrollspy > ul li:not(:last-child) {
+        margin-right: 10px; }
+
+/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1"
+    />
+    <title>sideChange</title>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+      integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../scss/css reset.css" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <section class="main">
+      <div class="left">
+        <ul class="textSlide">
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </div>
+      <div class="right">
+        <ul class="picSlide">
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+        <div class="scrollspy">
+          <button class="left">
+            <i class="fas fa-long-arrow-alt-left"></i>
+          </button>
+          <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+          </ul>
+          <button class="right">
+            <i class="fas fa-long-arrow-alt-right"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      const slideInfo = [
+        {
+          name: "iPad",
+          title: "만족스러운 성능.<br />기분 좋은 가격.",
+          price: "₩449,000부터",
+        },
+        {
+          name: "MacBook Pro",
+          title: "프로 중의 프로.<br />믿을 수 없는 속도와 파워",
+          price: "₩1,690,000부터",
+        },
+        {
+          name: "iPad",
+          title: "손색없다.<br />부담 없다.",
+          price: "₩359,000부터",
+        },
+        {
+          name: "iMac Pro",
+          title: "프로를 프로답게.",
+          price: "₩6,300,000부터",
+        },
+      ];
+
+      const $textSlide = document.querySelector(".textSlide");
+    </script>
+  </body>
+</html>

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1"
+    />
+    <title>sideChange</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+      integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../scss/css reset.css" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <section class="main">
+      <div class="left">
+        <ul class="textSlide"></ul>
+        <div class="scrollspy">
+          <button class="left">
+            <i class="fas fa-long-arrow-alt-left"></i>
+          </button>
+          <ul></ul>
+          <button class="right">
+            <i class="fas fa-long-arrow-alt-right"></i>
+          </button>
+        </div>
+      </div>
+      <div class="right">
+        <ul class="imgSlide"></ul>
+      </div>
+    </section>
+
+    <script>
+      const slideInfo = [
+        {
+          name: "starbucks",
+          since: "1971",
+          desc:
+            "Starbucks Corporation is an American multinational chain of coffeehouses and roastery reserves headquartered in Seattle, Washington",
+          src: "./starbucks.png",
+          color: "#00643c",
+          html: "star<br/>bucks",
+        },
+        {
+          name: "google",
+          since: "1998",
+          desc:
+            "Google, LLC is an American multinational technology company that specializes in Internet-related services and products, which include online advertising technologies, a search engine, cloud computing, software, and hardware. ",
+          src: "./google.png",
+          color: "#ea4335",
+          html: "google",
+        },
+        {
+          name: "nike",
+          since: "1964",
+          desc:
+            "Nike  is an American multinational corporation that is engaged in the design, development, manufacturing, and worldwide marketing and sales of footwear, apparel, equipment, accessories, and services",
+          src: "./nike.png",
+          color: "#000",
+          html: "nike",
+        },
+        {
+          name: "samsung",
+          since: "1938",
+          desc:
+            "Samsung is a South Korean multinational conglomerate headquartered in Samsung Town, Seoul. It comprises numerous affiliated businesses, most of them united under the Samsung brand, and is the largest South Korean chaebol ",
+          src: "./samsung.png",
+          color: "#0e4194",
+          html: "sam<br/>sung",
+        },
+        {
+          name: "apple",
+          since: "1976",
+          desc:
+            "Apple is an American multinational technology company headquartered in Cupertino, California, that designs, develops and sells consumer electronics, computer software, and online services.",
+          src: "./apple.png",
+          color: "#bababa",
+          html: "apple",
+        },
+      ];
+
+      const $textSlide = document.querySelector(".textSlide"),
+        $imgSlide = document.querySelector(".imgSlide"),
+        $scrollspy = document.querySelector(".scrollspy>ul");
+
+      var current = 0;
+
+      slideInfo.map((item) => {
+        var $textLi = document.createElement("li"),
+          $textTitle = document.createElement("h2"),
+          $span = document.createElement("span"),
+          $p = document.createElement("p"),
+          $btn = document.createElement("button"),
+          $imgLi = document.createElement("li"),
+          $img = document.createElement("img"),
+          $imgTitle = document.createElement("h2");
+
+        $textTitle.innerText = item.name;
+        $imgTitle.innerHTML = item.html;
+        $imgTitle.style.color = item.color;
+        $span.innerText = item.since;
+        $p.innerText = item.desc;
+        $btn.innerText = "Go to Site";
+        $btn.style.color = item.color;
+        $img.src = item.src;
+
+        $textLi.appendChild($textTitle);
+        $textLi.appendChild($span);
+        $textLi.appendChild($p);
+        $textLi.appendChild($btn);
+
+        $imgLi.appendChild($img);
+        $imgLi.appendChild($imgTitle);
+
+        $textSlide.appendChild($textLi);
+        $imgSlide.appendChild($imgLi);
+      });
+
+      for (var i = 0; i < slideInfo.length; i++) {
+        var $li = document.createElement("li");
+        $li.dataset.current = i;
+        $li.addEventListener("click", (e) => {
+          current = e.target.dataset.current;
+
+          setActive();
+        });
+        $scrollspy.appendChild($li);
+      }
+
+      const slideActive = (target) => {
+        Object.values(target).map((item) => {
+          item.classList.remove("active");
+        });
+        Object.values(target)[current].classList.add("active");
+      };
+
+      const setActive = () => {
+        [$textSlide, $imgSlide, $scrollspy].map((item) => {
+          slideActive(item.childNodes);
+        });
+
+        document.querySelector("div.left").style.backgroundColor =
+          slideInfo[current].color;
+      };
+      setActive();
+
+      const minus = () => {
+        current > 0 ? current-- : (current = slideInfo.length - 1);
+        setActive();
+      };
+      const plus = () => {
+        current < slideInfo.length - 1 ? current++ : (current = 0);
+        setActive();
+      };
+
+      document.querySelector("button.left").addEventListener("click", () => {
+        minus();
+      });
+
+      document.querySelector("button.right").addEventListener("click", () => {
+        plus();
+      });
+
+      window.addEventListener("keydown", (e) => {
+        if (e.keyCode === 37) {
+          minus();
+        }
+        if (e.keyCode === 39) {
+          plus();
+        }
+      });
+
+      window.addEventListener(
+        "touchstart",
+        function (event) {
+          var touch = event.touches[0];
+          touchstartX = touch.clientX;
+          touchstartY = touch.clientY;
+        },
+        false
+      );
+
+      window.addEventListener(
+        "touchend",
+        function (event) {
+          if (event.touches.length == 0) {
+            var touch = event.changedTouches[event.changedTouches.length - 1];
+            touchendX = touch.clientX;
+            touchendY = touch.clientY;
+
+            touchoffsetX = touchendX - touchstartX;
+            touchoffsetY = touchendY - touchstartY;
+
+            if (Math.abs(touchoffsetX) > 100) {
+              if (touchoffsetX > 100) {
+                minus();
+              }
+              if (touchoffsetX < 100) {
+                plus();
+              }
+            }
+          }
+        },
+        false
+      );
+    </script>
+  </body>
+</html>
