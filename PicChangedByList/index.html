@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1"
+    />
+    <title>PicChangedByList</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bungee&family=Roboto:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+      integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../scss/css reset.css" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <section class="main">
+      <div class="left">
+        <span>A world of Inspiration for your home</span>
+        <h2>IKEA</h2>
+        <ul class="slide">
+          <li data-img="./1.jpg"></li>
+          <li data-img="./2.jpg"></li>
+          <li data-img="./3.jpg"></li>
+        </ul>
+      </div>
+      <div class="right"><div class="pic"></div></div>
+    </section>
+
+    <script>
+      const $slide = document.querySelector(".slide");
+
+      Object.values($slide.childNodes).map((item) => {
+        item.addEventListener("click", (e) => {
+          document.querySelector(
+            ".pic"
+          ).style.backgroundImage = `url(${e.target.dataset.img})`;
+
+          document.querySelector(".main").classList.add("active");
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -185,7 +185,6 @@
         function (event) {
           var touch = event.touches[0];
           touchstartX = touch.clientX;
-          touchstartY = touch.clientY;
         },
         false
       );
@@ -196,10 +195,8 @@
           if (event.touches.length == 0) {
             var touch = event.changedTouches[event.changedTouches.length - 1];
             touchendX = touch.clientX;
-            touchendY = touch.clientY;
 
             touchoffsetX = touchendX - touchstartX;
-            touchoffsetY = touchendY - touchstartY;
 
             if (Math.abs(touchoffsetX) > 100) {
               if (touchoffsetX > 100) {
