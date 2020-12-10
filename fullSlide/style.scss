@@ -57,10 +57,10 @@ header {
         transition: color 1s cubic-bezier(0.075, 0.82, 0.165, 1);
 
         &:active {
-          transform: translate(-50%, -50%) scale(1.5);
-          color: random(3);
+          transform: translate(-50%, -50%) scale(1.3);
           ~ canvas {
             filter: grayscale(1) blur(10px);
+            opacity: 0.5;
           }
         }
       }
