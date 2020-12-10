@@ -58,7 +58,8 @@
     font-family: "Bungee", cursive;
     font-size: 11em;
     color: #fbd914;
-    line-height: 1em; }
+    line-height: 1em;
+    margin-bottom: 40px; }
   .main > .left .slide {
     margin-right: 0.6em;
     display: flex;

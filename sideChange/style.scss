@@ -121,9 +121,10 @@
         text-transform: uppercase;
         text-align: center;
         backface-visibility: visible;
+        line-height: 0.9em;
         transform: translate(-50%, -50%) rotateY(180deg);
         opacity: 0.2;
-        filter: grayscale(1);
+        filter: grayscale(1) blur(10px);
       }
 
       img,
