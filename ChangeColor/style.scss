@@ -1,0 +1,165 @@
+body {
+  overflow: hidden;
+  position: relative;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  justify-content: flex-end;
+  box-sizing: border-box;
+
+  @media screen and (min-width: 1000px) {
+    padding: 0 40px;
+    height: 80px;
+  }
+
+  @media screen and (max-width: 1000px) {
+    padding: 0 10px;
+    height: 60px;
+  }
+  z-index: 100;
+
+  &,
+  ul {
+    display: flex;
+    align-items: center;
+  }
+
+  ul {
+    li {
+      position: relative;
+      input {
+        width: 100%;
+        border: none;
+        border-bottom: 2px solid #111;
+        padding: 4px 10px;
+        font-size: 1em;
+        outline: none;
+        background-color: transparent;
+      }
+      i {
+        position: absolute;
+        top: 50%;
+        right: 4px;
+        transform: translateY(-50%);
+      }
+    }
+  }
+}
+
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  color: #111;
+
+  @media screen and (min-width: 1000px) {
+    > div {
+      height: 100%;
+    }
+  }
+
+  @media screen and (max-width: 1000px) {
+    flex-direction: column;
+    > div {
+      width: 100% !important;
+    }
+    .desc {
+      height: 90% !important;
+      .title {
+        font-size: 6em !important;
+      }
+    }
+    .visual {
+      height: 10% !important;
+      .bar {
+        bottom: 0 !important;
+        height: 100% !important;
+      }
+    }
+  }
+
+  > div {
+    position: relative;
+  }
+
+  .desc {
+    width: 33.33%;
+    font-family: "Anton", sans-serif;
+
+    .title {
+      position: absolute;
+      left: 20px;
+      bottom: 20px;
+      font-size: 8em;
+      line-height: 1em;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      writing-mode: tb;
+      transform: rotate(180deg);
+      user-select: none;
+
+      .color {
+        font-size: 0.8em;
+        &::before {
+          content: "#";
+          font-size: 0.8em;
+          display: inline-block;
+        }
+      }
+    }
+  }
+  .visual {
+    width: 66.66%;
+    overflow: hidden;
+
+    .bar {
+      position: absolute;
+      left: 0;
+      bottom: 10%;
+      width: 100%;
+      height: 30%;
+      background-color: #ff512f;
+      transition: left 0.5s;
+
+      button {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        background-color: transparent;
+
+        color: white;
+
+        i {
+          font-size: 1.5em;
+          &:active {
+            font-size: 1.2em;
+          }
+        }
+
+        @media screen and (max-width: 1000px) {
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+  }
+}

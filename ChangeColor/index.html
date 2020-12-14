@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1"
+    />
+    <title>ChangeColor</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anton&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+      integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../scss/css reset.css" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <header>
+      <ul><li><input type="text" placeholder="Search for" maxlength="10"><i class="fas fa-search"></i></li></ul>
+    </header>
+    <canvas></canvas>
+    <section class="main">
+      <div class="desc">
+        <div class="title">Random Color<div class="color"></div></div>        
+      </div>
+      <div class="visual">
+        <figure class="bar">
+          <button class="refresh"><i class="fas fa-sync-alt"></i></button>
+        </figure>
+      </div>
+    </section>
+
+    <script>
+      const canvas = document.querySelector("canvas"),
+      ctx = canvas.getContext("2d"),
+      stageWidth = document.body.clientWidth,
+      stageHeight = document.body.clientHeight;
+
+      const $colorCode = document.querySelector(".color"),
+        $refresh = document.querySelector(".refresh"),
+        $bar = document.querySelector("figure.bar");
+
+      const maxSize = 40;
+
+      let $hex;
+
+      var Balls = [];
+
+      const resize = () => {
+        canvas.width = document.body.clientWidth
+        canvas.height = document.body.clientHeight
+
+        Balls = []
+      }
+
+      const randomColor = () => {
+        let $colorR = Math.floor(Math.random() * 255),
+        $colorG = Math.floor(Math.random() * 255),
+        $colorB = Math.floor(Math.random() * 255);
+
+        $hex = `${setHex($colorR)}${setHex($colorG)}${setHex($colorB)}`;
+      }
+
+      const setHex = (target) => {
+        let rgbCode = String(target).length <= 1 ? `0${target.toString(16)}` : target.toString(16);
+        let hexCode = rgbCode.length <= 1 ? `0${rgbCode}` : rgbCode
+
+        return hexCode;
+      }
+
+      const setBarColor = () => {
+        randomColor()
+        $colorCode.innerHTML = $hex
+        $bar.style.backgroundColor = $colorCode.style.color = `#${$hex}`
+        for(let i = 0; i < 5;i++){Balls.push(new Ball(`#${$hex}`))}
+      }
+      
+      function Ball(color){
+        this.size = Math.random() * 10;
+        this.x=  Math.random() * (document.body.clientWidth - this.size * 2)
+        this.y = stageHeight
+        this.color = color
+        this.grow = true
+        this.gr = Math.random() * 0.2
+      }
+
+      Ball.prototype.draw = function(){
+        ctx.save();
+        ctx.beginPath();
+
+        ctx.arc(this.x,this.y,this.size,0,Math.PI * 2);
+        ctx.fillStyle = this.color;
+        ctx.fill()
+        ctx.restore()
+      }
+
+      Ball.prototype.animate = function(){
+        this.x += Math.random() * 0.05
+        this.y -= 0.8
+
+        if(this.size < maxSize && this.grow){
+          this.size += this.gr;
+        }
+        if(this.size > maxSize){
+          this.grow = false
+        }
+        if(!this.grow){
+          this.size -= 4
+        }
+        if(this.size < 0){
+          this.size = 0
+        }
+        this.draw()
+      }
+
+      function animate(){
+        requestAnimationFrame(animate)
+        ctx.clearRect(0,0,canvas.width,canvas.height)
+
+        Balls.map((item) => {
+          item.animate()
+        })
+      }
+
+      window.addEventListener("resize", () => {
+        resize()
+      })
+
+      const init =()=>{
+        resize()
+        setBarColor()
+        requestAnimationFrame(animate)
+        setInterval(
+          () => Balls.push(new Ball(`#${$hex}`)),500
+        )
+        $refresh.addEventListener("click",setBarColor)
+      }
+      init()
+    </script>
+  </body>
+</html>
