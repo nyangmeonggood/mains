@@ -2,14 +2,22 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
-    <title>fullSlide</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1"
+    />
+    <title>FullSlide</title>
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+      integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp"
+      crossorigin="anonymous"
+    />
     <link rel="stylesheet" href="../scss/css reset.css" />
     <link rel="stylesheet" href="./style.css" />
   </head>
@@ -215,17 +223,17 @@
         });
 
         const moveSlide = () => {
-          document.querySelector(".left").style.display = "block"
-          document.querySelector(".right").style.display = "block"
-          
+          document.querySelector(".left").style.display = "block";
+          document.querySelector(".right").style.display = "block";
+
           if (i <= 0) {
-            i = 0;            
-            document.querySelector(".left").style.display = "none"
+            i = 0;
+            document.querySelector(".left").style.display = "none";
           }
           if (i >= content.length - 1) {
-            i = content.length - 1
-            
-            document.querySelector(".right").style.display = "none"
+            i = content.length - 1;
+
+            document.querySelector(".right").style.display = "none";
           }
           $mainContent.style.left = `${i * -100}%`;
         };
