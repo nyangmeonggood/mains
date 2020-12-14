@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1"
+    />
+    <title>bottomBlur</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Yantramanav:wght@300;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+      integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../scss/css reset.css" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Logo</h1>
+      <ul class="menu">
+        <li>Home</li>
+        <li>Menu</li>
+        <li>Shop</li>
+        <li>Contact</li>
+      </ul>
+      <ul class="sub">
+        <li><i class="fas fa-box-open"></i></li>
+        <li><i class="fas fa-search"></i></li>
+        <li><i class="fas fa-bars"></i></li>
+      </ul>
+    </header>
+    <section id="main">
+      <div class="bot">
+        <div class="filter"></div>
+        <div class="text">
+          <p>
+            All picture is from pixabay. If you use these pictures, you have to
+            write like this. This picture is not mine. All rights about it are
+            their who took a picture.
+          </p>
+          <ul class="title">
+            <li class="active">
+              <span>Mario Hagen's Pic<br />On Pixabay</span>
+            </li>
+            <li>
+              <span>Mario Hagen's another<br />Pic On Pixabay</span>
+            </li>
+            <li>
+              <span>Jorge Guillen's Pic<br />On Pixabay</span>
+            </li>
+          </ul>
+          <div class="buttonBox">
+            <button class="up"><i class="fas fa-arrow-circle-up"></i></button>
+            <button class="down">
+              <i class="fas fa-arrow-circle-down"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      let currentSlide = 0;
+
+      const $title = document.querySelector(".title"),
+        $up = document.querySelector("button.up"),
+        $down = document.querySelector("button.down");
+
+      const bgList = [
+        "url(./marioHagen1.jpg)",
+        "url(./marioHagen2.jpg)",
+        "url(./JorgeGuillen.jpg)",
+      ];
+
+      const setSlide = () => {
+        Object.values($title.children).map((item) => {
+          item.classList.remove("active");
+        });
+        $title.children[currentSlide].classList.add("active");
+
+        $up.style.opacity = $down.style.opacity = 1;
+        if (currentSlide === 0) $up.style.opacity = 0.2;
+        if (currentSlide === $title.children.length - 1)
+          $down.style.opacity = 0.2;
+
+        document.querySelector(
+          "#main"
+        ).style.backgroundImage = document.querySelector(
+          "#main .filter"
+        ).style.backgroundImage = bgList[currentSlide];
+      };
+      $up.addEventListener("click", () => {
+        currentSlide--;
+        if (currentSlide < 0) currentSlide = 0;
+        setSlide();
+      });
+      $down.addEventListener("click", () => {
+        currentSlide++;
+        if (currentSlide > $title.children.length - 1)
+          currentSlide = $title.children.length - 1;
+        setSlide();
+      });
+
+      const init = () => {
+        setSlide();
+      };
+      init();
+    </script>
+  </body>
+</html>
