@@ -27,9 +27,15 @@
         <span>A world of Inspiration for your home</span>
         <h2>IKEA</h2>
         <ul class="slide">
-          <li data-img="./1.jpg"></li>
-          <li data-img="./2.jpg"></li>
-          <li data-img="./3.jpg"></li>
+          <li
+            data-img="https://raw.githubusercontent.com/nyangmeonggood/mains/master/PicChangedByList/1.jpg"
+          ></li>
+          <li
+            data-img="https://raw.githubusercontent.com/nyangmeonggood/mains/master/PicChangedByList/2.jpg"
+          ></li>
+          <li
+            data-img="https://raw.githubusercontent.com/nyangmeonggood/mains/master/PicChangedByList/3.jpg"
+          ></li>
         </ul>
       </div>
       <div class="right"><div class="pic"></div></div>
@@ -47,7 +53,9 @@
       });
 
       setTimeout(() => {
-        document.querySelector(".pic").style.backgroundImage = `url("./1.jpg")`;
+        document.querySelector(
+          ".pic"
+        ).style.backgroundImage = `url("https://raw.githubusercontent.com/nyangmeonggood/mains/master/PicChangedByList/1.jpg")`;
         document.querySelector(".main").classList.add("active");
       }, 2000);
     </script>
