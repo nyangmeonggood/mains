@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1"
+    />
+    <title>Grider</title>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+      integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp"
+      crossorigin="anonymous"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../scss/css reset.css" />
+    <link rel="stylesheet" href="./style.css" />
+    <script src="./wheelEvent.js"></script>
+  </head>
+  <body>
+    <ul id="grid">
+      <li class="grid grid1"></li>
+      <ul>
+        <li class="grid grid2"></li>
+        <li class="grid grid3"></li>
+      </ul>
+      <li class="grid grid4"></li>
+    </ul>
+    <header>
+      <ul class="content">
+        <li class="grid2">LOGO</li>
+        <li class="grid3">
+          <ul class="pc">
+            <li>HOME</li>
+            <li>ABOUT</li>
+            <li>CONTACT</li>
+          </ul>
+          <ul class="m">
+            <li>HOME</li>
+            <li>ABOUT</li>
+            <li>CONTACT</li>
+          </ul>
+          <div class="ham"><span></span><span></span><span></span></div>
+        </li>
+      </ul>
+    </header>
+    <section id="main">
+      <div class="slideContainer">
+        <div class="part part1 active">
+          <h2>1 Lorem ipsum dolor sit amet</h2>
+          <p>
+            Aenean commodo ligula eget dolor. <br class="pc" />Aenean massa. Cum
+            sociis natoque penatibus <br class="pc" />et magnis dis parturient
+            montes, nascetur ridiculus mus.
+          </p>
+        </div>
+        <div class="part part2">
+          <h2>2 Lorem ipsum dolor sit amet</h2>
+          <p>
+            Aenean commodo ligula eget dolor. <br class="pc" />Aenean massa. Cum
+            sociis natoque penatibus <br class="pc" />et magnis dis parturient
+            montes, nascetur ridiculus mus.
+          </p>
+        </div>
+        <div class="part part3">
+          <h2>3 Lorem ipsum dolor sit amet</h2>
+          <p>
+            Aenean commodo ligula eget dolor. <br class="pc" />Aenean massa. Cum
+            sociis natoque penatibus <br class="pc" />et magnis dis parturient
+            montes, nascetur ridiculus mus.
+          </p>
+        </div>
+        <div class="part part4">
+          <h2>4 Lorem ipsum dolor sit amet</h2>
+          <p>
+            Aenean commodo ligula eget dolor. <br class="pc" />Aenean massa. Cum
+            sociis natoque penatibus <br class="pc" />et magnis dis parturient
+            montes, nascetur ridiculus mus.
+          </p>
+        </div>
+      </div>
+
+      <div class="scrollspy">
+        <span class="current">00</span>
+        <div><div class="currentPer"></div></div>
+        <span class="total">00</span>
+      </div>
+    </section>
+    <footer>
+      <ul class="content">
+        <li class="grid2">
+          This page layout is made using reference by designed
+          <a
+            href="https://dribbble.com/shots/14486601-Website-Night-home-visual"
+            target="_blank"
+            >@Gleb Kuznetsov</a
+          >
+          of dribble
+        </li>
+        <li class="grid3"></li>
+      </ul>
+    </footer>
+    <ul id="page" class="active">
+      <li class="grid grid1"></li>
+      <ul>
+        <li class="grid grid2"></li>
+        <li class="grid grid3"></li>
+      </ul>
+      <li class="grid grid4"></li>
+    </ul>
+    <script>
+      const $grid = document.querySelector("#grid"),
+        $header = document.querySelector("header"),
+        $footer = document.querySelector("footer"),
+        $page = document.querySelector("#page");
+
+      const $current = document.querySelector(".current"),
+        $total = document.querySelector(".total"),
+        $currentPer = document.querySelector(".currentPer"),
+        $slide = Object.values(
+          document.querySelector(".slideContainer").children
+        );
+
+      const $ham = document.querySelector(".ham");
+
+      let i = 0;
+
+      function scrollSpy(i) {
+        $currentPer.style.height = `${((i + 1) / $slide.length) * 100}%`;
+        $current.innerHTML = `0${i + 1}`;
+        $total.innerHTML = `0${$slide.length}`;
+      }
+
+      $ham.addEventListener("click", () => {
+        $header.classList.toggle("active");
+      });
+
+      function init() {
+        scrollSpy(i);
+        $page.classList.remove("active");
+        setTimeout(() => {
+          $page.style.zIndex = -1;
+          wheelEvent("y", 2000, true, () => {});
+        }, 1200);
+      }
+      init();
+    </script>
+  </body>
+</html>

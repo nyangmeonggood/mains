@@ -6,33 +6,38 @@
   justify-content: space-between;
   background-color: #0058ab; }
   @media screen and (min-width: 900px) {
+    .main > .left,
+    .main > .right {
+      height: 100%; }
     .main.active > .left,
     .main.active > .right {
-      transition: width 0.8s cubic-bezier(0.79, 0.16, 0.52, 0.39); }
+      transition: width 0.8s cubic-bezier(0.79, 0.16, 0.52, 0.39);
+      transition-delay: 1s; }
     .main.active > .left {
       width: 33.33%; }
     .main.active > .right {
       width: 66.66%; }
       .main.active > .right .pic {
         width: 70%;
-        transition-delay: 0.2s; } }
+        transition-delay: 1.3s; } }
   @media screen and (max-width: 900px) {
     .main {
       flex-direction: column; }
       .main.active > .left,
       .main.active > .right {
-        transition: all 0.8s; }
+        transition: all 0.8s;
+        transition-delay: 1s; }
       .main.active > .left {
-        height: 40%;
-        justify-content: center; }
+        height: 40%; }
       .main.active > .right {
         height: 60%; }
         .main.active > .right .pic {
-          height: 100%; } }
+          top: 0;
+          transition: all 0.8s;
+          transition-delay: 1.3s; } }
   .main > .left,
   .main > .right {
-    position: relative;
-    height: 100%; }
+    position: relative; }
 
 .main > .left {
   width: 90%;
@@ -56,12 +61,18 @@
     font-family: "Roboto", sans-serif;
     font-size: 1.7em;
     color: white; }
+    @media screen and (min-width: 900px) and (max-width: 1350px) {
+      .main > .left span {
+        font-size: 1.1em; } }
   .main > .left h2 {
     font-family: "Bungee", cursive;
     font-size: 11em;
     color: #fbd914;
     line-height: 1em;
     margin-bottom: 40px; }
+    @media screen and (min-width: 900px) and (max-width: 1350px) {
+      .main > .left h2 {
+        font-size: 7.3em; } }
   .main > .left .slide {
     margin-right: 0.6em;
     display: flex;
@@ -75,6 +86,8 @@
       height: 100%;
       background-color: black;
       border-radius: 12px;
+      transform: scale(0);
+      transition: transform 0.5s;
       cursor: pointer;
       background-blend-mode: luminosity;
       background-repeat: no-repeat;
@@ -83,9 +96,11 @@
       .main > .left .slide li:nth-child(1) {
         background-image: url(https://raw.githubusercontent.com/nyangmeonggood/mains/master/PicChangedByList/1.jpg); }
       .main > .left .slide li:nth-child(2) {
-        background-image: url(https://raw.githubusercontent.com/nyangmeonggood/mains/master/PicChangedByList/2.jpg); }
+        background-image: url(https://raw.githubusercontent.com/nyangmeonggood/mains/master/PicChangedByList/2.jpg);
+        transition-delay: 0.2s; }
       .main > .left .slide li:nth-child(3) {
-        background-image: url(https://raw.githubusercontent.com/nyangmeonggood/mains/master/PicChangedByList/3.jpg); }
+        background-image: url(https://raw.githubusercontent.com/nyangmeonggood/mains/master/PicChangedByList/3.jpg);
+        transition-delay: 0.4s; }
       .main > .left .slide li:hover {
         background-blend-mode: initial; }
 
@@ -129,20 +144,22 @@
       font-size: 1em; }
     .main .left h2 {
       font-size: 4em;
-      margin-bottom: 7%; }
+      margin-bottom: 30px; }
     .main .left .slide {
       width: 85%;
-      height: 70px; }
+      height: 70px;
+      margin-bottom: 20px; }
       .main .left .slide li {
         width: 31%; }
     .main .left::after {
       right: 10%; }
   .main .right {
-    height: 5%; }
+    height: 5%;
+    overflow: hidden; }
     .main .right .pic {
-      top: 0;
+      top: 100%;
       left: 45%;
       width: 80%;
-      height: 0%; } }
+      height: 100%; } }
 
 /*# sourceMappingURL=style.css.map */

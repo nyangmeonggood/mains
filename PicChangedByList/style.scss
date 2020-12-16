@@ -12,10 +12,15 @@ $radius: 12px;
   background-color: $mainColor;
 
   @media screen and (min-width: 900px) {
+    > .left,
+    > .right {
+      height: 100%;
+    }
     &.active {
       > .left,
       > .right {
         transition: width 0.8s cubic-bezier(0.79, 0.16, 0.52, 0.39);
+        transition-delay: 1s;
       }
       > .left {
         width: 33.33%;
@@ -25,7 +30,7 @@ $radius: 12px;
 
         .pic {
           width: 70%;
-          transition-delay: 0.2s;
+          transition-delay: 1.3s;
         }
       }
     }
@@ -38,16 +43,18 @@ $radius: 12px;
       > .left,
       > .right {
         transition: all 0.8s;
+        transition-delay: 1s;
       }
       > .left {
         height: 40%;
-        justify-content: center;
       }
       > .right {
         height: 60%;
 
         .pic {
-          height: 100%;
+          top: 0;
+          transition: all 0.8s;
+          transition-delay: 1.3s;
         }
       }
     }
@@ -56,7 +63,6 @@ $radius: 12px;
   > .left,
   > .right {
     position: relative;
-    height: 100%;
   }
 }
 
@@ -85,6 +91,10 @@ $radius: 12px;
     font-family: "Roboto", sans-serif;
     font-size: 1.7em;
     color: white;
+
+    @media screen and (min-width: 900px) and (max-width: 1350px) {
+      font-size: 1.1em;
+    }
   }
 
   h2 {
@@ -93,6 +103,10 @@ $radius: 12px;
     color: $subColor;
     line-height: 1em;
     margin-bottom: 40px;
+
+    @media screen and (min-width: 900px) and (max-width: 1350px) {
+      font-size: 7.3em;
+    }
   }
 
   .slide {
@@ -109,6 +123,9 @@ $radius: 12px;
       height: 100%;
       background-color: black;
       border-radius: $radius;
+      transform: scale(0);
+      transition: transform 0.5s;
+
       cursor: pointer;
 
       &:nth-child(1) {
@@ -116,9 +133,11 @@ $radius: 12px;
       }
       &:nth-child(2) {
         background-image: url(https://raw.githubusercontent.com/nyangmeonggood/mains/master/PicChangedByList/2.jpg);
+        transition-delay: 0.2s;
       }
       &:nth-child(3) {
         background-image: url(https://raw.githubusercontent.com/nyangmeonggood/mains/master/PicChangedByList/3.jpg);
+        transition-delay: 0.4s;
       }
       &:hover {
         background-blend-mode: initial;
@@ -195,11 +214,12 @@ $radius: 12px;
       }
       h2 {
         font-size: 4em;
-        margin-bottom: 7%;
+        margin-bottom: 30px;
       }
       .slide {
         width: 85%;
         height: 70px;
+        margin-bottom: 20px;
         li {
           width: 31%;
         }
@@ -212,11 +232,13 @@ $radius: 12px;
 
     .right {
       height: 5%;
+      overflow: hidden;
+
       .pic {
-        top: 0;
+        top: 100%;
         left: 45%;
         width: 80%;
-        height: 0%;
+        height: 100%;
       }
     }
   }

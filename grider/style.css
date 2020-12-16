@@ -1,0 +1,265 @@
+:root {
+  --logoSize: 300px;
+  --border: 1px solid rgba(255, 255, 255, 0.2); }
+  @media screen and (max-width: 900px) {
+    :root {
+      --logoSize: 90%; } }
+
+body {
+  font-family: "Montserrat", sans-serif;
+  color: white; }
+
+.grid2 {
+  width: var(--logoSize); }
+
+.grid3 {
+  width: calc(100% - var(--logoSize)); }
+
+#page {
+  z-index: 11; }
+  #page li {
+    position: relative;
+    background-color: black;
+    transform: scaleY(0);
+    transform-origin: center top;
+    transition: transform 0.5s; }
+    #page li.grid2 {
+      transition-delay: 0.2s; }
+    #page li.grid3 {
+      transition-delay: 0.4s; }
+    #page li.grid4 {
+      transition-delay: 0.6s; }
+  #page.active {
+    z-index: 11; }
+    #page.active li {
+      transform: scaleY(1);
+      transform-origin: center bottom; }
+
+#grid {
+  background-image: url(https://raw.githubusercontent.com/nyangmeonggood/mains/master/grider/bg.jpg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: -1; }
+  #grid > ul li {
+    border: var(--border);
+    border-top: none;
+    border-bottom: none; }
+  #grid > ul .grid3 {
+    border-left: 0; }
+
+#page,
+#grid {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+  #page > li,
+  #page > ul,
+  #grid > li,
+  #grid > ul {
+    height: 100%; }
+  #page > li,
+  #grid > li {
+    width: 5%; }
+  #page > ul,
+  #grid > ul {
+    margin: 0 auto;
+    width: 90%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+    #page > ul li,
+    #grid > ul li {
+      height: 100%;
+      box-sizing: border-box; }
+
+header,
+footer {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 140px;
+  z-index: 1; }
+  @media screen and (max-width: 900px) {
+    header,
+    footer {
+      height: 80px; } }
+  header > ul,
+  footer > ul {
+    margin: 0 auto;
+    width: 90%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+    header > ul > li,
+    footer > ul > li {
+      height: 100%; }
+      header > ul > li.grid2,
+      footer > ul > li.grid2 {
+        display: flex;
+        justify-content: center;
+        align-items: center; }
+
+header {
+  top: 0;
+  border-bottom: var(--border); }
+  header.active .ham span:nth-of-type(1) {
+    transform: translate(-50%, -50%) rotate(45deg); }
+  header.active .ham span:nth-of-type(2) {
+    display: none; }
+  header.active .ham span:nth-of-type(3) {
+    transform: translate(-50%, -50%) rotate(-45deg); }
+  header.active .m {
+    display: flex; }
+  header > ul li.grid2 {
+    font-weight: bold; }
+    header > ul li.grid2:hover {
+      background-color: black;
+      cursor: pointer; }
+  @media screen and (min-width: 900px) {
+    header > ul li .m,
+    header > ul li .ham {
+      display: none; }
+    header > ul li .pc {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700; }
+      header > ul li .pc li {
+        margin: 0 20px;
+        cursor: pointer; }
+        header > ul li .pc li:hover {
+          transform: translateY(-4px) scale(1.01); } }
+  @media screen and (max-width: 900px) {
+    header > ul li .pc {
+      display: none; }
+    header > ul li .ham {
+      position: relative;
+      width: 80%;
+      height: 100%;
+      margin: 0 auto;
+      z-index: 1000; }
+      header > ul li .ham span {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        display: inline-block;
+        width: 80%;
+        height: 2px;
+        background-color: white; }
+        header > ul li .ham span:nth-of-type(1) {
+          transform: translate(-50%, -8px); }
+        header > ul li .ham span:nth-of-type(2) {
+          transform: translate(-50%, 0); }
+        header > ul li .ham span:nth-of-type(3) {
+          transform: translate(-50%, 8px); }
+    header > ul li .m {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      z-index: 100;
+      background-color: black;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      font-weight: bold; }
+      header > ul li .m li {
+        font-size: 1.5em; }
+      header > ul li .m li:not(:last-child) {
+        margin-bottom: 20px; } }
+
+footer {
+  bottom: 0;
+  border-top: var(--border); }
+  footer ul li.grid2 {
+    font-size: 0.9em;
+    line-height: 1.5em;
+    letter-spacing: -0.05em;
+    padding-left: 12px;
+    box-sizing: border-box; }
+    footer ul li.grid2:hover {
+      background-color: white;
+      color: #111; }
+    footer ul li.grid2 a {
+      display: contents;
+      font-weight: bold; }
+
+#main {
+  position: relative;
+  width: 100%;
+  height: 100%; }
+  #main div.part {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: calc(5% + 20px);
+    transform: translateY(-50%); }
+    @media screen and (max-width: 900px) {
+      #main div.part {
+        width: 70%; } }
+    #main div.part h2 {
+      font-size: 3.5em;
+      font-weight: bold;
+      line-height: 1.3em;
+      letter-spacing: -0.05em;
+      margin-bottom: 30px; }
+      @media screen and (max-width: 900px) {
+        #main div.part h2 {
+          font-size: 2.5em;
+          line-height: 1em; } }
+    #main div.part p {
+      font-size: 1.1em;
+      font-weight: 300;
+      line-height: 1.3em;
+      letter-spacing: 0.05em; }
+      @media screen and (max-width: 900px) {
+        #main div.part p {
+          font-size: 0.9em; }
+          #main div.part p br.pc {
+            display: none; } }
+    #main div.part.active {
+      display: block;
+      transform: translateY(-50%); }
+  #main .scrollspy {
+    position: absolute;
+    top: 50%;
+    right: calc(2% + 20px);
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    flex-direction: column; }
+    @media screen and (max-width: 900px) {
+      #main .scrollspy {
+        right: 4%;
+        transform: translate(-50%, -50%); } }
+    #main .scrollspy:hover > div {
+      width: 4px;
+      cursor: pointer;
+      transition: width 0.5s; }
+    #main .scrollspy .current,
+    #main .scrollspy .total {
+      color: white;
+      writing-mode: vertical-lr; }
+    #main .scrollspy > div {
+      width: 1px;
+      height: 100px;
+      margin: 10px 0;
+      background-color: rgba(255, 255, 255, 0.3); }
+      #main .scrollspy > div > div {
+        width: 100%;
+        height: 0;
+        background-color: white; }
+
+/*# sourceMappingURL=style.css.map */

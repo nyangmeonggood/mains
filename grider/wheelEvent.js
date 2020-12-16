@@ -15,14 +15,31 @@ function wheelEvent(axis, speed, loop, afterFunc) {
 
   var $targetLength = target.children.length;
 
-  const setClass = (target) => {
-    Object.values(target.children).map((item) => {
-      item.classList.remove("active");
-    });
-    Object.values(target.children)[i].classList.add("active");
-    isLock = true;
+  var prevTimeout;
 
-    setTimeout(() => (isLock = false), speed);
+  const setClass = (target) => {
+    $page.style.zIndex = 11;
+    $page.classList.add("active");
+    clearTimeout(prevTimeout);
+
+    setTimeout(() => {
+      Object.values(target.children).map((item) => {
+        item.classList.remove("active");
+      });
+      Object.values(target.children)[i].classList.add("active");
+      $page.classList.remove("active");
+
+      $currentPer.style.height = `${((i + 1) / $slide.length) * 100}%`;
+      $current.innerHTML = `0${i + 1}`;
+      $total.innerHTML = `0${$slide.length}`;
+
+      prevTimeout = setTimeout(() => {
+        $page.style.zIndex = -1;
+        isLock = false;
+      }, 1100);
+    }, 1100);
+
+    isLock = true;
   };
 
   window.addEventListener("wheel", function (event) {
@@ -38,8 +55,8 @@ function wheelEvent(axis, speed, loop, afterFunc) {
       if (i >= $targetLength) {
         loop ? (i = 0) : (i = $targetLength - 1);
       }
-      setClass(target);
 
+      setClass(target);
       afterFunc(i);
     }
   });
@@ -105,7 +122,7 @@ function wheelEvent(axis, speed, loop, afterFunc) {
     prevX = nextX = prevY = nextY = 0;
   });
 
-  window.addEventListener(
+  document.querySelector("#main").addEventListener(
     "touchstart",
     function (event) {
       var touch = event.touches[0];
@@ -114,7 +131,7 @@ function wheelEvent(axis, speed, loop, afterFunc) {
     },
     false
   );
-  window.addEventListener(
+  document.querySelector("#main").addEventListener(
     "touchend",
     function (event) {
       if (event.touches.length == 0) {

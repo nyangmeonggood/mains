@@ -1,6 +1,7 @@
 body {
   position: relative;
-  color: black;
+  color: white;
+  background-color: black;
   font-family: "Yantramanav", sans-serif; }
 
 header {
@@ -31,9 +32,11 @@ header {
     header ul.menu {
       width: 70%;
       justify-content: flex-start; }
-      header ul.menu li:not(:last-child) {
-        margin-right: 100px;
-        text-transform: uppercase; }
+      header ul.menu li {
+        text-shadow: 0 0 10px rgba(0, 0, 0, 0.4); }
+        header ul.menu li:not(:last-child) {
+          margin-right: 100px;
+          text-transform: uppercase; }
     header ul.sub li:first-child {
       margin-right: 10px; }
     header ul.sub li:last-child {
@@ -115,28 +118,42 @@ header {
           font-size: 2.5em;
           line-height: 1.1em;
           padding-left: 10px;
-          overflow: hidden; }
+          overflow: hidden;
+          word-break: break-all; }
           #main .bot .text ul li.active {
             display: flex; }
+      @media screen and (max-width: 1200px) and (min-width: 550px) {
+        #main .bot .text > p,
+        #main .bot .text ul {
+          width: 48%; }
+        #main .bot .text ul:last-child {
+          width: 4%; }
+        #main .bot .text .title li {
+          font-size: 3.6vw; } }
       @media screen and (max-width: 900px) {
         #main .bot .text {
           flex-direction: column;
           flex-wrap: wrap;
-          align-content: flex-start; }
+          align-content: flex-start;
+          align-items: baseline; }
           #main .bot .text > p,
           #main .bot .text ul {
             width: 100%; }
           #main .bot .text .title {
             margin-left: 0; }
             #main .bot .text .title li {
-              font-size: 8vw; }
+              font-size: 4vw; } }
+      @media screen and (max-width: 900px) and (max-width: 600px) {
+        #main .bot .text .title li {
+          font-size: 7vw; } }
+      @media screen and (max-width: 900px) {
           #main .bot .text p {
             display: contents; }
           #main .bot .text .buttonBox {
             position: absolute;
-            top: -48px;
-            right: 5%;
-            font-size: 3vw;
+            bottom: 88%;
+            right: 0;
+            font-size: 14px;
             transform: rotate(-90deg); } }
     #main .bot .buttonBox button {
       display: block;

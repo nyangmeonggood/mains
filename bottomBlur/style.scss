@@ -1,6 +1,7 @@
 body {
   position: relative;
-  color: black;
+  color: white;
+  background-color: black;
   font-family: "Yantramanav", sans-serif;
 }
 
@@ -43,6 +44,7 @@ header {
       justify-content: flex-start;
 
       li {
+        text-shadow: 0 0 10px rgba($color: #000000, $alpha: 0.4);
         &:not(:last-child) {
           margin-right: 100px;
           text-transform: uppercase;
@@ -159,17 +161,34 @@ header {
           line-height: 1.1em;
           padding-left: 10px;
           overflow: hidden;
+          word-break: break-all;
 
           &.active {
             display: flex;
           }
         }
       }
-
+      @media screen and (max-width: 1200px) and (min-width: 550px) {
+        > p,
+        ul {
+          width: 48%;
+        }
+        ul {
+          &:last-child {
+            width: 4%;
+          }
+        }
+        .title {
+          li {
+            font-size: 3.6vw;
+          }
+        }
+      }
       @media screen and (max-width: 900px) {
         flex-direction: column;
         flex-wrap: wrap;
         align-content: flex-start;
+        align-items: baseline;
 
         > p,
         ul {
@@ -179,7 +198,10 @@ header {
         .title {
           margin-left: 0;
           li {
-            font-size: 8vw;
+            font-size: 4vw;
+            @media screen and (max-width: 600px) {
+              font-size: 7vw;
+            }
           }
         }
         p {
@@ -188,9 +210,9 @@ header {
 
         .buttonBox {
           position: absolute;
-          top: -48px;
-          right: 5%;
-          font-size: 3vw;
+          bottom: 88%;
+          right: 0;
+          font-size: 14px;
           transform: rotate(-90deg);
         }
       }
