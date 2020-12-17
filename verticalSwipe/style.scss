@@ -134,6 +134,7 @@ header {
   overflow: hidden;
   font-family: "Cinzel", serif;
   color: white;
+  user-select: none;
 
   .blurBox {
     width: 100%;
@@ -210,6 +211,7 @@ header {
   .textBox {
     @include posCenter;
 
+    user-select: none;
     top: initial;
     bottom: 100px;
     transform: translate(-50%, 0);

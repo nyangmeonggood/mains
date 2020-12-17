@@ -96,7 +96,8 @@ header {
   transition: height 0.5s;
   overflow: hidden;
   font-family: "Cinzel", serif;
-  color: white; }
+  color: white;
+  user-select: none; }
   #cover .blurBox {
     width: 100%;
     height: 100%;
@@ -165,6 +166,7 @@ header {
     top: 50%;
     width: 100%;
     transform: translate(-50%, -50%);
+    user-select: none;
     top: initial;
     bottom: 100px;
     transform: translate(-50%, 0);
