@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1"
+    />
+    <title>verticalSwipe</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Martel+Sans:wght@200;400&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+      integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../scss/css reset.css" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Logo</h1>
+      <ul>
+        <li>ABOUT</li>
+        <li>SHOP</li>
+        <li>CONTACT</li>
+      </ul>
+      <button id="coverBtn">Press Here</button>
+    </header>
+    <section id="main">
+      <div class="bg">
+        <img
+          src="https://raw.githubusercontent.com/nyangmeonggood/mains/master/verticalSwipe/bg.jpg"
+          alt
+        />
+      </div>
+
+      <div class="textBox">
+        <h2>Do you<br />know<br />Lorem Ipsum?</h2>
+        <p>
+          Lorem Ipsum is simply dummy text. Lorem Ipsum has been the industry's
+          standard dummy text ever since the 1500s, when an unknown printer took
+          a galley of type and scrambled it to make a type specimen book.
+        </p>
+        <div class="btnBox">
+          <button>Lorem Ipsum</button>
+        </div>
+      </div>
+    </section>
+    <div id="cover">
+      <div class="blurBox"></div>
+      <div class="textBox">
+        <h2>What is Lorem Ipsum</h2>
+        <p>Lorem Ipsum is simply dummy text</p>
+      </div>
+    </div>
+
+    <script>
+      const $cover = document.querySelector("#cover"),
+        $coverBtn = document.querySelector("#coverBtn");
+      $coverBtn.addEventListener("click", () => {
+        document.body.classList.toggle("active");
+      });
+    </script>
+  </body>
+</html>
