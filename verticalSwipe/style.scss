@@ -246,6 +246,10 @@ header {
 
     .btnBox {
       padding-left: 10px;
+
+      @media screen and (max-width: 1300px) {
+        padding-left: 2px;
+      }
       button {
         padding: 10px 20px;
         font-weight: 500;
@@ -277,7 +281,7 @@ header {
       }
 
       p {
-        font-size: 3vw;
+        font-size: 3.6vw;
         padding: 0 4px;
       }
     }

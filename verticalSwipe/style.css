@@ -194,6 +194,9 @@ header {
           width: 100%; } }
     #main .textBox .btnBox {
       padding-left: 10px; }
+      @media screen and (max-width: 1300px) {
+        #main .textBox .btnBox {
+          padding-left: 2px; } }
       #main .textBox .btnBox button {
         padding: 10px 20px;
         font-weight: 500;
@@ -215,7 +218,7 @@ header {
           #main .textBox h2 br.m {
             display: block; }
         #main .textBox p {
-          font-size: 3vw;
+          font-size: 3.6vw;
           padding: 0 4px; } }
   #main .bg {
     position: relative;
