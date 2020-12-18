@@ -1,6 +1,7 @@
 body {
   overflow: hidden;
-  position: relative; }
+  position: relative;
+  background-color: white; }
 
 header {
   position: fixed;
