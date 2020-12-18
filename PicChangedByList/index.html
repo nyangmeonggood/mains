@@ -52,17 +52,19 @@
         });
       });
 
-      setTimeout(() => {
-        document.querySelector(
-          ".pic"
-        ).style.backgroundImage = `url("https://raw.githubusercontent.com/nyangmeonggood/mains/master/PicChangedByList/1.jpg")`;
-        document.querySelector(".main").classList.add("active");
+      window.onload = () => {
+        setTimeout(() => {
+          document.querySelector(
+            ".pic"
+          ).style.backgroundImage = `url("https://raw.githubusercontent.com/nyangmeonggood/mains/master/PicChangedByList/1.jpg")`;
+          document.querySelector(".main").classList.add("active");
 
-        Object.values($slide.children).map((item) => {
-          console.log(item);
-          item.style.transform = `scale(1)`;
-        });
-      }, 1000);
+          Object.values($slide.children).map((item) => {
+            console.log(item);
+            item.style.transform = `scale(1)`;
+          });
+        }, 1000);
+      };
     </script>
   </body>
 </html>

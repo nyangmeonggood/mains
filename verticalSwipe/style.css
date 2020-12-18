@@ -158,8 +158,11 @@ header {
   left: 0;
   width: 100%;
   height: 100%;
+  opacity: 0;
   overflow: hidden;
   box-sizing: border-box; }
+  #main.active {
+    opacity: 1; }
   #main .textBox {
     position: absolute;
     left: 50%;

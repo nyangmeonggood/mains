@@ -1,0 +1,262 @@
+$maincolor: #6f9873;
+
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  height: 80px;
+  max-width: 1920px;
+  z-index: 100;
+  font-weight: 500;
+  color: #f3f3f3;
+
+  ul {
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+
+    li {
+      height: 100%;
+      cursor: pointer;
+      box-sizing: border-box;
+      line-height: 80px;
+
+      &:hover {
+        border-top: 10px solid $maincolor;
+      }
+
+      &:not(:last-child) {
+        margin-right: 30px;
+      }
+    }
+  }
+}
+
+#main {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-image: url(https://raw.githubusercontent.com/nyangmeonggood/autoBGandGauge/master/1.jpg);
+  background-color: #333;
+  background-blend-mode: overlay;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center top;
+  transition: background-image 0.5s linear;
+
+  .textBox {
+    position: absolute;
+    top: 46%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    text-align: center;
+    color: white;
+
+    h2 {
+      font-size: 8vw;
+      font-family: "Permanent Marker", cursive;
+      line-height: 1em;
+    }
+
+    p {
+      font-size: 16px;
+      margin-top: 16px;
+      margin-bottom: 50px;
+      letter-spacing: 0.05em;
+      color: #ddd;
+
+      br.m {
+        display: none;
+      }
+    }
+
+    a {
+      padding: 16px 32px;
+      background-color: darken($maincolor, 10%);
+      border-radius: 6px;
+      letter-spacing: 0.45em;
+      font-size: 14px;
+
+      &:hover {
+        background-color: lighten($maincolor, 10%);
+      }
+    }
+
+    @media screen and (max-width: 1250px) {
+      h2 {
+        font-size: 13vw;
+      }
+      p {
+        font-size: 1.4vw;
+      }
+    }
+    @media screen and (max-width: 900px) {
+      h2 {
+        font-size: 13vw;
+        line-height: 1em;
+      }
+
+      p {
+        font-size: 2.6vw;
+        br.pc {
+          display: none;
+        }
+        br.m {
+          display: block;
+        }
+      }
+
+      a {
+        padding: 14px 18px;
+        font-size: 2.6vw;
+      }
+    }
+  }
+
+  .gaugeSlide {
+    position: absolute;
+    width: 90%;
+    max-width: 760px;
+    bottom: 3%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    background-color: rgba(0, 0, 0, 0.5);
+    box-sizing: border-box;
+    padding: 30px;
+    color: white;
+
+    &:hover {
+      .imgBox {
+        @media screen and (min-width: 900px) {
+          height: 120px;
+          margin-bottom: 12px;
+        }
+      }
+    }
+
+    li {
+      width: 30%;
+      cursor: pointer;
+
+      @media screen and (max-width: 900px) {
+        width: 10%;
+        b,
+        span {
+          display: none !important;
+        }
+        &.active {
+          width: 75%;
+
+          b {
+            display: inline-block !important;
+          }
+          span {
+            display: block !important;
+          }
+        }
+      }
+
+      &.active,
+      &:hover {
+        .imgBox {
+          img {
+            filter: grayscale(0);
+          }
+        }
+        p {
+          color: #f0f0f0;
+        }
+        span {
+          color: #ccc;
+        }
+      }
+
+      &.active {
+        .gauge {
+          &::after {
+            animation-name: ing;
+            animation-duration: 5s;
+            animation-iteration-count: 1;
+            animation-fill-mode: forwards;
+
+            @keyframes ing {
+              from {
+                width: 0;
+              }
+              to {
+                width: 100%;
+              }
+            }
+          }
+        }
+      }
+
+      .imgBox {
+        position: relative;
+        width: 100%;
+        height: 0px;
+        overflow: hidden;
+        transition: height 0.3s linear;
+
+        img {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          min-width: 100%;
+          filter: grayscale(1);
+          transition: filter 0.5s linear;
+        }
+      }
+
+      p,
+      span {
+        color: #777;
+      }
+
+      p {
+        font-weight: 500;
+        font-size: 18px;
+        margin-bottom: 4px;
+      }
+
+      span {
+        display: block;
+        margin-bottom: 10px;
+        font-size: 13px;
+        font-weight: 400;
+      }
+
+      .gauge {
+        position: relative;
+        width: 100%;
+        height: 4px;
+        overflow: hidden;
+        margin: 0 auto;
+        background-color: #dbdbdb;
+        border-radius: 10px;
+
+        &::after {
+          content: "";
+          position: absolute;
+          width: 0;
+          height: 6px;
+          top: 0;
+          left: 0;
+          background-color: $maincolor;
+        }
+      }
+    }
+  }
+}
