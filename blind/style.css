@@ -1,5 +1,5 @@
 body {
-  font-family: "Roboto", sans-serif;
+  font-family: "Quicksand", sans-serif;
   color: #111; }
 
 header {
@@ -148,6 +148,9 @@ header {
     left: 25%;
     width: 75%;
     overflow: hidden; }
+    @media screen and (max-width: 1000px) and (min-width: 750px) {
+      #content .left .textBox {
+        top: 10%; } }
     @media screen and (max-width: 1000px) {
       #content .left .textBox {
         left: 0%;
@@ -169,7 +172,7 @@ header {
     #content .left .textBox h6 {
       display: flex;
       align-items: center;
-      margin-bottom: 1.7vw; }
+      margin-bottom: 3vw; }
       @media screen and (max-width: 1000px) {
         #content .left .textBox h6 {
           margin-bottom: 7vw; } }
@@ -182,14 +185,17 @@ header {
         margin-right: 10px;
         background-color: #111;
         margin-top: 8px; }
+    #content .left .textBox br.m {
+      display: none; }
+    @media screen and (max-width: 1000px) {
+      #content .left .textBox br.pc {
+        display: none; } }
     #content .left .textBox p {
       position: relative;
       width: 60%;
       font-size: 0.9vw;
       line-height: 1.2em;
       letter-spacing: 0.02em; }
-      #content .left .textBox p br.m {
-        display: none; }
       @media screen and (max-width: 1600px) {
         #content .left .textBox p {
           font-size: 1.1vw; } }
@@ -231,7 +237,7 @@ header {
         width: 50%;
         height: initial !important;
         padding: 30px 10px;
-        font-size: 3vw; } }
+        font-size: 2.9vw; } }
     #content .left .hover:hover {
       color: #806e5b;
       background-color: #c4bbb6;
@@ -249,9 +255,11 @@ header {
     overflow: hidden; }
     @media screen and (min-width: 1000px) {
       #content .right .picBox {
+        border-radius: 200px 0 0 0;
         right: 25%; } }
     @media screen and (max-width: 1000px) {
       #content .right .picBox {
+        border-radius: 0 200px 0 0;
         top: 0 !important;
         right: 0%;
         height: 100% !important; } }
@@ -305,8 +313,12 @@ header.active button {
     transform: skewX(-30deg); }
   #main #content h6 .bar {
     width: 0; }
-  #main #content .right .picBox img {
-    right: 100%; }
+  @media screen and (min-width: 1000px) {
+    #main #content .right .picBox img {
+      left: 100%; } }
+  @media screen and (max-width: 1000px) {
+    #main #content .right .picBox img {
+      right: 100%; } }
   #main #content .hover {
     opacity: 0; }
   #main #content.active {
@@ -323,24 +335,44 @@ header.active button {
       #main #content.active h6 .bar {
         width: calc(16% - 10px);
         transition: width 0.5s 1.7s linear; }
-    #main #content.active p {
-      transition: left 1s 2.8s, transform 1.5s 2.8s; }
+    #main #content.active p:nth-of-type(1) {
+      transition: left 1s 2.8s, transform 1.7s 2.8s; }
+    #main #content.active p:nth-of-type(2) {
+      transition: left 1s 3s, transform 1.7s 3s; }
     #main #content.active .right .picBox img {
-      right: -70%;
-      transition: right 2.2s 2.6s;
+      transition: left 2.4s 5.3s;
       animation-name: move;
       animation-duration: 20s;
       animation-fill-mode: forwards;
-      animation-delay: 6s; }
+      animation-delay: 8.2s; }
+      @media screen and (min-width: 1000px) {
+        #main #content.active .right .picBox img {
+          left: -30%; } }
+      @media screen and (max-width: 1000px) {
+        #main #content.active .right .picBox img {
+          right: -30%; } }
+      @media screen and (max-width: 1000px) {
+        #main #content.active .right .picBox img {
+          transition: right 2.4s 5.3s; } }
+      @media screen and (max-width: 1000px) {
+        #main #content.active .right .picBox img {
+          animation-name: moveM; } }
 @keyframes move {
   from {
-    right: -70%;
+    left: -30%;
     transition: initial; }
   to {
-    right: -80%;
+    left: -60%;
+    transition: initial; } }
+@keyframes moveM {
+  from {
+    right: -30%;
+    transition: initial; }
+  to {
+    right: -60%;
     transition: initial; } }
     #main #content.active .hover {
       opacity: 1;
-      transition: opacity 0.5s 5.2s; }
+      transition: opacity 0.8s 4.5s; }
 
 /*# sourceMappingURL=style.css.map */
