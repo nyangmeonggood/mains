@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1"
+    />
+    <title>Blind</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oleo+Script+Swash+Caps:wght@700&family=Roboto:wght@300;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+      integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../scss/css reset.css" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <header>
+      <ul>
+        <li><span>LOGO</span></li>
+        <li><span>ABOUT</span></li>
+        <li><span>SHOP</span></li>
+        <li><span>CONTACT</span></li>
+      </ul>
+      <button>
+        <input type="text" /><i class="fas fa-search"></i>
+        <div class="m"><span></span><span></span><span></span></div>
+      </button>
+    </header>
+    <section id="main">
+      <ul id="blind">
+        <li class="pc">
+          <div class="divLine"></div>
+        </li>
+        <li>
+          <div class="divLine"></div>
+        </li>
+        <li>
+          <div class="divLine"></div>
+        </li>
+        <li class="pc">
+          <div class="divLine"></div>
+        </li>
+      </ul>
+      <ul id="content">
+        <li class="left">
+          <div class="textBox">
+            <h2>Lorem Ipsum is</h2>
+            <h6>
+              <div class="bar"></div>
+              <span>simply dummy text</span>
+            </h6>
+
+            <p>
+              Lorem Ipsum has been the industry's standard dummy text ever since
+              the 1500s, when an unknown printer took a galley of type and
+              scrambled it to make a type specimen book.Contrary to popular
+              belief, <br class="m" /><br class="m" />Lorem Ipsum is not simply
+              random text. It has roots in a piece of classical Latin literature
+              from 45 BC, making it over 2000 years old. Richard McClintock, a
+              Latin professor at Hampden-Sydney College in Virginia, looked up
+              one of the more obscure Latin words, consectetur,<br
+                class="m"
+              /><br class="m" />
+              from a Lorem Ipsum passage, and going through the cites of the
+              word in classical literature, discovered the undoubtable source.
+            </p>
+          </div>
+
+          <div class="hover">
+            <span
+              >This is a explanation about meaningless word
+              <b>"Lorem Ipsum"</b></span
+            >
+          </div>
+        </li>
+        <li class="right">
+          <div class="picBox">
+            <img src="./img.jpg" alt />
+          </div>
+        </li>
+      </ul>
+    </section>
+  </body>
+  <script>
+    const $blind = document.getElementById("blind");
+
+    let numDivLine;
+
+    setDivLine();
+    function setDivLine() {
+      numDivLine = document.body.clientWidth > 1000 ? 1 : 2;
+      Object.values($blind.children).map((item) => {
+        item.style.width = `${
+          ($blind.clientWidth / $blind.children.length) * numDivLine
+        }px`;
+      });
+
+      if (document.body.clientWidth > 1000) {
+        document.querySelector(".hover").style.height = `${
+          (($blind.clientWidth / $blind.children.length) * numDivLine) / 4
+        }px`;
+
+        document.querySelector(".right .picBox").style.top = `${
+          document.querySelector(".left .textBox p").getBoundingClientRect().top
+        }px`;
+        document.querySelector(".right .picBox").style.height = `${
+          document.body.clientHeight -
+          document.querySelector(".left .textBox p").getBoundingClientRect().top
+        }px`;
+      }
+    }
+    window.addEventListener("resize", setDivLine);
+
+    function init() {
+      document.querySelector("#main").classList.add("active");
+      document.querySelector("header").classList.add("active");
+
+      setTimeout(() => {
+        document.querySelector("#content").classList.add("active");
+      }, 2500);
+
+      setTimeout(() => {
+        document.querySelector(".picBox img").style.transition = ``;
+      }, 6000);
+    }
+    window.onload = () => init();
+  </script>
+</html>

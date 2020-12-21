@@ -1,0 +1,346 @@
+body {
+  font-family: "Roboto", sans-serif;
+  color: #111; }
+
+header {
+  width: 67.5%;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.8vw; }
+  header ul {
+    width: 66.7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; }
+    header ul li {
+      width: 25%;
+      cursor: pointer; }
+      header ul li span {
+        transition: 0.2s border; }
+      header ul li:hover span {
+        border-left: 4px solid #806e5b;
+        padding-left: 4px;
+        box-sizing: border-box; }
+      @media screen and (max-width: 1000px) {
+        header ul li:not(:first-child) {
+          display: none; } }
+  header button {
+    width: 16.6%;
+    text-align: right; }
+    @media screen and (max-width: 1000px) {
+      header button {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end; }
+        header button i {
+          display: none !important; } }
+    header button .m {
+      display: none; }
+      @media screen and (max-width: 1000px) {
+        header button .m {
+          display: inline-block;
+          position: relative;
+          width: 20px;
+          height: 20px; }
+          header button .m span {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #111; }
+            header button .m span:nth-of-type(1) {
+              transform: translateY(8px); }
+            header button .m span:nth-of-type(2) {
+              transform: translateY(0); }
+            header button .m span:nth-of-type(3) {
+              transform: translateY(-8px); } }
+    header button input {
+      width: 70%;
+      margin-right: 16px;
+      border: none;
+      border-bottom: 2px solid #111;
+      outline: none;
+      background-color: transparent; }
+      @media screen and (max-width: 1000px) {
+        header button input {
+          display: none; } }
+  @media screen and (max-width: 1000px) {
+    header {
+      width: 90%;
+      font-size: 20px; } }
+
+#main,
+#blind {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  overflow: hidden; }
+
+#blind {
+  width: 90%;
+  margin: 0 auto;
+  transform-origin: left center; }
+  #blind > li {
+    position: relative;
+    height: 100%;
+    border-right: 1px solid rgba(196, 196, 196, 0.4); }
+    #blind > li:first-child {
+      border-left: 1px solid rgba(196, 196, 196, 0.4); }
+    #blind > li > div.divLine {
+      width: 50%;
+      height: 100%;
+      border-right: 1px solid rgba(196, 196, 196, 0.4); }
+  @media screen and (max-width: 1000px) {
+    #blind > li:nth-of-type(2) {
+      border-left: 1px solid rgba(196, 196, 196, 0.4); }
+    #blind > li.pc {
+      display: none; } }
+
+#content {
+  position: absolute;
+  top: 0;
+  height: 100%; }
+  @media screen and (min-width: 1000px) {
+    #content {
+      left: 5%;
+      width: 90%;
+      display: flex;
+      justify-content: center;
+      align-items: center; } }
+  @media screen and (max-width: 1000px) {
+    #content {
+      left: 0;
+      width: 100%; } }
+  #content .left,
+  #content .right {
+    height: 100%; }
+    @media screen and (min-width: 1000px) {
+      #content .left,
+      #content .right {
+        position: relative;
+        width: 50%; } }
+    @media screen and (max-width: 1000px) {
+      #content .left,
+      #content .right {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%; } }
+  @media screen and (max-width: 1000px) {
+    #content .left {
+      z-index: 5;
+      left: 5%;
+      width: 90%; } }
+  #content .left .textBox {
+    position: absolute;
+    top: 20%;
+    left: 25%;
+    width: 75%;
+    overflow: hidden; }
+    @media screen and (max-width: 1000px) {
+      #content .left .textBox {
+        left: 0%;
+        width: 100%; }
+        #content .left .textBox h2,
+        #content .left .textBox h6 {
+          width: 75%; } }
+    #content .left .textBox h2,
+    #content .left .textBox h6 {
+      position: relative;
+      font-family: "Oleo Script Swash Caps", cursive;
+      font-size: 2.9vw;
+      line-height: 1em;
+      color: #111; }
+      @media screen and (max-width: 1000px) {
+        #content .left .textBox h2,
+        #content .left .textBox h6 {
+          font-size: 7.3vw; } }
+    #content .left .textBox h6 {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1.7vw; }
+      @media screen and (max-width: 1000px) {
+        #content .left .textBox h6 {
+          margin-bottom: 7vw; } }
+      #content .left .textBox h6 div,
+      #content .left .textBox h6 span {
+        display: inline-block; }
+      #content .left .textBox h6 div {
+        width: calc(16% - 10px);
+        height: 4px;
+        margin-right: 10px;
+        background-color: #111;
+        margin-top: 8px; }
+    #content .left .textBox p {
+      position: relative;
+      width: 60%;
+      font-size: 0.9vw;
+      line-height: 1.2em;
+      letter-spacing: 0.02em; }
+      #content .left .textBox p br.m {
+        display: none; }
+      @media screen and (max-width: 1600px) {
+        #content .left .textBox p {
+          font-size: 1.1vw; } }
+  @media screen and (max-width: 1600px) and (max-width: 1300px) {
+    #content .left .textBox p {
+      font-size: 1.4vw; } }
+
+  @media screen and (max-width: 1600px) and (max-width: 1300px) and (max-width: 1000px) {
+    #content .left .textBox p {
+      width: 90%;
+      font-size: 2.7vw;
+      word-break: break-all; }
+      #content .left .textBox p br.m {
+        display: block; } }
+
+  #content .left .hover {
+    position: absolute;
+    left: 25%;
+    bottom: 0;
+    width: 25%;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    box-sizing: border-box;
+    font-size: 0.75vw;
+    font-weight: 100;
+    color: white;
+    background-color: black;
+    border-left: 1px solid transparent;
+    border-right: 1px solid transparent; }
+    #content .left .hover b {
+      font-weight: 500; }
+    @media screen and (max-width: 1300px) and (min-width: 1000px) {
+      #content .left .hover {
+        display: none; } }
+    @media screen and (max-width: 1000px) {
+      #content .left .hover {
+        left: 0;
+        width: 50%;
+        height: initial !important;
+        padding: 30px 10px;
+        font-size: 3vw; } }
+    #content .left .hover:hover {
+      color: #806e5b;
+      background-color: #c4bbb6;
+      border-left: 1px solid rgba(196, 196, 196, 0.4);
+      border-right: 1px solid rgba(196, 196, 196, 0.4);
+      cursor: pointer; }
+  @media screen and (max-width: 1000px) {
+    #content .right {
+      opacity: 0.4; } }
+  #content .right .picBox {
+    position: absolute;
+    top: 35%;
+    width: 100%;
+    height: 65%;
+    overflow: hidden; }
+    @media screen and (min-width: 1000px) {
+      #content .right .picBox {
+        right: 25%; } }
+    @media screen and (max-width: 1000px) {
+      #content .right .picBox {
+        top: 0 !important;
+        right: 0%;
+        height: 100% !important; } }
+    #content .right .picBox img {
+      display: block;
+      position: absolute;
+      min-width: 100%;
+      min-height: 100%;
+      top: 0; }
+
+header li,
+header button {
+  opacity: 0;
+  transform: translateX(-10px); }
+header.active li,
+header.active button {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 1s, transform 0.5s; }
+header.active li:nth-of-type(1) {
+  transition-delay: 1.2s; }
+header.active li:nth-of-type(2) {
+  transition-delay: 1.3s; }
+header.active li:nth-of-type(3) {
+  transition-delay: 1.4s; }
+header.active li:nth-of-type(4) {
+  transition-delay: 1.5s; }
+header.active button {
+  transition-delay: 1.6s; }
+
+#main #blind {
+  transform: scaleX(0); }
+  #main #blind,
+  #main #blind li {
+    border-color: #c4c4c4; }
+#main.active #blind {
+  transform: scaleX(1); }
+  #main.active #blind,
+  #main.active #blind li {
+    border-color: rgba(196, 196, 196, 0.4);
+    transition: transform 1s, border-color 1s 0.5s; }
+#main #content {
+  opacity: 0; }
+  #main #content h2,
+  #main #content h6,
+  #main #content p {
+    left: -105%;
+    transform: skewX(-6deg); }
+  #main #content h2,
+  #main #content h6 {
+    transform: skewX(-30deg); }
+  #main #content h6 .bar {
+    width: 0; }
+  #main #content .right .picBox img {
+    right: 100%; }
+  #main #content .hover {
+    opacity: 0; }
+  #main #content.active {
+    opacity: 1; }
+    #main #content.active h2,
+    #main #content.active h6,
+    #main #content.active p {
+      left: 0;
+      transform: skewX(0); }
+    #main #content.active h2 {
+      transition: left 0.7s 0.5s, transform 1.5s 0.5s; }
+    #main #content.active h6 {
+      transition: left 1s 0.7s, transform 1.8s 0.7s; }
+      #main #content.active h6 .bar {
+        width: calc(16% - 10px);
+        transition: width 0.5s 1.7s linear; }
+    #main #content.active p {
+      transition: left 1s 2.8s, transform 1.5s 2.8s; }
+    #main #content.active .right .picBox img {
+      right: -70%;
+      transition: right 2.2s 2.6s;
+      animation-name: move;
+      animation-duration: 20s;
+      animation-fill-mode: forwards;
+      animation-delay: 6s; }
+@keyframes move {
+  from {
+    right: -70%;
+    transition: initial; }
+  to {
+    right: -80%;
+    transition: initial; } }
+    #main #content.active .hover {
+      opacity: 1;
+      transition: opacity 0.5s 5.2s; }
+
+/*# sourceMappingURL=style.css.map */
