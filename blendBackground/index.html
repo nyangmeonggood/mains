@@ -75,7 +75,7 @@
       showTimeout,
       changeTimeout;
 
-    const blending = ["multiply", "overlay", "screen", "darken"];
+    const blending = ["overlay", "multiply", "screen", "darken"];
 
     var pixelRatio = window.devicePixelRatio > 2 ? 2 : 1;
 
@@ -96,9 +96,18 @@
           ((document.body.clientWidth / 70) * document.body.clientHeight) / 70);
       canvas.width = document.body.clientWidth;
       canvas.height = document.body.clientHeight;
+
       ctx.scale(pixelRatio, pixelRatio);
 
       ctx.globalCompositeOperation = blending[curBlend];
+
+      if (document.body.clientWidth < 900) {
+        mouse.radius = 0;
+      } else {
+        mouse.radius =
+          ((document.body.clientWidth / 200) * document.body.clientHeight) /
+          200;
+      }
     }
     window.addEventListener("resize", () => {
       resize();
@@ -108,7 +117,14 @@
     window.addEventListener("mousemove", (e) => {
       mouse.x = e.clientX;
       mouse.y = e.clientY;
-      mouse.radius = 50;
+
+      if (document.body.clientWidth < 900) {
+        mouse.radius = 0;
+      } else {
+        mouse.radius =
+          ((document.body.clientWidth / 200) * document.body.clientHeight) /
+          200;
+      }
     });
 
     window.addEventListener("mouseout", (e) => {
