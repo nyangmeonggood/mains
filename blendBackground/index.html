@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1"
+    />
+    <title>blendBackground</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+      integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../scss/css reset.css" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <header>
+      <ul>
+        <li>Logo</li>
+        <li>About</li>
+        <li>Shop</li>
+        <li class="changeColor">changeColor</li>
+      </ul>
+    </header>
+    <canvas></canvas>
+    <h2 class="title">globalCompositeOperation</h2>
+    <div class="changeBox"></div>
+    <section id="main">
+      <div class="expo"></div>
+      <div class="textBox">
+        <h6 class="name">Blend background</h6>
+        <p>
+          The CanvasRenderingContext2D.globalCompositeOperation property of the
+          Canvas 2D API sets the type of compositing operation to apply when
+          drawing new shapes.
+        </p>
+        <button class="change">Change blending</button>
+        <button class="show">Fullsize</button>
+      </div>
+    </section>
+  </body>
+
+  <script>
+    const canvas = document.querySelector("canvas"),
+      ctx = canvas.getContext("2d");
+
+    const $change = document.querySelector(".change"),
+      $show = document.querySelector(".show");
+
+    const colors = [
+        { r: 102, g: 102, b: 153 },
+        { r: 204, g: 0, b: 153 },
+        { r: 255, g: 204, b: 0 },
+        { r: 204, g: 0, b: 0 },
+        { r: 31, g: 122, b: 31 },
+        { r: 255, g: 153, b: 0 },
+      ],
+      numberOfParticles = 18;
+    var maxSize =
+        ((document.body.clientWidth / 50) * document.body.clientHeight) / 50,
+      minsize =
+        ((document.body.clientWidth / 70) * document.body.clientHeight) / 70;
+
+    var curBlend = 0,
+      isChange = false,
+      isShow = false,
+      showTimeout,
+      changeTimeout;
+
+    const blending = ["multiply", "overlay", "screen", "darken"];
+
+    var pixelRatio = window.devicePixelRatio > 2 ? 2 : 1;
+
+    let particleArray = [],
+      mouse = {
+        x: undefined,
+        y: undefined,
+        radius:
+          ((document.body.clientWidth / 200) * document.body.clientHeight) /
+          200,
+        mouseSin: 1,
+      };
+
+    function resize() {
+      (maxSize =
+        ((document.body.clientWidth / 50) * document.body.clientHeight) / 50),
+        (minsize =
+          ((document.body.clientWidth / 70) * document.body.clientHeight) / 70);
+      canvas.width = document.body.clientWidth;
+      canvas.height = document.body.clientHeight;
+      ctx.scale(pixelRatio, pixelRatio);
+
+      ctx.globalCompositeOperation = blending[curBlend];
+    }
+    window.addEventListener("resize", () => {
+      resize();
+      init();
+    });
+
+    window.addEventListener("mousemove", (e) => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+      mouse.radius = 50;
+    });
+
+    window.addEventListener("mouseout", (e) => {
+      mouse.x = undefined;
+      mouse.y = undefined;
+      mouse.radius = 0;
+    });
+
+    class Particle {
+      constructor(x, y, dx, dy, size, color) {
+        this.x = x;
+        this.y = y;
+        this.dx = dx;
+        this.dy = dy;
+        this.size = size;
+        this.color = color;
+        this.sinValue = Math.random();
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+
+        const g = ctx.createRadialGradient(
+          this.x,
+          this.y,
+          this.size * 0.01,
+          this.x,
+          this.y,
+          this.size
+        );
+        g.addColorStop(
+          0,
+          `rgba(${this.color.r},${this.color.g},${this.color.b},0.5)`
+        );
+        g.addColorStop(
+          1,
+          `rgba(${this.color.r},${this.color.g},${this.color.b},0)`
+        );
+        ctx.fillStyle = g;
+        ctx.fill();
+      }
+      update() {
+        this.x += this.dx;
+        this.y += this.dy;
+
+        if (
+          this.x > document.body.clientWidth - this.size ||
+          this.x < this.size
+        ) {
+          this.dx *= -1;
+        }
+        if (
+          this.y > document.body.clientHeight - this.size ||
+          this.y < this.size
+        ) {
+          this.dy *= -1;
+        }
+
+        this.sinValue += 0.01;
+        this.size += Math.sin(this.sinValue);
+
+        this.draw();
+      }
+    }
+
+    function animate() {
+      window.requestAnimationFrame(animate);
+
+      ctx.clearRect(
+        0,
+        0,
+        document.body.clientWidth,
+        document.body.clientHeight
+      );
+
+      particleArray.map((item) => {
+        item.update();
+      });
+
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(mouse.x, mouse.y, mouse.radius, 0, Math.PI * 2);
+      mouse.mouseSin += 0.1;
+      mouse.radius += Math.sin(mouse.mouseSin) * 0.1;
+      ctx.fillStyle = "white";
+      ctx.fill();
+      ctx.closePath();
+      ctx.restore();
+    }
+
+    function btnEvent() {
+      document.querySelector(".textBox .name").innerHTML = blending[curBlend];
+
+      if (!isChange) {
+        $change.addEventListener("click", () => {
+          curBlend++;
+          if (curBlend > blending.length - 1) {
+            curBlend = 0;
+          }
+          if (curBlend < 0) {
+            curBlend = blending.length - 1;
+          }
+
+          isChange = true;
+          document.querySelector(".changeBox").classList.add("active");
+
+          clearTimeout(changeTimeout);
+          changeTimeout = setTimeout(() => {
+            isChange = false;
+            document.querySelector(".textBox .name").innerHTML =
+              blending[curBlend];
+            document.querySelector(".changeBox").classList.remove("active");
+
+            ctx.globalCompositeOperation = blending[curBlend];
+          }, 500);
+        });
+      }
+
+      if (!isShow) {
+        $show.addEventListener("click", () => {
+          isShow = true;
+          document.body.classList.add("active");
+
+          clearTimeout(showTimeout);
+          showTimeout = setTimeout(() => {
+            isShow = false;
+            document.body.classList.remove("active");
+          }, 5000);
+        });
+      }
+    }
+
+    init();
+    animate();
+    btnEvent();
+
+    document.querySelector(".changeColor").addEventListener("click", () => {
+      init();
+    });
+
+    function init() {
+      resize();
+
+      particleArray = [];
+
+      for (let i = 0; i < numberOfParticles; i++) {
+        let size = Math.random() * (maxSize - minsize) + minsize,
+          x = Math.random() * document.body.clientWidth,
+          y = Math.random() * document.body.clientHeight,
+          dx = Math.random() * 10 - 5,
+          dy = Math.random() * 10 - 5,
+          color = colors[Math.floor(Math.random() * colors.length)];
+
+        particleArray.push(new Particle(x, y, dx, dy, size, color));
+      }
+    }
+  </script>
+</html>
