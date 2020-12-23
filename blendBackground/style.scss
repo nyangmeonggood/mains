@@ -33,12 +33,16 @@ body {
   font-size: 1vw;
   text-transform: capitalize;
 
-  @media screen and (min-width: 900px) and (max-width: 1200px) {
+  @media screen and (min-width: 800px) and (max-width: 1200px) {
     font-size: 2vw;
   }
 
-  @media screen and (max-width: 900px) {
+  @media screen and (max-width: 800px) {
     font-size: 3vw;
+  }
+
+  @media screen and (max-width: 1000px) {
+    top: 24%;
   }
 }
 
@@ -92,6 +96,11 @@ canvas {
   background: linear-gradient(to bottom, transparent 69%, white 31%);
   transition: opacity 0.5s;
 
+  @media screen and (max-width: 1000px) {
+    width: 70%;
+    height: 60vh;
+  }
+
   .expo,
   .textBox {
     background-color: white;
@@ -113,6 +122,21 @@ canvas {
     100% 100%,
     100% 0%
   );
+
+  @media screen and (max-width: 1000px) {
+    clip-path: polygon(
+      0% 0%,
+      0% 100%,
+      calc(0% + 20px) 100%,
+      calc(0% + 19px) calc(0% + 20px),
+      calc(100% - 20px) calc(0% + 20px),
+      calc(100% - 20px) calc(100% - 14px),
+      calc(0% + 20px) calc(100% - 14px),
+      calc(0% + 20px) 100%,
+      100% 100%,
+      100% 0%
+    );
+  }
 }
 
 .textBox {
@@ -122,8 +146,12 @@ canvas {
   box-sizing: border-box;
   padding: 0 40px;
 
+  @media screen and (max-width: 1000px) {
+    padding: 0 20px;
+  }
+
   .name {
-    margin-bottom: 18px;
+    margin-bottom: 12px;
     font-size: 50px;
     font-weight: 800;
     text-transform: capitalize;
@@ -131,14 +159,27 @@ canvas {
     @media screen and (max-width: 1000px) {
       font-size: 7vw;
     }
+
+    @media screen and (min-width: 800px) and (max-width: 1000px) {
+      font-size: 5.5vw;
+    }
   }
 
   p {
     margin-bottom: 16px;
     line-height: 1.3em;
 
+    @media screen and (min-width: 900px) and (max-width: 1000px) {
+      font-size: 1.3vw;
+    }
+
+    @media screen and (min-width: 600px) and (max-width: 900px) {
+      font-size: 1.5vw;
+      margin-bottom: 10px;
+    }
+
     @media screen and (max-width: 600px) {
-      font-size: 2.7vw;
+      font-size: 2.35vw;
     }
   }
 
@@ -147,8 +188,16 @@ canvas {
     box-sizing: border-box;
     background-color: #efeded;
 
+    @media screen and (min-width: 900px) and (max-width: 1000px) {
+      font-size: 1vw;
+    }
+
+    @media screen and (min-width: 600px) and (max-width: 900px) {
+      font-size: 1.3vw;
+    }
+
     @media screen and (max-width: 600px) {
-      font-size: 2.7vw;
+      font-size: 2vw;
     }
 
     &:first-of-type {

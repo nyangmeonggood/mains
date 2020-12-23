@@ -209,6 +209,7 @@
       ctx.arc(mouse.x, mouse.y, mouse.radius, 0, Math.PI * 2);
       mouse.mouseSin += 0.1;
       mouse.radius += Math.sin(mouse.mouseSin) * 0.1;
+      if (mouse.radius < 0) mouse.radius = 0;
       ctx.fillStyle = "white";
       ctx.fill();
       ctx.closePath();

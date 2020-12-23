@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1"
+    />
+    <title>popCorner</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anton&family=Roboto:wght@300;400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../scss/css reset.css" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <header class="active">
+      <figure class="circle"></figure>
+      <figure class="triangle"></figure>
+      <figure class="square"></figure>
+    </header>
+    <section id="main">
+      <div class="part part1">
+        <div class="cover"></div>
+        <div class="content">
+          <ul>
+            <li class="title">circle</li>
+            <li class="sub">circle is circle</li>
+            <li class="desc">
+              A circle is a shape consisting of all points in a plane that are a
+              given distance from a given point, the centre;
+            </li>
+            <li>
+              <button class="main">button</button> <button>see more</button>
+            </li>
+          </ul>
+          <figure class="circle action"></figure>
+        </div>
+      </div>
+      <div class="part part2">
+        <div class="cover"></div>
+        <div class="content">
+          <ul>
+            <li class="title">triangle</li>
+            <li class="sub">triangle is triangle</li>
+            <li class="desc">
+              A triangle is a polygon with three edges and three vertices. It is
+              one of the basic shapes in geometry. A triangle with vertices A,
+              B, and C is denoted triangle ABC.
+            </li>
+            <li>
+              <button class="main">button</button> <button>see more</button>
+            </li>
+          </ul>
+          <figure class="triangle action"></figure>
+        </div>
+      </div>
+      <div class="part part3">
+        <div class="cover"></div>
+        <div class="content">
+          <ul>
+            <li class="title">square</li>
+            <li class="sub">square is square</li>
+            <li class="desc">
+              A square is a regular quadrilateral, which means that it has four
+              equal sides and four equal angles (90-degree angles, or
+              100-gradian angles or right angles).
+            </li>
+            <li>
+              <button class="main">button</button> <button>see more</button>
+            </li>
+          </ul>
+          <figure class="square action"></figure>
+        </div>
+      </div>
+      <div class="close part4"><span></span><span></span></div>
+
+      <div class="page part1" data-num="1">
+        <figure class="circle" data-num="1"></figure>
+      </div>
+      <div class="page part2" data-num="2">
+        <figure class="triangle" data-num="2"></figure>
+      </div>
+      <div class="page part3" data-num="3">
+        <figure class="square" data-num="3"></figure>
+      </div>
+    </section>
+  </body>
+
+  <script>
+    const $header = document.querySelector("header"),
+      $part = document.getElementsByClassName("part"),
+      $page = document.getElementsByClassName("page"),
+      $close = document.querySelector(".close"),
+      $circle = document.getElementsByClassName("circle"),
+      $square = document.getElementsByClassName("square"),
+      $triangle = document.getElementsByClassName("triangle"),
+      $action = document.getElementsByClassName("action");
+
+    const $circleHTML = `<?xml version="1.0" encoding="utf-8"?>
+    <svg version="1.1" data-num="1" class="circle" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+    	 y="0px" viewBox="0 0 200 200" style="enable-background:new 0 0 200 200;" xml:space="preserve">
+    <g>
+    	<circle data-num="1" class="st0" cx="100" cy="100" r="90"/>
+    </g>
+    </svg>`,
+      $squareHTML = `<?xml version="1.0" encoding="utf-8"?>
+    <svg version="1.1" data-num="3" class="square" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+    	 y="0px" viewBox="0 0 200 200" style="enable-background:new 0 0 200 200;" xml:space="preserve">
+    <rect x="10" y="10" data-num="3" class="st0" width="180" height="180"/>
+    </svg>
+    `,
+      $triangleHTML = `<?xml version="1.0" encoding="utf-8"?>
+    <svg version="1.1" data-num="2" class="triangle" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+    	 y="0px" viewBox="0 0 200 200" style="enable-background:new 0 0 200 200;" xml:space="preserve">
+    <polygon data-num="2" class="st0" points="190,177.5 10,178.1 99.4,21.9 "/>
+    </svg>
+    `;
+
+    Object.values($page).map((item) => {
+      item.addEventListener("click", (e) => {
+        var num = e.target.dataset.num;
+
+        $header.classList.remove("active");
+
+        Object.values($part).map((item) => {
+          item.classList.remove("active");
+        });
+
+        document.querySelector(`.part${num}`).classList.add("active");
+      });
+    });
+
+    $close.addEventListener("click", () => {
+      Object.values($part).map((item) => {
+        item.classList.remove("active");
+      });
+
+      $header.classList.add("active");
+    });
+
+    const setFigure = (target, innerHTML) => {
+      Object.values(target).map((item) => {
+        item.innerHTML = innerHTML;
+      });
+    };
+
+    setFigure($circle, $circleHTML);
+    setFigure($square, $squareHTML);
+    setFigure($triangle, $triangleHTML);
+
+    resizeFunc();
+    function resizeFunc() {
+      if (document.body.clientWidth > 900) {
+        Object.values($part).map((item) => {
+          item.addEventListener("mousemove", (e) => {
+            let mx = Math.floor(
+                ((e.clientX - document.body.clientWidth / 2) /
+                  document.body.clientWidth) *
+                  50
+              ),
+              my = Math.floor(
+                ((e.clientY - document.body.clientHeight / 2) /
+                  document.body.clientHeight) *
+                  50
+              );
+
+            Object.values($action).map((item) => {
+              item.style.transform = `translate(${mx}%,${my}%)`;
+            });
+          });
+
+          item.addEventListener("mouseout", (e) => {
+            Object.values($action).map((item) => {
+              item.style.transform = `translate(0%,0%)`;
+            });
+          });
+        });
+      } else {
+        return;
+      }
+    }
+
+    window.addEventListener("resize", () => {
+      console.log(document.body.clientWidth);
+      resizeFunc();
+    });
+
+    window.onload = () => {
+      document.querySelector("#main").classList.add("active");
+
+      setTimeout(() => {
+        $header.classList.remove("active");
+        setTimeout(() => {
+          document.querySelector(`.part1`).classList.add("active");
+        }, 1500);
+      }, 2000);
+    };
+  </script>
+</html>
