@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1"
+    />
+    <title>Bookshelf</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600&family=Lora:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+      integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../scss/css reset.css" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <header >
+      <div class="menu">
+        <div class="menuBox">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+      <div class="nav coverBox">
+        <ul>
+          <li data-nav="ABOUT">ABOUT</li>
+          <li data-nav="INFO">INFO</li>
+          <li data-nav="SHOP">SHOP</li>
+          <li data-nav="CONTACT">CONTACT</li>
+        </ul>
+        <div class="cover" data-cover="none">
+          <p data-cover="none">Menu</p>
+        </div>
+      </div>
+    </header>
+    <section id="main">
+      <ul class="slideContainer"></ul>
+      <div class="titleBox">
+        <h2>Bookshelf</h2>
+        <h3>book is book. Take a read</h3>
+        <p>
+          1: to look at words or symbols and understand what they mean.<br />
+          2: to say the words that are printed or written. <br />3: to
+          understand and give a particular meaning to written information, a
+          statement, etc.
+        </p>
+      </div>
+    </section>
+    <svg width="100%" height="100%" style="
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -5;
+    ">
+      <filter id='roughpaper' x='0%' y='0%' width='100%' height="100%">
+          <feTurbulence type="fractalNoise" baseFrequency='0.04' result='noise' numOctaves="5" />
+          <feDiffuseLighting in='noise' lighting-color='white' surfaceScale='2'>
+              <feDistantLight azimuth='45' elevation='60' />
+          </feDiffuseLighting>      
+      </filter>  
+      <rect x="0" y="0" width="100%" height="100%" filter="url(#roughpaper)" fill="none">
+  </svg>
+
+    <script src="../wheelEvent.js"></script>
+    <script>
+      const $header = document.querySelector("header"),
+        $menuBox = document.querySelector(".menuBox"),
+        $coverBox = document.getElementsByClassName("coverBox"),
+        $cover = document.getElementsByClassName("cover"),
+        $slideContainer = document.querySelector(".slideContainer"),
+        $titleBox = document.querySelector(".titleBox");
+
+      let titleBoxTimeout;
+
+      const BOOK = [
+        {
+          src: "./1.jpg",
+          title: "Harry Potter and the Sorcerer's Stone",
+          author: "J. K. Rowling",
+          PublicationDate: "09/08/1999",
+          pages: "320",
+          desc:
+            "Harry Potter has never been the star of a Quidditch team, scoring points while riding a broom far above the ground. He knows no spells, has never helped to hatch a dragon, and has never worn a cloak of invisibility.",
+        },
+        {
+          src: "./2.jpg",
+          title: "The Lord of the Rings",
+          author: "J. R. R. Tolkien",
+          PublicationDate: "07/29/1954",
+          pages: "1216",
+          desc:
+            "In ancient times the Rings of Power were crafted by the Elven-smiths, and Sauron, the Dark Lord, forged the One Ring, filling it with his own power so that he could rule all others. But the One Ring was taken from him, and though he sought it throughout Middle-earth, it remained lost to him.",
+        },
+        {
+          src: "./3.jpg",
+          title: "My Sweet Orange Tree",
+          author: "Jose Mauro de Vasconcelos",
+          PublicationDate: "07/09/2019",
+          pages: "272",
+          desc:
+            "Zeze is a young boy who lives in Bangu, Rio de Janeiro with his underprivileged family. Because everyone is busy trying to support the family, Zeze is usually left by himself with his baby brother Luis, and ends up doing mischievous deeds that make his parents and older siblings so angry that they physically discipline him for what he has done.",
+        },
+        {
+          src: "./4.jpg",
+          title: "The Great Gatsby",
+          author: "F. Scott Fitzgerald",
+          PublicationDate: "09/30/2004",
+          pages: "208",
+          desc:
+            "The Great Gatsby, F. Scott Fitzgerald’s third book, stands as the supreme achievement of his career. This exemplary novel of the Jazz Age has been acclaimed by generations of readers. The Great Gatsby, F. Scott Fitzgerald’s third book, stands as the supreme achievement of his career.",
+        },
+      ];
+      
+      $menuBox.addEventListener("click", () => {
+        $menuBox.classList.toggle("active");
+        Object.values($coverBox).map((item) => {
+          item.classList.remove("active");
+        });
+        $header.classList.toggle("active");
+        clearTimeout(titleBoxTimeout)
+        titleBoxTimeout = setTimeout(()=>{ $titleBox.classList.remove("active")},1000)
+
+      });
+
+      BOOK.map((item, index) => {
+        let $li = document.createElement("li"),
+          $cover = document.createElement("div"),
+          $title = document.createElement("h2"),
+          $author = document.createElement("h5"),
+          $date = document.createElement("h6"),
+          $pages = document.createElement("span"),
+          $img = document.createElement("img"),
+          $desc = document.createElement("p"),
+          $textBox = document.createElement("div"),
+          $content = document.createElement("div");
+
+        $img.src = item.src;
+        $title.innerHTML = `<b>title</b>${item.title}`;
+        $author.innerHTML = `<b>author</b>${item.author}`;
+        $date.innerHTML = `<b>date</b>${item.PublicationDate}`;
+        $pages.innerHTML = `<b>pages</b>${item.pages}`;
+        $desc.innerHTML = `<b>desc</b>${item.desc}`;
+
+        $cover.className = "cover";
+        $cover.innerHTML = `<p data-cover=.slide${index + 1}>${item.title}</p>`;
+        $cover.style.backgroundImage = `url(${item.src})`;
+        $cover.dataset.cover = `.slide${index + 1}`;
+
+        $li.classList.add(`coverBox`, `slide`, `slide${index + 1}`);
+
+        $textBox.classList.add("textBox");
+        $content.classList.add("content");
+
+        $textBox.appendChild($title);
+        $textBox.appendChild($author);
+        $textBox.appendChild($date);
+        $textBox.appendChild($pages);
+        $textBox.appendChild($desc);
+
+        $content.appendChild($img);
+        $content.appendChild($textBox);
+
+        $li.appendChild($content);
+        $li.appendChild($cover);
+
+        $slideContainer.appendChild($li);
+      });
+
+      Object.values($cover).map((item) => {
+        item.addEventListener("click", (e) => {
+          Object.values($coverBox).map((item) => {
+            item.classList.remove("active");
+          });
+
+          $titleBox.classList.add("active")
+
+          var target = document.querySelector(e.target.dataset.cover);
+          target.classList.toggle("active");
+        });
+      });
+
+      wheelEvent(0,"x", 500, true, null, false, true, true);
+    </script>
+  </body>
+</html>

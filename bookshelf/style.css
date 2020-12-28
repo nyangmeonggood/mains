@@ -1,0 +1,292 @@
+body {
+  position: relative;
+  overflow: hidden;
+  font-family: "Barlow", sans-serif; }
+
+header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 60px;
+  height: 100%;
+  overflow: hidden;
+  transition: width 0.5s;
+  box-shadow: 0 0 16px 12px rgba(0, 0, 0, 0.1);
+  background-color: #f0f0f0; }
+  header.active {
+    width: 45%; }
+    @media screen and (max-width: 900px) {
+      header.active {
+        width: 100%; } }
+    header.active .nav .cover {
+      background-color: #bf8450; }
+  header,
+  header .menu,
+  header .menuBox,
+  header .nav {
+    display: flex;
+    align-items: center;
+    justify-content: center; }
+  header .menu {
+    position: relative;
+    width: 100%;
+    height: 100%; }
+    header .menu .menuBox {
+      width: 100%;
+      height: 60px;
+      cursor: pointer; }
+      header .menu .menuBox.active span {
+        transition: all 0.5s 0.5s; }
+        header .menu .menuBox.active span:nth-of-type(1) {
+          transform: translate(-50%, -50%) rotate(45deg); }
+        header .menu .menuBox.active span:nth-of-type(2) {
+          opacity: 0; }
+        header .menu .menuBox.active span:nth-of-type(3) {
+          transform: translate(-50%, -50%) rotate(-45deg); }
+      header .menu .menuBox span {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 50%;
+        height: 2px;
+        background-color: #111;
+        transition: all 0.2s; }
+        header .menu .menuBox span:nth-of-type(1) {
+          transform: translate(-50%, -8px); }
+        header .menu .menuBox span:nth-of-type(2) {
+          transform: translate(-50%, -50%); }
+        header .menu .menuBox span:nth-of-type(3) {
+          transform: translate(-50%, 6px); }
+  header .menu,
+  header .nav {
+    height: 100%; }
+  header .menu {
+    width: 60px; }
+    @media screen and (max-width: 900px) {
+      header .menu {
+        width: 60px; } }
+  header .nav {
+    position: relative;
+    width: calc(100% - 60px);
+    overflow: hidden;
+    background-color: white;
+    box-sizing: border-box;
+    font-family: "Lora", serif; }
+    header .nav ul li {
+      position: relative;
+      font-size: 4vw;
+      color: #999;
+      cursor: pointer; }
+      @media screen and (max-width: 900px) {
+        header .nav ul li {
+          font-size: 10vw; } }
+      header .nav ul li:not(:last-child) {
+        margin-bottom: 10px; }
+      header .nav ul li:hover::before {
+        background-color: #a62121; }
+      header .nav ul li:hover::after {
+        width: 100%; }
+      header .nav ul li::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: -20px;
+        width: 8px;
+        height: 60%;
+        background-color: #999;
+        transform: translateY(-50%); }
+        @media screen and (max-width: 900px) {
+          header .nav ul li::before {
+            width: 4px;
+            left: -10px; } }
+      header .nav ul li::after {
+        content: attr(data-nav);
+        position: absolute;
+        width: 0;
+        top: 0;
+        left: 0;
+        overflow: hidden;
+        color: #a62121;
+        transition: width 0.5s; }
+    @media screen and (max-width: 900px) {
+      header .nav {
+        padding: 0; } }
+    header .nav .cover {
+      background-color: #c7c7c7; }
+  @media screen and (max-width: 900px) {
+    header {
+      width: 60px; } }
+
+.titleBox {
+  position: absolute;
+  right: 40px;
+  bottom: 40px;
+  text-align: right;
+  overflow: hidden;
+  z-index: -1; }
+  .titleBox h2,
+  .titleBox h3 {
+    position: relative;
+    opacity: 1; }
+  .titleBox h2 {
+    font-size: 10vw;
+    font-family: "Lora", serif;
+    line-height: 0.87em;
+    color: #903f3b; }
+  .titleBox h3 {
+    font-size: 2.5vw;
+    font-weight: 100;
+    line-height: 1em;
+    margin-bottom: 30px;
+    color: #807372; }
+  .titleBox p {
+    font-size: 16px; }
+  @media screen and (max-width: 700px) {
+    .titleBox {
+      width: 80%;
+      right: 3%; }
+      .titleBox h2 {
+        font-size: 15vw;
+        line-height: 1em; }
+      .titleBox h3 {
+        font-size: 4.5vw;
+        margin-bottom: 16px; }
+      .titleBox p {
+        font-size: 3vw; } }
+
+.coverBox .cover {
+  position: absolute;
+  height: 100%;
+  top: 0;
+  right: 0;
+  writing-mode: vertical-rl;
+  text-align: center;
+  background-color: white;
+  font-family: "Lora", serif; }
+
+#main {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding-left: 60px;
+  box-sizing: border-box; }
+  #main > ul {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: left; }
+    #main > ul > li {
+      position: relative;
+      height: 100%;
+      background-color: white;
+      transition: width 0.5s;
+      overflow: hidden;
+      justify-content: center; }
+      #main > ul > li,
+      #main > ul > li .content {
+        display: flex;
+        align-items: center; }
+      @media screen and (max-width: 900px) {
+        #main > ul > li.active .content > img {
+          z-index: 1; }
+        #main > ul > li.active .content .textBox {
+          opacity: 1 !important;
+          transform: translateY(0%) !important; } }
+      #main > ul > li .content {
+        width: 80%;
+        max-width: 1000px;
+        justify-content: space-between; }
+        #main > ul > li .content > img {
+          display: block;
+          width: 45%;
+          box-shadow: 0 0 16px 12px rgba(0, 0, 0, 0.1); }
+        #main > ul > li .content .textBox {
+          width: 50%;
+          padding-left: 60px;
+          box-sizing: border-box; }
+          #main > ul > li .content .textBox h2,
+          #main > ul > li .content .textBox h5,
+          #main > ul > li .content .textBox h6,
+          #main > ul > li .content .textBox span,
+          #main > ul > li .content .textBox p {
+            position: relative;
+            font-size: 20px;
+            margin-bottom: 4px; }
+            #main > ul > li .content .textBox h2 b,
+            #main > ul > li .content .textBox h5 b,
+            #main > ul > li .content .textBox h6 b,
+            #main > ul > li .content .textBox span b,
+            #main > ul > li .content .textBox p b {
+              position: absolute;
+              top: 0;
+              left: -60px;
+              text-transform: capitalize;
+              font-size: 18px;
+              font-weight: 700;
+              color: #111; }
+          #main > ul > li .content .textBox p {
+            word-wrap: break-word;
+            line-height: 1.15em; }
+        @media screen and (max-width: 900px) {
+          #main > ul > li .content {
+            position: relative;
+            width: 90%;
+            height: 80%;
+            align-items: center;
+            flex-direction: column; }
+            #main > ul > li .content > img {
+              width: 75%; }
+            #main > ul > li .content .textBox {
+              transform: translateY(-100%);
+              width: 100%;
+              height: 40%;
+              padding-top: 24px;
+              overflow-y: scroll;
+              opacity: 0;
+              transition: transform 0.5s 0.5s, opacity 0.5s 0.5s;
+              -ms-overflow-style: none; }
+              #main > ul > li .content .textBox::-webkit-scrollbar {
+                display: none !important; } }
+      #main > ul > li.active {
+        width: 100%; }
+  @media screen and (max-width: 900px) {
+    #main {
+      padding-left: 60px; } }
+
+.slide,
+.cover {
+  width: 60px; }
+  .slide > p,
+  .cover > p {
+    width: 100%;
+    height: 100%;
+    color: white;
+    font-size: 19px;
+    line-height: 290%;
+    backdrop-filter: blur(50px) grayscale(1);
+    cursor: pointer; }
+  .slide .cover:hover > p,
+  .cover .cover:hover > p {
+    color: transparent;
+    backdrop-filter: blur(0px) grayscale(0); }
+  @media screen and (max-width: 900px) {
+    .slide,
+    .cover {
+      width: 0px; }
+      .slide > P,
+      .cover > P {
+        display: none; } }
+
+.header.active .nav .cover > p,
+.slide.active .nav .cover > p {
+  color: white; }
+.header.active > p,
+.header.active .cover > p,
+.slide.active > p,
+.slide.active .cover > p {
+  color: transparent;
+  backdrop-filter: blur(0px) grayscale(0); }
+
+/*# sourceMappingURL=style.css.map */
