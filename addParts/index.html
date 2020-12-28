@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1"
+    />
+    <title>AddParts</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Audiowide&family=Nunito:wght@200;400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+      integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../scss/css reset.css" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <header>
+      <div>
+        <h1>LOGO</h1>
+        <ul class="nav">
+          <li>
+            <button data-part=".part1">PS5</button>
+          </li>
+          <li>
+            <button data-part=".part2">controller</button>
+          </li>
+          <li>
+            <button data-part=".part3">Media remote</button>
+          </li>
+          <li>
+            <button data-part=".part4">HD camera</button>
+          </li>
+        </ul>
+      </div>
+    </header>
+    <section>
+      <div class="part part1 active">
+        <div class="textBox">
+          <h2>
+            Lightning speed
+            <div class="dot"></div>
+          </h2>
+          <span
+            >- Harness the power of a custom CPU, GPU and SSD with Integrated
+            I/O
+          </span>
+          <p>
+            Maximize your play sessions with near instant load times for
+            installed PS5™ games. The custom integration of the PS5 console's
+            systems lets creators pull data from the SSD so quickly that they
+            can design games in ways never before possible.
+          </p>
+          <button>Buy now</button>
+        </div>
+      </div>
+      <div class="part part2">
+        <div class="textBox">
+          <h2>
+            Heighten Your Senses
+            <div class="dot"></div>
+          </h2>
+          <span
+            >- The DualSense™ wireless controller for PS5 offers immersive
+            haptic feedback</span
+          >
+          <p>
+            Experience haptic feedback via the DualSense wireless controller in
+            select PS5 titles and feel the effects and impact of your in-game
+            actions through dynamic sensory feedback.
+          </p>
+          <button>Buy now</button>
+        </div>
+      </div>
+      <div class="part part3">
+        <div class="textBox">
+          <h2>
+            Media remote
+            <div class="dot"></div>
+          </h2>
+          <span
+            >- Conveniently control movies, streaming services4 and more on your
+            PS5 console with an intuitive layout.</span
+          >
+          <p>
+            Launch Disney+, Netflix, Spotify and YouTube at the push of a
+            button1 – even when the console is powered off. Quickly navigate
+            media with built-in play/pause, fast forward and fast reverse
+            buttons.
+          </p>
+          <button>Buy now</button>
+        </div>
+      </div>
+      <div class="part part4">
+        <div class="textBox">
+          <h2>
+            PlayStation®<br />Camera adaptor
+            <div class="dot"></div>
+          </h2>
+          <span
+            >- Add yourself to your gameplay videos and broadcasts3 with smooth,
+            sharp, full-HD capture.</span
+          >
+          <p>
+            Connect your PlayStation VR to your PS5 console to enjoy supported
+            PS VR games. To set up your PS VR with your PS5 console you’ll need
+            your PlayStation Camera2 for PS4 and a PlayStation Camera adaptor
+            (no purchase necessary).
+          </p>
+          <button>Buy now</button>
+        </div>
+      </div>
+
+      <figure>
+        <img src="./1.png" alt="" class="imgs imgs1 active" />
+        <img src="./2.png" alt="" class="imgs imgs2" />
+        <img src="./3.png" alt="" class="imgs imgs3" />
+        <img src="./4.png" alt="" class="imgs imgs4" />
+      </figure>
+    </section>
+
+    <script>
+      const $part = document.getElementsByClassName("part"),
+        $img = document.getElementsByClassName("imgs"),
+        $nav = document.querySelector(".nav"),
+        $navBtn = $nav.querySelectorAll("button");
+
+      var current = window.scrollY / document.body.clientHeight + 0.4;
+
+      const setActive = (target, current) => {
+        Object.values(target).map((item) => {
+          item.classList.remove("active");
+        });
+        for (let i = 0; i < current; i++) {
+          target[i].classList.add("active");
+        }
+      };
+
+      const startActive = () => {
+        setActive($part, current);
+        setActive($img, current);
+
+        Object.values($nav.children).map((item) => {
+          item.classList.remove("active");
+        });
+        Object.values($nav.children)[Math.floor(current)].classList.add(
+          "active"
+        );
+      };
+
+      const clickEvent = () => {
+        Object.values($navBtn).map((item) => {
+          item.addEventListener("click", (e) => {
+            var move = document.querySelector(e.target.dataset.part).offsetTop;
+            window.scrollTo({ top: move, behavior: "smooth" });
+          });
+        });
+      };
+
+      const resize = () => {
+        current = window.scrollY / document.body.clientHeight + 0.4;
+
+        Object.values($part).map((item) => {
+          item.style.height = `${document.body.clientHeight}px`;
+        });
+
+        startActive();
+      };
+
+      window.addEventListener("resize", () => {
+        resize();
+      });
+
+      window.addEventListener("scroll", (e) => {
+        current = window.scrollY / document.body.clientHeight + 0.4;
+        startActive();
+
+        document.querySelector("figure").style.filter = `grayscale(${
+          (document.body.scrollHeight -
+            window.scrollY -
+            document.body.clientHeight) /
+          document.body.scrollHeight
+        })`;
+      });
+
+      init();
+      function init() {
+        resize();
+        clickEvent();
+
+        document.querySelector("figure").style.filter = `grayscale(${
+          (document.body.scrollHeight -
+            window.scrollY -
+            document.body.clientHeight) /
+          document.body.scrollHeight
+        })`;
+      }
+    </script>
+  </body>
+</html>

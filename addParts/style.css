@@ -1,0 +1,202 @@
+:root {
+  --figure: 500px; }
+
+body {
+  font-family: "Nunito", sans-serif;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  overflow-x: hidden; }
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+  height: 60px;
+  background-color: white;
+  border-bottom: 1px solid #d0d0d0; }
+  header > div {
+    width: 90%;
+    max-width: 1920px;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    font-family: "Audiowide", cursive;
+    font-weight: bold; }
+    @media screen and (max-width: 900px) {
+      header > div {
+        font-size: 2.5vw; } }
+  header ul {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center; }
+    header ul li:not(:last-child) {
+      margin-right: 14px; }
+    header ul li.active button {
+      color: #0172ce; }
+    header ul li button {
+      color: #ddd;
+      text-transform: uppercase; }
+      header ul li button:hover {
+        color: #0172ce; }
+
+section {
+  position: relative;
+  margin: 0 auto;
+  width: 90%;
+  max-width: 1920px;
+  height: 100%; }
+  section .part {
+    position: relative;
+    width: 49%;
+    height: 100%;
+    padding-top: 60px;
+    box-sizing: border-box; }
+    @media screen and (max-width: 900px) {
+      section .part {
+        width: 100%; } }
+    section .part.active h2,
+    section .part.active span,
+    section .part.active p {
+      opacity: 1;
+      transform: translateY(0); }
+    section .part.active h2 .dot {
+      background-color: #0172ce !important; }
+    section .part.active button {
+      opacity: 1; }
+    section .part h2,
+    section .part span,
+    section .part p {
+      position: relative;
+      opacity: 0;
+      transform: translateY(20px); }
+    section .part button {
+      opacity: 0; }
+    section .part h2,
+    section .part span,
+    section .part p,
+    section .part button {
+      transition: opacity 0.5s, transform 0.5s; }
+    section .part span {
+      transition-delay: 0.2s; }
+    section .part p {
+      transition-delay: 0.4s; }
+    section .part button {
+      transition-delay: 0.5s; }
+    section .part .textBox {
+      position: absolute;
+      top: 40%;
+      left: 0;
+      width: 100%; }
+      @media screen and (min-width: 900px) and (max-width: 1400px) {
+        section .part .textBox {
+          top: 20%; } }
+      @media screen and (max-width: 900px) {
+        section .part .textBox {
+          top: 100px; } }
+      section .part .textBox h2 {
+        margin-bottom: 14px;
+        font-size: 5em;
+        line-height: 0.9em;
+        color: #111;
+        font-family: "Audiowide", cursive; }
+        section .part .textBox h2 .dot {
+          display: inline-block;
+          width: 12px;
+          height: 12px;
+          transition: all 0.5s 1s;
+          background-color: #111; }
+          @media screen and (max-width: 900px) {
+            section .part .textBox h2 .dot {
+              width: 8px;
+              height: 8px; } }
+        @media screen and (max-width: 900px) {
+          section .part .textBox h2 {
+            font-size: 11.6vw; } }
+      section .part .textBox span {
+        display: block;
+        margin-bottom: 30px;
+        padding-left: 4px;
+        box-sizing: border-box;
+        font-size: 1.2em;
+        font-weight: 100;
+        color: #aaa; }
+        @media screen and (max-width: 900px) {
+          section .part .textBox span {
+            font-size: 3.5vw;
+            line-height: 1.3em;
+            letter-spacing: -0.01em; } }
+      section .part .textBox p {
+        margin-bottom: 44px;
+        padding-left: 6px;
+        box-sizing: border-box;
+        font-size: 1.3em;
+        font-weight: 400;
+        color: #424242; }
+        @media screen and (max-width: 900px) {
+          section .part .textBox p {
+            margin-bottom: 20px;
+            font-size: 3.4vw;
+            line-height: 1.3em;
+            letter-spacing: -0.01em; } }
+      section .part .textBox button {
+        padding: 10px 20px;
+        margin-left: 6px;
+        border-radius: 20px;
+        background-color: #f0f0f0;
+        color: #0172ce;
+        font-size: 1.2em;
+        font-weight: bold;
+        font-family: "Audiowide", cursive; }
+        section .part .textBox button:hover {
+          color: white;
+          background-color: #0172ce; }
+  section figure {
+    position: fixed;
+    width: 50%;
+    height: 60%;
+    top: 40%;
+    right: 0;
+    z-index: -1;
+    filter: grayscale(1); }
+    @media screen and (max-width: 900px) {
+      section figure {
+        width: 70%;
+        top: 35%;
+        opacity: 0.2; } }
+    section figure::before {
+      content: "";
+      position: absolute;
+      bottom: 15%;
+      right: 15%;
+      width: var(--figure);
+      height: var(--figure);
+      border-radius: 50%;
+      background-color: #0172ce; }
+      @media screen and (min-width: 900px) and (max-width: 1300px) {
+        section figure::before {
+          bottom: 5%;
+          right: 12%;
+          width: 340px;
+          height: 340px; } }
+      @media screen and (max-width: 900px) {
+        section figure::before {
+          bottom: 10px;
+          width: 180px;
+          height: 180px; } }
+    section figure img {
+      display: block;
+      opacity: 0;
+      position: absolute;
+      width: 100%;
+      left: 0;
+      bottom: 0;
+      transition: opacity 0.5s;
+      user-select: none; }
+      section figure img.active {
+        opacity: 1; }
+
+/*# sourceMappingURL=style.css.map */
