@@ -1,0 +1,338 @@
+body {
+  background-color: #f6f6f6;
+  font-family: "Roboto", sans-serif; }
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  z-index: 100;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; }
+  header h1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 16px 34px 20px 20px;
+    box-sizing: border-box;
+    border-radius: 0 0 40px 0;
+    background-color: #111;
+    color: white;
+    font-weight: 900; }
+  header ul {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+    color: #111;
+    font-weight: 400; }
+    @media screen and (max-width: 900px) {
+      header ul {
+        justify-content: flex-end; }
+        header ul li {
+          margin-right: 20px;
+          font-size: 3.3vw; } }
+    header ul li {
+      cursor: pointer; }
+      header ul li:hover {
+        color: #919191; }
+      header ul li:not(:last-child) {
+        margin-right: 20px; }
+
+#main {
+  position: relative;
+  width: 100%;
+  max-width: 1920px;
+  height: 100%;
+  margin: 0 auto;
+  overflow: hidden; }
+  #main .slideBox {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    overflow: hidden; }
+    @media screen and (max-width: 900px) {
+      #main .slideBox {
+        top: 45%; } }
+  #main .slideContainer {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    left: 0; }
+    #main .slideContainer.lifting {
+      transition: left 0.5s; }
+    #main .slideContainer li {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      user-select: none; }
+      #main .slideContainer li.active img {
+        opacity: 1; }
+      #main .slideContainer li img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: block;
+        opacity: 0;
+        transform: translate(-50%, -52%) rotate(-25deg);
+        transition: opacity 0.5s; }
+      @media screen and (min-width: 1500px) {
+        #main .slideContainer li img {
+          left: 65%;
+          width: 50%; } }
+      @media screen and (min-width: 900px) and (max-width: 1500px) {
+        #main .slideContainer li img {
+          left: 70%;
+          width: 50%; } }
+      @media screen and (min-width: 700px) and (max-width: 900px) {
+        #main .slideContainer li img {
+          top: 72%;
+          left: 44%;
+          width: 60%; } }
+      @media screen and (max-width: 700px) {
+        #main .slideContainer li img {
+          top: 72%;
+          left: 44%;
+          width: 100%; } }
+  #main .titleContainer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    left: 30%;
+    width: 40%;
+    z-index: 10; }
+    @media screen and (min-width: 1500px) {
+      #main .titleContainer {
+        top: 40%;
+        left: 35%;
+        width: 40%; } }
+    @media screen and (min-width: 900px) and (max-width: 1500px) {
+      #main .titleContainer {
+        top: 32%;
+        left: 35%;
+        width: 40%; } }
+    @media screen and (max-width: 900px) {
+      #main .titleContainer {
+        top: 16%;
+        left: 50%;
+        width: 90%; } }
+    #main .titleContainer li {
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      text-shadow: 0 0 14px rgba(0, 0, 0, 0.15); }
+      #main .titleContainer li h2,
+      #main .titleContainer li p {
+        text-shadow: inherit; }
+      #main .titleContainer li h2 {
+        color: #111;
+        line-height: 1em;
+        letter-spacing: -0.01em; }
+      #main .titleContainer li P {
+        line-height: 1.2em;
+        letter-spacing: -0.01em;
+        margin-bottom: 20px; }
+      #main .titleContainer li button {
+        padding: 10px 20px; }
+        #main .titleContainer li button:active {
+          transform: scale(0.95); }
+      @media screen and (min-width: 900px) and (max-width: 1500px) {
+        #main .titleContainer li h2 {
+          font-size: 80px;
+          margin-bottom: 20px; }
+          #main .titleContainer li h2 br.m {
+            display: none; }
+        #main .titleContainer li P {
+          width: 100%; } }
+      @media screen and (min-width: 1500px) {
+        #main .titleContainer li h2 {
+          font-size: 80px;
+          margin-bottom: 20px; }
+          #main .titleContainer li h2 br.m {
+            display: none; }
+        #main .titleContainer li P {
+          width: 70%; } }
+      @media screen and (max-width: 900px) {
+        #main .titleContainer li h2 {
+          font-size: 14vw;
+          margin-bottom: 20px; }
+        #main .titleContainer li P {
+          width: 100%; } }
+      #main .titleContainer li.active {
+        opacity: 1;
+        z-index: 1; }
+  #main .scrollspy {
+    position: absolute;
+    background-color: #dfdfdf;
+    color: #a7a7a7; }
+    #main .scrollspy .up,
+    #main .scrollspy .down {
+      cursor: pointer;
+      position: absolute;
+      animation-duration: 1s;
+      animation-iteration-count: infinite; }
+      #main .scrollspy .up:hover,
+      #main .scrollspy .down:hover {
+        color: #b59460; }
+      @media screen and (min-width: 900px) {
+        #main .scrollspy .up,
+        #main .scrollspy .down {
+          left: 50%;
+          font-size: 18px; } }
+      @media screen and (max-width: 900px) {
+        #main .scrollspy .up,
+        #main .scrollspy .down {
+          top: 50%; } }
+    #main .scrollspy .up {
+      opacity: 0; }
+      @media screen and (min-width: 900px) {
+        #main .scrollspy .up {
+          bottom: calc(100% + 10px);
+          left: 50%;
+          animation-name: pcUp; }
+        @keyframes pcUp {
+          0% {
+            transform: translate(-50%, 0px); }
+          60% {
+            transform: translate(-50%, 10px); }
+          100% {
+            transform: translate(-50%, 0px); } } }
+      @media screen and (max-width: 900px) {
+        #main .scrollspy .up {
+          top: 50%;
+          right: calc(100% + 10px);
+          animation-name: mUp; }
+        @keyframes mUp {
+          0% {
+            transform: translate(0px, -50%) rotate(-90deg); }
+          60% {
+            transform: translate(-10px, -50%) rotate(-90deg); }
+          100% {
+            transform: translate(0px, -50%) rotate(-90deg); } } }
+    @media screen and (min-width: 900px) {
+      #main .scrollspy .down {
+        top: calc(100% + 10px);
+        left: 50%;
+        animation-name: pcDown; }
+      @keyframes pcDown {
+        0% {
+          transform: translate(-50%, 0px); }
+        60% {
+          transform: translate(-50%, -10px); }
+        100% {
+          transform: translate(-50%, 0px); } } }
+    @media screen and (max-width: 900px) {
+      #main .scrollspy .down {
+        top: 50%;
+        left: calc(100% + 10px);
+        animation-name: mDown; }
+      @keyframes mDown {
+        0% {
+          transform: translate(0px, -50%) rotate(-90deg); }
+        60% {
+          transform: translate(10px, -50%) rotate(-90deg); }
+        100% {
+          transform: translate(0px, -50%) rotate(-90deg); } } }
+    #main .scrollspy .current {
+      position: absolute;
+      width: 100%;
+      height: 20%;
+      top: 0;
+      left: 0;
+      background-color: #b59460;
+      transition: all 0.3s; }
+    @media screen and (min-width: 900px) {
+      #main .scrollspy {
+        left: 40px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 6px;
+        height: 140px; } }
+    @media screen and (max-width: 900px) {
+      #main .scrollspy {
+        left: 50%;
+        bottom: 20px;
+        transform: translateX(-50%);
+        width: 140px;
+        height: 6px; } }
+  #main .more {
+    position: absolute;
+    left: 100%;
+    top: 100%;
+    z-index: 100;
+    background-color: #111;
+    border-radius: 40px 0 0 0;
+    transform: translate(-60px, -60px);
+    transition: transform 0.5s;
+    overflow: scroll;
+    -ms-overflow-style: none; }
+    #main .more::-webkit-scrollbar {
+      display: none !important; }
+    #main .more .moreClose {
+      position: fixed;
+      top: 24px;
+      left: 24px;
+      color: white;
+      font-size: 20px;
+      cursor: pointer; }
+      #main .more .moreClose.close {
+        display: none; }
+      #main .more .moreClose.zoom {
+        display: block; }
+    #main .more.active .moreClose {
+      left: initial;
+      right: 20px; }
+      #main .more.active .moreClose.close {
+        display: block; }
+      #main .more.active .moreClose.zoom {
+        display: none; }
+    @media screen and (min-width: 900px) {
+      #main .more {
+        width: 20%;
+        height: 40%; } }
+    @media screen and (max-width: 900px) {
+      #main .more {
+        width: 100%;
+        height: 100%; } }
+    #main .more .desc {
+      position: absolute;
+      width: 100%;
+      min-height: 100%;
+      padding: 50px 24px;
+      box-sizing: border-box;
+      opacity: 0;
+      color: white; }
+      #main .more .desc b {
+        display: inline-block;
+        font-weight: 500;
+        font-size: 20px;
+        text-transform: capitalize;
+        margin-bottom: 4px; }
+      #main .more .desc p {
+        font-weight: 200;
+        font-size: 15px;
+        padding-left: 10px;
+        margin-bottom: 14px;
+        box-sizing: border-box; }
+    #main .more.active {
+      transform: translate(-100%, -100%); }
+      #main .more.active .desc.active {
+        opacity: 1; }
+
+/*# sourceMappingURL=style.css.map */

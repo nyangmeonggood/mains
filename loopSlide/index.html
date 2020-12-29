@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1"
+    />
+    <title>SwitchProduct</title>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+      integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp"
+      crossorigin="anonymous"
+    /><link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../scss/css reset.css" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>NIKE</h1>
+    </header>
+    <section id="main">
+      <div class="slideBox">
+        <ul class="slideContainer">
+          <li class="slide slide1"><img src="./1.jpg" alt></li>
+          <li class="slide slide2"><img src="./2.jpg" alt></li>
+          <li class="slide slide3"><img src="./3.jpg" alt></li>
+          <li class="slide slide4"><img src="./4.jpg" alt></li>
+          <li class="slide slide5"><img src="./5.jpg" alt></li>
+        </ul>
+      </div>
+    </section>
+  </body>
+  <script>
+    const SHOE = [
+      {
+        name: "Nike Air Force 1 '07",
+        price: "$90",
+        code: "CW2288-111",
+        color: "White/White",
+        desc:
+          "The radiance lives on in the Nike Air Force 1 ’07, the b-ball OG that puts a fresh spin on what you know best: durably stitched overlays, clean finishes and the perfect amount of flash to make you shine.",
+        src: "./1.jpg",
+      },
+      {
+        name: "Nike Air Force 1 High",
+        price: "$90",
+        code: "DH1058-100",
+        color: " White/Gum Light Brown/White",
+        desc:
+          "This is what legends are made of. The Nike Air Force 1 High brings back the ’82 hardwood icon into everyday high tops in all-white with a smooth brown outsole. The durability, feel and Air are still there to show your love for these classic kicks.",
+        src: "./2.jpg",
+      },
+      {
+        name: "Nike Air Force 1 High '07",
+        price: "$100",
+        code: " CK4369-100",
+        color: "White/Black",
+        desc:
+          "The Nike Air Force 1 High '07 is a testament to tried-and-true design. Genuine and synthetic leather come together for a premium feel from toe to heel while the Air-Sole unit means the comfort never stops.",
+        src: "./3.jpg",
+      },
+      {
+        name: "Nike Air Force 1 '07 Craft",
+        price: "$120",
+        code: " CV1755-100",
+        color: "Sail/Forest/Mantra Orange",
+        desc:
+          "The radiance lives on in the Nike Air Force 1 ’07 Craft, the b-ball icon that puts a fresh spin on what you know best: stitched overlays, bold colors and the perfect amount of flash to make you shine.",
+        src: "./4.jpg",
+      },
+      {
+        name: "Nike Air Force 1 '07 WB",
+        price: "$130",
+        code: " CJ9179-200",
+        color: "Flax/Gum Light Brown/Black/Wheat",
+        desc:
+          "The legend lives on in the Nike Air Force 1 '07 WB, a low-cut take on the iconic AF1 that offers classic court style and premium cushioning",
+        src: "./5.jpg",
+      },
+    ];
+    
+    const $slideContainer = document.querySelector(".slideContainer"),
+        $slide = Object.values(document.getElementsByClassName("slide"));
+
+    function setSlide(){        
+       var firstSlide = $slide[0],
+        lastSlide = $slide[$slide.length - 1],
+        cloneFirst = firstSlide.cloneNode(true),
+        cloneLast = lastSlide.cloneNode(true);
+
+        cloneFirst.classList.add(`slide${$slide.length + 1}`)
+        cloneFirst.style.left = `100%`;
+        cloneFirst.style.position = "absolute";
+        cloneLast.classList.add(`slide0`)
+        cloneLast.style.right = `100%`;
+        cloneLast.style.position = "absolute";
+
+        $slideContainer.appendChild(cloneFirst);
+        $slideContainer.insertBefore(cloneLast, firstSlide);
+
+        $slide.map((item) => {
+          item.querySelector("img").draggable = false
+        })
+    }
+
+    function clickEvt(){
+      var index = 0;
+      var isLifting = false;
+
+      function moveContainer (){
+        $slideContainer.classList.add("lifting")
+          $slideContainer.style.left = `${-index * 100}%`
+
+          $slideContainer.addEventListener("transitionend",() => {
+            $slideContainer.classList.remove("lifting")
+
+            if(index === $slide.length){
+            $slideContainer.style.left = `0%`
+              index = 0
+            }
+
+            if(index === -1){
+            $slideContainer.style.left = `${($slide.length -1) * -100}%`
+              index = $slide.length -1
+            }
+            isLifting= false
+          })
+      }
+      
+      window.addEventListener("click",()=>{
+        if(!isLifting){
+          isLifting = true;
+
+          index++
+          moveContainer ();          
+        }
+      })
+    }
+
+    init()
+    function init(){
+      setSlide()
+      clickEvt()
+      document.querySelector(".slide1").classList.add("active")
+
+    }
+  </script>
+</html>

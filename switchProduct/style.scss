@@ -1,0 +1,462 @@
+@import "../scss/styleguide.scss";
+
+body {
+  background-color: #f6f6f6;
+  font-family: "Roboto", sans-serif;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  z-index: 100;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  h1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 16px 34px 20px 20px;
+    box-sizing: border-box;
+    border-radius: 0 0 40px 0;
+    background-color: #111;
+    color: white;
+    font-weight: 900;
+  }
+
+  ul {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+    color: #111;
+    font-weight: 400;
+
+    @media screen and (max-width: 900px) {
+      justify-content: flex-end;
+
+      li {
+        margin-right: 20px;
+        font-size: 3.3vw;
+      }
+    }
+
+    li {
+      cursor: pointer;
+
+      &:hover {
+        color: lighten(#111, 50%);
+      }
+      &:not(:last-child) {
+        margin-right: 20px;
+      }
+    }
+  }
+}
+
+#main {
+  position: relative;
+  width: 100%;
+  max-width: 1920px;
+  height: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+
+  .slideBox {
+    @include posCenter;
+
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+
+    @media screen and (max-width: 900px) {
+      top: 45%;
+    }
+  }
+
+  .slideContainer {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    left: 0;
+
+    &.lifting {
+      transition: left 0.5s;
+    }
+
+    li {
+      @include posCenter;
+
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      user-select: none;
+
+      &.active {
+        img {
+          opacity: 1;
+        }
+      }
+
+      img {
+        @include posCenter;
+
+        display: block;
+        opacity: 0;
+        transform: translate(-50%, -52%) rotate(-25deg);
+        transition: opacity 0.5s;
+      }
+
+      @media screen and (min-width: 1500px) {
+        img {
+          left: 65%;
+          width: 50%;
+        }
+      }
+
+      @media screen and (min-width: 900px) and (max-width: 1500px) {
+        img {
+          left: 70%;
+          width: 50%;
+        }
+      }
+
+      @media screen and (min-width: 700px) and (max-width: 900px) {
+        img {
+          top: 72%;
+          left: 44%;
+          width: 60%;
+        }
+      }
+
+      @media screen and (max-width: 700px) {
+        img {
+          top: 72%;
+          left: 44%;
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  .titleContainer {
+    @include posCenter;
+    left: 30%;
+    width: 40%;
+    z-index: 10;
+
+    @media screen and (min-width: 1500px) {
+      top: 40%;
+      left: 35%;
+      width: 40%;
+    }
+
+    @media screen and (min-width: 900px) and (max-width: 1500px) {
+      top: 32%;
+      left: 35%;
+      width: 40%;
+    }
+
+    @media screen and (max-width: 900px) {
+      top: 16%;
+      left: 50%;
+      width: 90%;
+    }
+
+    li {
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      text-shadow: 0 0 14px rgba(0, 0, 0, 0.15);
+
+      h2,
+      p {
+        text-shadow: inherit;
+      }
+
+      h2 {
+        color: #111;
+        line-height: 1em;
+        letter-spacing: -0.01em;
+      }
+      P {
+        line-height: 1.2em;
+        letter-spacing: -0.01em;
+        margin-bottom: 20px;
+      }
+      button {
+        padding: 10px 20px;
+        &:active {
+          transform: scale(0.95);
+        }
+      }
+
+      @media screen and (min-width: 900px) and (max-width: 1500px) {
+        h2 {
+          font-size: 80px;
+          margin-bottom: 20px;
+          br.m {
+            display: none;
+          }
+        }
+        P {
+          width: 100%;
+        }
+      }
+
+      @media screen and (min-width: 1500px) {
+        h2 {
+          font-size: 80px;
+          margin-bottom: 20px;
+          br.m {
+            display: none;
+          }
+        }
+
+        P {
+          width: 70%;
+        }
+      }
+
+      @media screen and (max-width: 900px) {
+        h2 {
+          font-size: 14vw;
+          margin-bottom: 20px;
+        }
+        P {
+          width: 100%;
+        }
+      }
+
+      &.active {
+        opacity: 1;
+        z-index: 1;
+      }
+    }
+  }
+
+  .scrollspy {
+    position: absolute;
+    background-color: #dfdfdf;
+    color: #a7a7a7;
+
+    .up,
+    .down {
+      cursor: pointer;
+      position: absolute;
+      animation-duration: 1s;
+      animation-iteration-count: infinite;
+
+      &:hover {
+        color: #b59460;
+      }
+
+      @media screen and (min-width: 900px) {
+        left: 50%;
+        font-size: 18px;
+      }
+
+      @media screen and (max-width: 900px) {
+        top: 50%;
+      }
+    }
+
+    .up {
+      opacity: 0;
+      @media screen and (min-width: 900px) {
+        bottom: calc(100% + 10px);
+        left: 50%;
+        animation-name: pcUp;
+        @keyframes pcUp {
+          0% {
+            transform: translate(-50%, 0px);
+          }
+          60% {
+            transform: translate(-50%, 10px);
+          }
+          100% {
+            transform: translate(-50%, 0px);
+          }
+        }
+      }
+
+      @media screen and (max-width: 900px) {
+        top: 50%;
+        right: calc(100% + 10px);
+        animation-name: mUp;
+        @keyframes mUp {
+          0% {
+            transform: translate(0px, -50%) rotate(-90deg);
+          }
+          60% {
+            transform: translate(-10px, -50%) rotate(-90deg);
+          }
+          100% {
+            transform: translate(0px, -50%) rotate(-90deg);
+          }
+        }
+      }
+    }
+
+    .down {
+      @media screen and (min-width: 900px) {
+        top: calc(100% + 10px);
+        left: 50%;
+        animation-name: pcDown;
+        @keyframes pcDown {
+          0% {
+            transform: translate(-50%, 0px);
+          }
+          60% {
+            transform: translate(-50%, -10px);
+          }
+          100% {
+            transform: translate(-50%, 0px);
+          }
+        }
+      }
+
+      @media screen and (max-width: 900px) {
+        top: 50%;
+        left: calc(100% + 10px);
+        animation-name: mDown;
+        @keyframes mDown {
+          0% {
+            transform: translate(0px, -50%) rotate(-90deg);
+          }
+          60% {
+            transform: translate(10px, -50%) rotate(-90deg);
+          }
+          100% {
+            transform: translate(0px, -50%) rotate(-90deg);
+          }
+        }
+      }
+    }
+
+    .current {
+      position: absolute;
+      width: 100%;
+      height: 20%;
+      top: 0;
+      left: 0;
+      background-color: #b59460;
+      transition: all 0.3s;
+    }
+
+    @media screen and (min-width: 900px) {
+      left: 40px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 6px;
+      height: 140px;
+    }
+
+    @media screen and (max-width: 900px) {
+      left: 50%;
+      bottom: 20px;
+      transform: translateX(-50%);
+      width: 140px;
+      height: 6px;
+    }
+  }
+
+  .more {
+    position: absolute;
+    left: 100%;
+    top: 100%;
+    z-index: 100;
+    background-color: #111;
+    border-radius: 40px 0 0 0;
+    transform: translate(-60px, -60px);
+    transition: transform 0.5s;
+    overflow: scroll;
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar {
+      display: none !important;
+    }
+
+    .moreClose {
+      position: fixed;
+      top: 24px;
+      left: 24px;
+      color: white;
+      font-size: 20px;
+      cursor: pointer;
+
+      &.close {
+        display: none;
+      }
+      &.zoom {
+        display: block;
+      }
+    }
+
+    &.active {
+      .moreClose {
+        left: initial;
+        right: 20px;
+
+        &.close {
+          display: block;
+        }
+        &.zoom {
+          display: none;
+        }
+      }
+    }
+
+    @media screen and (min-width: 900px) {
+      width: 20%;
+      height: 40%;
+    }
+
+    @media screen and (max-width: 900px) {
+      width: 100%;
+      height: 100%;
+    }
+
+    .desc {
+      position: absolute;
+      width: 100%;
+      min-height: 100%;
+      padding: 50px 24px;
+      box-sizing: border-box;
+      opacity: 0;
+      color: white;
+
+      b {
+        display: inline-block;
+        font-weight: 500;
+        font-size: 20px;
+        text-transform: capitalize;
+        margin-bottom: 4px;
+      }
+      p {
+        font-weight: 200;
+        font-size: 15px;
+        padding-left: 10px;
+        margin-bottom: 14px;
+        box-sizing: border-box;
+      }
+    }
+
+    &.active {
+      transform: translate(-100%, -100%);
+
+      .desc {
+        &.active {
+          opacity: 1;
+        }
+      }
+    }
+  }
+}

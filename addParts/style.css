@@ -5,7 +5,8 @@ body {
   font-family: "Nunito", sans-serif;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  overflow-x: hidden; }
+  overflow-x: hidden;
+  background-color: white; }
 
 header {
   position: fixed;

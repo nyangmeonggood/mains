@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1"
+    />
+    <title>SwitchProduct</title>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+      integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp"
+      crossorigin="anonymous"
+    /><link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../scss/css reset.css" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>NIKE</h1>
+      <ul>
+        <li>NEW RELAESES</li>
+        <li>MEN</li>
+        <li>WOMEN</li>
+        <li>KIDS</li>
+      </ul>
+    </header>
+    <section id="main">
+      <div class="slideBox">
+        <ul class="slideContainer"></ul>
+      </div>
+      
+        <ul class="titleContainer"></ul>
+
+        <div class="info"></div>
+
+        <div class="scrollspy">
+          <div class="current"></div>
+          <div class="up moveScrollSpy"><i class="fas fa-angle-up"></i></div>
+          <div class="down moveScrollSpy"><i class="fas fa-angle-down"></i></div>
+        </div>
+
+        <ul class="more"></ul>
+    </section>
+  </body>
+  <script>
+    const SHOE = [
+      {
+        name: "AirForce 1<br class='m'> '07",
+        price: "$90",
+        code: "CW2288-111",
+        color: "White/White",
+        desc:
+          "The radiance lives on in the Nike Air Force 1 ’07, the b-ball OG that puts a fresh spin on what you know best: durably stitched overlays, clean finishes and the perfect amount of flash to make you shine.",
+        src: "./1.jpg",
+        bg:"#fff",
+        mainColor:"white",
+        subColor:"#111"
+      },
+      {
+        name: "AirForce 1<br class='m'> High",
+        price: "$90",
+        code: "DH1058-100",
+        color: " White/Gum Light Brown/White",
+        desc:
+          "This is what legends are made of. The Nike Air Force 1 High brings back the ’82 hardwood icon into everyday high tops in all-white with a smooth brown outsole. The durability, feel and Air are still there to show your love for these classic kicks.",
+        src: "./2.jpg",
+        bg:"linear-gradient(#fff 80%, #b59460 20%)",
+        mainColor:"#b59460",
+        subColor:"#fff"
+      },
+      {
+        name: "AirForce 1<br class='m'> High '07",
+        price: "$100",
+        code: " CK4369-100",
+        color: "White/Black",
+        desc:
+          "The Nike Air Force 1 High '07 is a testament to tried-and-true design. Genuine and synthetic leather come together for a premium feel from toe to heel while the Air-Sole unit means the comfort never stops.",
+        src: "./3.jpg",
+        bg:"linear-gradient(#fff 80%, #111 20%)",
+        mainColor:"#111",
+        subColor:"#fff"
+      },
+      {
+        name: "AirForce 1<br class='m'> '07 Craft",
+        price: "$120",
+        code: " CV1755-100",
+        color: "Sail/Forest/Mantra Orange",
+        desc:
+          "The radiance lives on in the Nike Air Force 1 ’07 Craft, the b-ball icon that puts a fresh spin on what you know best: stitched overlays, bold colors and the perfect amount of flash to make you shine.",
+        src: "./4.jpg",
+        bg:"linear-gradient(to right, #e6e6dc 90%, #c6432d 10%)",
+        mainColor:"#e6e6e6",
+        subColor:"#c6432d"
+      },
+      {
+        name: "AirForce 1<br class='m'> '07 WB",
+        price: "$130",
+        code: " CJ9179-200",
+        color: "Flax/Gum Light Brown/Black/Wheat",
+        desc:
+          "The legend lives on in the Nike Air Force 1 '07 WB, a low-cut take on the iconic AF1 that offers classic court style and premium cushioning",
+        src: "./5.jpg",
+        bg:"#b18148",
+        mainColor:"#b18148",
+        subColor:"#fff"
+      },
+    ];
+    
+    const $slideContainer = document.querySelector(".slideContainer");
+
+    let $slide,
+      $title,
+      $desc;
+
+    let index = 0;
+
+    function setSlide(){        
+      for(let i = 0; i < SHOE.length; i++){
+        //pic
+        var $li = document.createElement("li"),
+          $img = document.createElement("img");
+
+        $img.src = SHOE[i].src;
+        $img.draggable = false;
+
+        $li.classList.add("slide",`slide${i+1}`)
+        $li.appendChild($img);
+        $slideContainer.appendChild($li)
+        //**pic
+
+        //title
+        var $li = document.createElement("li"),
+          $title = document.createElement("h2"),
+          $p = document.createElement("p"),
+          $button = document.createElement("button");
+
+          $title.innerHTML = SHOE[i].name;
+          $p.innerHTML = SHOE[i].desc;
+          $button.innerHTML = "View Detail"
+
+          $button.style.backgroundColor = SHOE[i].mainColor
+          $button.style.color = SHOE[i].subColor
+
+          $button.addEventListener("click",()=>{
+            document.querySelector(".more").classList.toggle("active")
+          })
+
+          $li.appendChild($title)
+          $li.appendChild($p)
+          $li.appendChild($button)
+          $li.classList.add("title",`title${i+1}`)
+
+          document.querySelector(".titleContainer").appendChild($li)
+          //**title
+
+        //more
+        var $li = document.createElement("li"),
+          $priceTitle = document.createElement("b"),
+          $price = document.createElement("p"),
+          $codeTitle = document.createElement("b"),
+          $code = document.createElement("p"),
+          $colorTitle = document.createElement("b"),
+          $color = document.createElement("p"),
+          $descTitle = document.createElement("b"),
+          $desc = document.createElement("p");
+
+          $priceTitle.innerHTML = "- price" 
+          $price.innerHTML = SHOE[i].price
+          $codeTitle.innerHTML = "- code"
+          $code.innerHTML = SHOE[i].code
+          $colorTitle.innerHTML = "- color"
+          $color.innerHTML = SHOE[i].color
+          $descTitle.innerHTML = "- desc"
+          $desc.innerHTML = SHOE[i].desc
+
+          $li.appendChild($priceTitle)
+          $li.appendChild($price)
+          $li.appendChild($codeTitle)
+          $li.appendChild($code)
+          $li.appendChild($colorTitle)
+          $li.appendChild($color)
+          $li.appendChild($descTitle)
+          $li.appendChild($desc)
+          $li.classList.add("desc",`desc${i+1}`)
+
+          document.querySelector(".more").appendChild($li)
+          //**more
+      }  
+
+      var $close = document.createElement("i");
+      $close.classList.add("fas","fa-times","moreClose","close")
+      document.querySelector(".more").appendChild($close)
+      var $close = document.createElement("i");
+      $close.classList.add("fas","fa-info-circle","moreClose","zoom")
+      document.querySelector(".more").appendChild($close)
+    }
+
+    function clickEvt(){
+      var isLifting = false;
+
+      document.querySelector(".slideBox").addEventListener(
+      "touchstart",
+      function (event) {
+        var touch = event.touches[0];
+        touchstartX = touch.clientX;
+        touchstartY = touch.clientY;
+      },
+      false
+    );
+      document.querySelector(".slideBox").addEventListener(
+        "touchend",
+        function (event) {
+          if (event.touches.length == 0) {
+            var touch = event.changedTouches[event.changedTouches.length - 1];
+            touchendX = touch.clientX;
+            touchendY = touch.clientY;
+
+            touchoffsetX = touchendX - touchstartX;
+            touchoffsetY = touchendY - touchstartY;
+            
+              if (Math.abs(touchoffsetX) > 100) {
+                if (touchoffsetX > 100) {
+                  index--;
+                  moveContainer ()
+                }
+                if (touchoffsetX < 100) {
+                  index++;
+                  moveContainer ()
+                }
+              }
+            
+          }
+        },
+        false
+      );
+      document.querySelector(".titleContainer").addEventListener(
+      "touchstart",
+      function (event) {
+        var touch = event.touches[0];
+        touchstartX = touch.clientX;
+        touchstartY = touch.clientY;
+      },
+      false
+    );
+      document.querySelector(".titleContainer").addEventListener(
+        "touchend",
+        function (event) {
+          if (event.touches.length == 0) {
+            var touch = event.changedTouches[event.changedTouches.length - 1];
+            touchendX = touch.clientX;
+            touchendY = touch.clientY;
+
+            touchoffsetX = touchendX - touchstartX;
+            touchoffsetY = touchendY - touchstartY;
+            
+              if (Math.abs(touchoffsetX) > 100) {
+                if (touchoffsetX > 100) {
+                  index--;
+                  moveContainer ()
+                }
+                if (touchoffsetX < 100) {
+                  index++;
+                  moveContainer ()
+                }
+              }
+            
+          }
+        },
+        false
+      );
+    
+
+      document.querySelector(".slideBox").addEventListener("wheel", function (event) {
+        if (event.deltaY < 0) {
+          index--;
+          moveContainer ()
+        } else if (event.deltaY > 0) {
+          index++;
+          moveContainer ()
+        }
+      });
+
+      document.querySelector(".titleContainer").addEventListener("wheel", function (event) {
+        if (event.deltaY < 0) {
+          index--;
+          moveContainer ()
+        } else if (event.deltaY > 0) {
+          index++;
+          moveContainer ()
+        }
+      });
+
+      document.querySelector(".up").addEventListener("click",()=>{
+        index--;
+          moveContainer ()
+      })
+      document.querySelector(".down").addEventListener("click",()=>{
+        index++;
+          moveContainer ()
+      })
+
+
+      Object.values(document.getElementsByClassName("moreClose")).map((item)=>{
+        item.addEventListener("click",()=>{
+          document.querySelector(".more").classList.toggle("active")
+        })
+      })
+
+      function moveContainer (){
+        $slide = Object.values(document.getElementsByClassName("slide"));
+        $title = Object.values(document.getElementsByClassName("title"));
+        $desc = Object.values(document.getElementsByClassName("desc"));
+
+        $slide.map((item) => item.classList.remove("active"))
+        $title.map((item) => item.classList.remove("active"))
+        $desc.map((item) => item.classList.remove("active"))
+
+        if(index < 0) index = $slide.length -1
+        if(index > $slide.length -1) index = 0
+
+        $slide[index].classList.add("active")
+        $title[index].classList.add("active")    
+        $desc[index].classList.add("active")    
+
+        scrollspy()
+
+        Object.values(document.getElementsByClassName("moveScrollSpy")).map((item) => {
+          item.style.opacity = 1
+        })
+
+        if(index === 0){
+          document.querySelector(".up").style.opacity = 0
+        }
+
+        if(index === $slide.length -1){
+          document.querySelector(".down").style.opacity = 0
+        }
+      }
+
+    }
+
+    function scrollspy(){        
+      if(document.body.clientWidth > 900){
+        document.querySelector(".scrollspy .current").style.width = `100%`
+        document.querySelector(".scrollspy .current").style.height = `${(index + 1) / ($slide.length) * 100 }%`
+      
+      }
+      if(document.body.clientWidth <= 900){
+        document.querySelector(".scrollspy .current").style.width = `${(index + 1) / ($slide.length) * 100 }%`
+        document.querySelector(".scrollspy .current").style.height = `100%`
+      }
+    }
+
+    window.addEventListener("resize",() => {
+      scrollspy()
+    })
+
+    init()
+    function init(){
+      setSlide()
+      clickEvt()
+
+      document.querySelector(".slide1").classList.add("active")
+      document.querySelector(".title1").classList.add("active")
+      document.querySelector(".desc1").classList.add("active")
+
+    }
+  </script>
+</html>
