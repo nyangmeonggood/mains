@@ -1,6 +1,28 @@
+.lifting {
+  transition: top 0.5s cubic-bezier(0.41, 0.01, 1, 1); }
+
 body {
-  background-color: #f6f6f6;
+  position: relative;
+  background-color: #f7f5f3;
   font-family: "Roboto", sans-serif; }
+
+.current {
+  position: fixed;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 100px;
+  background-color: #dad7d1; }
+  @media screen and (max-width: 900px) {
+    .current {
+      display: none; } }
+  .current .now {
+    position: absolute;
+    width: 100%;
+    height: 20%;
+    transition: height 0.5s;
+    background-color: #d67b2d; }
 
 header {
   position: fixed;
@@ -12,38 +34,260 @@ header {
   z-index: 100;
   font-size: 20px;
   font-weight: 900;
-  color: #111; }
+  color: #be2e0e; }
+  @media screen and (min-width: 900px) {
+    header h1 {
+      width: 140px; } }
+  @media screen and (max-width: 900px) {
+    header h1 {
+      width: 80px; } }
 
-#main .slideBox {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+#main {
   width: 100%;
   height: 100%;
-  overflow: hidden; }
-#main .slideContainer {
-  position: relative;
   display: flex;
   align-items: center;
-  width: 500%;
-  height: 100%;
-  left: 0; }
-  #main .slideContainer.lifting {
-    transition: left 0.5s; }
-  #main .slideContainer li {
+  justify-content: space-between; }
+  #main .scrollspy {
     position: relative;
-    width: 20%;
     height: 100%;
-    overflow: hidden;
-    user-select: none; }
+    z-index: 1;
+    background-color: #f7f5f3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column; }
+    @media screen and (min-width: 900px) {
+      #main .scrollspy {
+        width: 140px; } }
+    @media screen and (max-width: 900px) {
+      #main .scrollspy {
+        width: 80px; } }
+    #main .scrollspy li {
+      cursor: pointer;
+      color: #dad7d1; }
+      #main .scrollspy li.active, #main .scrollspy li:hover {
+        color: #d67b2d;
+        font-weight: bold; }
+      #main .scrollspy li.active::before, #main .scrollspy li.active::after {
+        height: 40px !important; }
+      #main .scrollspy li:not(:last-child) {
+        margin-bottom: 10px; }
+      #main .scrollspy li:not(:last-child)::after, #main .scrollspy li:last-child::before {
+        content: "";
+        display: block;
+        margin: 0 auto;
+        width: 2px;
+        height: 0;
+        background-color: #dad7d1;
+        transition: height 0.5s; }
+      #main .scrollspy li:not(:last-child)::after {
+        margin-top: 5px; }
+      #main .scrollspy li:last-child::before {
+        margin-bottom: 5px; }
+  #main .slideBox {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    overflow: hidden; }
+    #main .slideBox img {
+      animation: imgMove 60s forwards; }
+@keyframes imgMove {
+  0% {
+    transform: translate(-45%, -50%) scale(1); }
+  100% {
+    transform: translate(-55%, -50%) scale(1.05); } }
+    @media screen and (min-width: 900px) {
+      #main .slideBox {
+        left: 140px;
+        width: 55%; } }
+    @media screen and (max-width: 900px) {
+      #main .slideBox {
+        background-color: #111;
+        left: 0;
+        width: 100%; }
+        #main .slideBox img {
+          opacity: 0.5; } }
+  #main .textBox {
+    padding-right: 50px;
+    box-sizing: border-box; }
+    @media screen and (min-width: 1600px) {
+      #main .textBox {
+        width: 35%; } }
+    @media screen and (min-width: 1150px) and (max-width: 1600px) {
+      #main .textBox {
+        width: 32%;
+        padding-right: 40px; } }
+    @media screen and (min-width: 900px) and (max-width: 1150px) {
+      #main .textBox {
+        width: 28%;
+        padding-right: 20px; } }
+    @media screen and (max-width: 900px) {
+      #main .textBox {
+        width: calc(100% - 100px); } }
+  #main .box {
+    overflow: hidden; }
+  #main .slideContainer {
+    position: relative;
+    top: 0;
+    width: 100%;
+    height: 500%;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap; }
+    #main .slideContainer li {
+      position: relative;
+      width: 100%;
+      height: 20%;
+      overflow: hidden;
+      user-select: none; }
     #main .slideContainer li img {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
       display: block;
-      width: 50%;
-      transform: translate(-50%, -50%) rotate(-25deg); }
+      min-width: 100%;
+      min-height: 100%;
+      transform: translate(-50%, -50%); }
+  #main .titleContainer li,
+  #main .subContainer li,
+  #main .descContainer li {
+    display: flex;
+    align-items: center; }
+  #main .titleBox {
+    margin-bottom: 14px; }
+  #main .titleContainer {
+    position: relative;
+    top: 0;
+    width: 100%;
+    height: 500%;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    transition-delay: 0.2s;
+    font-family: "Merriweather", serif; }
+    #main .titleContainer li {
+      position: relative;
+      width: 100%;
+      height: 20%;
+      overflow: hidden;
+      user-select: none; }
+    #main .titleContainer li h2 {
+      display: inline-block;
+      transition: all 0.5s;
+      -webkit-text-stroke: 1px;
+      -webkit-text-stroke-color: #d67b2d;
+      color: transparent; }
+      @media screen and (min-width: 900px) {
+        #main .titleContainer li h2 {
+          font-size: 5vw; } }
+      @media screen and (max-width: 900px) {
+        #main .titleContainer li h2 {
+          font-size: 15.5vw; } }
+    @media screen and (min-width: 900px) {
+      #main .titleContainer li.active h2 {
+        -webkit-text-stroke-color: #111;
+        color: #d67b2d; } }
+    @media screen and (max-width: 900px) {
+      #main .titleContainer li.active h2 {
+        -webkit-text-stroke-color: #fff;
+        color: white; } }
+  #main .subContainer {
+    position: relative;
+    top: 0;
+    width: 100%;
+    height: 500%;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    transition-delay: 0.4s;
+    font-weight: 500;
+    font-family: "Merriweather", serif; }
+    #main .subContainer li {
+      position: relative;
+      width: 100%;
+      height: 20%;
+      overflow: hidden;
+      user-select: none; }
+    #main .subContainer li h5 {
+      width: 100%;
+      overflow: hidden; }
+      #main .subContainer li h5 span {
+        position: relative;
+        display: inline-block; }
+        @media screen and (min-width: 900px) {
+          #main .subContainer li h5 span {
+            font-size: 1.3vw; } }
+        @media screen and (max-width: 900px) {
+          #main .subContainer li h5 span {
+            font-size: 4vw;
+            color: #eae0d5; } }
+        #main .subContainer li h5 span::after {
+          position: absolute;
+          top: 50%;
+          left: calc(100% + 10px);
+          transform: translateY(-50%);
+          content: "";
+          display: block;
+          width: 500%;
+          height: 1px;
+          background-color: #666; }
+          @media screen and (max-width: 900px) {
+            #main .subContainer li h5 span::after {
+              background-color: #eae0d5; } }
+  #main .descContainer {
+    position: relative;
+    top: 0;
+    width: 100%;
+    height: 500%;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    transition-delay: 0.6s; }
+    #main .descContainer li {
+      position: relative;
+      width: 100%;
+      height: 20%;
+      overflow: hidden;
+      user-select: none; }
+    #main .descContainer li {
+      align-items: flex-start; }
+    #main .descContainer p {
+      font-weight: 100;
+      font-family: "Roboto", sans-serif;
+      letter-spacing: 0.003em;
+      line-height: 1.5em; }
+      @media screen and (min-width: 900px) {
+        #main .descContainer p {
+          font-size: 0.8vw; } }
+      @media screen and (max-width: 900px) {
+        #main .descContainer p {
+          color: #f1f1f1;
+          padding-right: 20px;
+          box-sizing: border-box;
+          font-size: 3vw; } }
+
+.mDown {
+  position: fixed;
+  bottom: 20px;
+  left: calc(50% + 40px);
+  transform: translateX(-50%);
+  z-index: 100;
+  color: white;
+  font-size: 4vw;
+  animation: move;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite; }
+  @media screen and (min-width: 900px) {
+    .mDown {
+      display: none; } }
+@keyframes move {
+  0% {
+    bottom: 20px; }
+  70% {
+    bottom: 30px; }
+  100% {
+    bottom: 20px; } }
 
 /*# sourceMappingURL=style.css.map */

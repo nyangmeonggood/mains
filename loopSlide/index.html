@@ -6,7 +6,9 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1"
     />
-    <title>SwitchProduct</title>
+    <title>LoopSlide</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;1,900&family=Roboto:wght@300&display=swap" rel="stylesheet">
     <link
       rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
@@ -19,133 +21,260 @@
   </head>
   <body>
     <header>
-      <h1>NIKE</h1>
+      <h1>BREAD</h1>
     </header>
     <section id="main">
+      <ul class="scrollspy"></ul>
       <div class="slideBox">
-        <ul class="slideContainer">
-          <li class="slide slide1"><img src="./1.jpg" alt></li>
-          <li class="slide slide2"><img src="./2.jpg" alt></li>
-          <li class="slide slide3"><img src="./3.jpg" alt></li>
-          <li class="slide slide4"><img src="./4.jpg" alt></li>
-          <li class="slide slide5"><img src="./5.jpg" alt></li>
+        <ul class="slideContainer container" data-name="slide">
         </ul>
       </div>
+      <div class="textBox">
+        <div class="subBox box">
+          <ul class="subContainer container" data-name="sub"></ul>
+        </div>
+        <div class="titleBox box">
+          <ul class="titleContainer container" data-name="title"></ul>
+        </div>
+        <div class="descBox box">
+          <ul class="descContainer container" data-name="desc"></ul>
+        </div>
+      </div>
     </section>
+    <i class="fas fa-chevron-down mDown"></i>
+    <div class="current"><div class="now"></div></div>
   </body>
   <script>
-    const SHOE = [
-      {
-        name: "Nike Air Force 1 '07",
-        price: "$90",
-        code: "CW2288-111",
-        color: "White/White",
-        desc:
-          "The radiance lives on in the Nike Air Force 1 ’07, the b-ball OG that puts a fresh spin on what you know best: durably stitched overlays, clean finishes and the perfect amount of flash to make you shine.",
-        src: "./1.jpg",
-      },
-      {
-        name: "Nike Air Force 1 High",
-        price: "$90",
-        code: "DH1058-100",
-        color: " White/Gum Light Brown/White",
-        desc:
-          "This is what legends are made of. The Nike Air Force 1 High brings back the ’82 hardwood icon into everyday high tops in all-white with a smooth brown outsole. The durability, feel and Air are still there to show your love for these classic kicks.",
-        src: "./2.jpg",
-      },
-      {
-        name: "Nike Air Force 1 High '07",
-        price: "$100",
-        code: " CK4369-100",
-        color: "White/Black",
-        desc:
-          "The Nike Air Force 1 High '07 is a testament to tried-and-true design. Genuine and synthetic leather come together for a premium feel from toe to heel while the Air-Sole unit means the comfort never stops.",
-        src: "./3.jpg",
-      },
-      {
-        name: "Nike Air Force 1 '07 Craft",
-        price: "$120",
-        code: " CV1755-100",
-        color: "Sail/Forest/Mantra Orange",
-        desc:
-          "The radiance lives on in the Nike Air Force 1 ’07 Craft, the b-ball icon that puts a fresh spin on what you know best: stitched overlays, bold colors and the perfect amount of flash to make you shine.",
-        src: "./4.jpg",
-      },
-      {
-        name: "Nike Air Force 1 '07 WB",
-        price: "$130",
-        code: " CJ9179-200",
-        color: "Flax/Gum Light Brown/Black/Wheat",
-        desc:
-          "The legend lives on in the Nike Air Force 1 '07 WB, a low-cut take on the iconic AF1 that offers classic court style and premium cushioning",
-        src: "./5.jpg",
-      },
-    ];
-    
+    const BREAD = [
+      {src:"./1.jpg",title:"Bread",sub:"Flour",desc:"Bread is a staple food prepared from a dough of flour and water, usually by baking<br>Throughout recorded history, it has been a prominent food in large parts of the world."},
+      {src:"./2.jpg",title:"Delicious",sub:"Liquids",desc:"Throughout recorded history, it has been a prominent food in large parts of the world.<br>It is one of the oldest man-made foods, having been of significant importance"},
+      {src:"./3.jpg",title:"Good",sub:"Fats",desc:"It is one of the oldest man-made foods, having been of significant importance<br>since the dawn of agriculture, and plays an essential role in both religious rituals and secular culture."},
+      {src:"./4.jpg",title:"Tasty",sub:"Shortenings",desc:"since the dawn of agriculture, and plays an essential role in both religious rituals and secular culture. Bread may be leavened by naturally occurring microbes, chemicals, industrially produced yeast"},
+      {src:"./5.jpg",title:"Sweet",sub:"Salt",desc:"Bread may be leavened by naturally occurring microbes, chemicals, industrially produced yeast<br>.Bread is a staple food prepared from a dough of flour and water, usually by baking"}
+    ]
+
     const $slideContainer = document.querySelector(".slideContainer"),
-        $slide = Object.values(document.getElementsByClassName("slide"));
+      $titleContainer = document.querySelector(".titleContainer"),
+      $subContainer = document.querySelector(".subContainer"),
+      $descContainer = document.querySelector(".descContainer"),
+      $scrollspy = document.querySelector(".scrollspy");
 
-    function setSlide(){        
-       var firstSlide = $slide[0],
-        lastSlide = $slide[$slide.length - 1],
-        cloneFirst = firstSlide.cloneNode(true),
-        cloneLast = lastSlide.cloneNode(true);
+    let $target, $slide;
 
-        cloneFirst.classList.add(`slide${$slide.length + 1}`)
-        cloneFirst.style.left = `100%`;
-        cloneFirst.style.position = "absolute";
-        cloneLast.classList.add(`slide0`)
-        cloneLast.style.right = `100%`;
-        cloneLast.style.position = "absolute";
+    let index = 0;
 
-        $slideContainer.appendChild(cloneFirst);
-        $slideContainer.insertBefore(cloneLast, firstSlide);
+    const setSlideLi = (target,index) => {
+      $target = document.getElementsByClassName(target)[0];
+      $slide = Object.values($target.getElementsByTagName("li"));
 
-        $slide.map((item) => {
-          item.querySelector("img").draggable = false
-        })
+      var firstSlide = $slide[0],
+      lastSlide = $slide[$slide.length - 1],
+      cloneFirst = firstSlide.cloneNode(true),
+      cloneLast = lastSlide.cloneNode(true);
+
+      cloneFirst.classList.add(`slide${$slide.length + 1}`)
+      cloneFirst.style.top = `100%`;
+      cloneFirst.style.position = "absolute";
+      cloneLast.classList.add(`slide0`)
+      cloneLast.style.bottom = `100%`;
+      cloneLast.style.position = "absolute";
+
+      $target.appendChild(cloneFirst);
+      $target.insertBefore(cloneLast, firstSlide);
+    }
+
+    function setSlide(){ 
+
+      for(let i = 0; i < BREAD.length; i++){
+        //pic
+        var $li = document.createElement("li"),
+          $img = document.createElement("img");
+
+        $img.src = BREAD[i].src;
+        $img.draggable = false;
+
+        $li.classList.add("slide",`slide${i+1}`)
+        $li.appendChild($img);
+        $slideContainer.appendChild($li)
+        //**pic
+
+        //scrollspy
+        var $li = document.createElement("li")
+
+        $li.dataset.scroll = i;
+        $li.classList.add(`scrollspy${i+1}`)
+        $li.innerHTML = BREAD[i].title
+        $scrollspy.appendChild($li)
+        //**scrollspy
+
+        //titleContainer
+        var $li = document.createElement("li")
+        $li.classList.add(`title${i+1}`)
+          $li.innerHTML = `<h2 class="text">${BREAD[i].title}</h2>`
+          $titleContainer.appendChild($li)
+        //**titleContainer
+
+        //subContainer
+        var $li = document.createElement("li")
+          $li.classList.add(`sub${i+1}`)
+          $li.innerHTML = `<h5 class="text"><span>${BREAD[i].sub}</span></h5>`
+          $li.querySelector("h5").style.maxWidth = `${$titleContainer.querySelector(`.title${i+1} h2`).clientWidth}px`
+          $subContainer.appendChild($li)
+        //**subContainer
+
+        //descContainer
+        var $li = document.createElement("li")
+        $li.classList.add(`desc${i+1}`)
+          $li.innerHTML = `<p class="text">${BREAD[i].desc}</p>`
+          $descContainer.appendChild($li)
+        //**descContainer
+      
+      }
+
+      setSlideLi("slideContainer")
+      setSlideLi("titleContainer")
+      setSlideLi("subContainer")
+      setSlideLi("descContainer")
     }
 
     function clickEvt(){
-      var index = 0;
       var isLifting = false;
 
       function moveContainer (){
-        $slideContainer.classList.add("lifting")
-          $slideContainer.style.left = `${-index * 100}%`
+        $target = Object.values(document.getElementsByClassName("container"));
 
-          $slideContainer.addEventListener("transitionend",() => {
-            $slideContainer.classList.remove("lifting")
+        $target.map((item) => {
+          item.classList.add("lifting")
+          item.style.top = `${-index * 100}%`
+        })
 
-            if(index === $slide.length){
-            $slideContainer.style.left = `0%`
+          $target[$target.length-1].addEventListener("transitionend",() => {
+            Object.values(document.getElementsByClassName("lifting")).map((item) => {
+              item.classList.remove("lifting")
+            })
+
+            $target.map((item) => {
+              Object.values(item.children).map((item) => {
+                item.classList.remove("active")
+              })
+              Object.values(item.getElementsByClassName(`${item.dataset.name}${parseInt(index) + 1}`)).map((item)=>{
+                item.classList.add("active")
+              })
+            })
+
+            if(index === BREAD.length){
+              $target.map((item) => {
+                item.style.top = `0%`      
+              })
               index = 0
+              $target.map((item) => {
+                item.querySelector(`.${item.dataset.name}1`).classList.add("active")
+              })
             }
 
             if(index === -1){
-            $slideContainer.style.left = `${($slide.length -1) * -100}%`
-              index = $slide.length -1
+              $target.map((item) => {
+                item.style.top = `${(BREAD.length -1) * -100}%`     
+              })
+              index = BREAD.length -1
+              $target.map((item) => {
+                item.querySelector(`.${item.dataset.name}${BREAD.length}`).classList.add("active")
+              })
             }
+            
             isLifting= false
+
+            Object.values(document.querySelector(".scrollspy").children).map((item)=>{
+              item.classList.remove("active")
+            })
+            document.querySelector(".scrollspy").children[index].classList.add("active")
+
+            document.body.querySelector(".now").style.height = `${(index + 1)/BREAD.length * 100}%`
           })
       }
-      
-      window.addEventListener("click",()=>{
-        if(!isLifting){
-          isLifting = true;
 
-          index++
-          moveContainer ();          
-        }
+      Object.values(document.querySelector(".scrollspy").children).map((item)=>{
+        item.addEventListener("click",(e)=>{
+          index = e.target.dataset.scroll;
+          moveContainer()
+        })
       })
+      
+      window.addEventListener("wheel", function (event) {
+        if (event.deltaY < 0) {
+          index--;
+          moveContainer()
+        } else if (event.deltaY > 0) {
+          index++;
+          moveContainer()
+        }
+      });
+
+      
+    window.addEventListener(
+      "touchstart",
+      function (event) {
+        var touch = event.touches[0];
+        touchstartX = touch.clientX;
+        touchstartY = touch.clientY;
+      },
+      false
+    );
+    window.addEventListener(
+      "touchend",
+      function (event) {
+        if (event.touches.length == 0) {
+          var touch = event.changedTouches[event.changedTouches.length - 1];
+          touchendX = touch.clientX;
+          touchendY = touch.clientY;
+
+          touchoffsetX = touchendX - touchstartX;
+          touchoffsetY = touchendY - touchstartY;
+
+            if (Math.abs(touchoffsetY) > 100) {
+              if (touchoffsetY > 100) {
+                index--;
+                moveContainer()
+              }
+              if (touchoffsetY < 100) {
+                index++;
+                moveContainer()
+
+              }
+            }          
+        }
+      },
+      false
+    );
+
     }
+
+    window.addEventListener("resize",() => {
+      resize()
+    })
+
+    function resize(){
+      Object.values(document.getElementsByClassName("box")).map((item)=>{
+        item.style.height = `${item.querySelector(".text").clientHeight}px`
+      })
+
+      for(let i = 0; i<BREAD.length;i++){
+        document.querySelector(`.sub${i+1} h5`).style.maxWidth = `${$titleContainer.querySelector(`.title${i+1} h2`).clientWidth}px`
+      }
+    }
+
 
     init()
     function init(){
       setSlide()
       clickEvt()
-      document.querySelector(".slide1").classList.add("active")
+      resize()
+      
+      const first = [".slide1",".scrollspy1",".title1",".sub1",".desc1"]
 
+      first.map((item)=>{
+        document.querySelector(item).classList.add("active")
+      })
     }
   </script>
 </html>
