@@ -226,13 +226,58 @@ header {
         }
       }
 
+      @media screen and (min-width: 900px) {
+        h2 {
+          opacity: 0;
+          transform: translateY(15px);
+          transition: all 0.8s;
+        }
+        P {
+          opacity: 0;
+          transform: translateY(15px);
+          transition: all 0.8s 0.3s;
+        }
+        button {
+          opacity: 0;
+          transition: all 0.8s 0.5s;
+        }
+
+        &.active {
+          h2,
+          P,
+          button {
+            opacity: 1;
+            transform: translateY(0px);
+          }
+        }
+      }
+
       @media screen and (max-width: 900px) {
         h2 {
           font-size: 14vw;
           margin-bottom: 20px;
+          opacity: 0;
+          transform: translateX(15px);
+          transition: all 0.8s;
         }
         P {
           width: 100%;
+          opacity: 0;
+          transform: translateX(15px);
+          transition: all 0.8s 0.3s;
+        }
+        button {
+          opacity: 0;
+          transition: all 0.8s 0.5s;
+        }
+
+        &.active {
+          h2,
+          P,
+          button {
+            opacity: 1;
+            transform: translateX(0px);
+          }
         }
       }
 

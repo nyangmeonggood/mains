@@ -199,7 +199,23 @@
     }
 
     function clickEvt(){
-      var isLifting = false;
+      let isLifting = false;
+      
+      const moveMinus = () => {
+        if(!isLifting){
+          isLifting = true
+          index--;
+          moveContainer ()
+        }
+      }
+  
+      const movePlus = () => {
+        if(!isLifting){
+          isLifting = true
+          index++;
+          moveContainer ()
+        }
+      }
 
       document.querySelector(".slideBox").addEventListener(
       "touchstart",
@@ -223,12 +239,10 @@
             
               if (Math.abs(touchoffsetX) > 100) {
                 if (touchoffsetX > 100) {
-                  index--;
-                  moveContainer ()
+                  moveMinus()
                 }
                 if (touchoffsetX < 100) {
-                  index++;
-                  moveContainer ()
+                  movePlus()
                 }
               }
             
@@ -258,12 +272,10 @@
             
               if (Math.abs(touchoffsetX) > 100) {
                 if (touchoffsetX > 100) {
-                  index--;
-                  moveContainer ()
+                  moveMinus()
                 }
                 if (touchoffsetX < 100) {
-                  index++;
-                  moveContainer ()
+                  movePlus()
                 }
               }
             
@@ -272,33 +284,28 @@
         false
       );
     
+
       document.querySelector(".slideBox").addEventListener("wheel", function (event) {
         if (event.deltaY < 0) {
-          index--;
-          moveContainer ()
+            moveMinus()
         } else if (event.deltaY > 0) {
-          index++;
-          moveContainer ()
+          movePlus()
         }
       });
 
       document.querySelector(".titleContainer").addEventListener("wheel", function (event) {
         if (event.deltaY < 0) {
-          index--;
-          moveContainer ()
+          moveMinus()
         } else if (event.deltaY > 0) {
-          index++;
-          moveContainer ()
+          movePlus()
         }
       });
 
       document.querySelector(".up").addEventListener("click",()=>{
-        index--;
-          moveContainer ()
+        moveMinus()
       })
       document.querySelector(".down").addEventListener("click",()=>{
-        index++;
-          moveContainer ()
+        movePlus()
       })
 
 
@@ -337,6 +344,8 @@
         if(index === $slide.length -1){
           document.querySelector(".down").style.opacity = 0
         }
+
+        setTimeout(()=>{isLifting = false},500)
       }
 
     }
