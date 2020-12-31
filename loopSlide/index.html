@@ -138,9 +138,10 @@
     }
 
     function clickEvt(){
-      var isLifting = false;
+      isLifting = false;
 
       function moveContainer (){
+        
         $target = Object.values(document.getElementsByClassName("container"));
 
         $target.map((item) => {
@@ -202,11 +203,17 @@
       
       window.addEventListener("wheel", function (event) {
         if (event.deltaY < 0) {
-          index--;
-          moveContainer()
+          if(!isLifting){
+            isLifting = true;
+            index--;
+            moveContainer()
+          }
         } else if (event.deltaY > 0) {
-          index++;
-          moveContainer()
+          if(!isLifting){
+            isLifting = true;
+            index++;
+            moveContainer()
+          }
         }
       });
 
@@ -233,12 +240,18 @@
 
             if (Math.abs(touchoffsetY) > 100) {
               if (touchoffsetY > 100) {
-                index--;
-                moveContainer()
+                if(!isLifting){
+                  isLifting = true;
+                  index--;
+                  moveContainer()
+                }
               }
               if (touchoffsetY < 100) {
-                index++;
-                moveContainer()
+                if(!isLifting){
+                  isLifting = true;
+                  index++;
+                  moveContainer()
+                }
 
               }
             }          

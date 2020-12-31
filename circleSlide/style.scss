@@ -1,0 +1,113 @@
+@import "../scss/styleguide.scss";
+
+$borderColor: #f0f0f0;
+
+#main {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.mainCircle {
+  @include posCenter;
+  width: 500px;
+  height: 500px;
+
+  > ul {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    border-radius: 100%;
+    border: 2px solid $borderColor;
+    > .circle {
+      position: absolute;
+      width: 50%;
+      height: 50%;
+      border: 2px solid transparent;
+      box-sizing: border-box;
+
+      &:hover {
+        border-width: 8px;
+        &.circle1 {
+          border-top-color: $borderColor;
+        }
+        &.circle2 {
+          border-right-color: $borderColor;
+        }
+        &.circle3 {
+          border-right-color: $borderColor;
+        }
+        &.circle4 {
+          border-left-color: $borderColor;
+        }
+      }
+
+      &.circle1 {
+        top: 0;
+        left: 0;
+        border-radius: 100% 0 0 0;
+      }
+      &.circle2 {
+        top: 0;
+        right: 0;
+        border-radius: 0 100% 0 0;
+      }
+      &.circle3 {
+        bottom: 0;
+        right: 0;
+        border-radius: 0 0 100% 0;
+      }
+      &.circle4 {
+        bottom: 0;
+        left: 0;
+        border-radius: 0 0 0 100%;
+      }
+    }
+  }
+}
+
+.slideContainer {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: transform 1s;
+  z-index: -1;
+  width: calc(100% + 2 * 100vh);
+  height: calc(100% + 2 * 100vw);
+
+  > .slide {
+    position: absolute;
+
+    &.slide1 {
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #ac1;
+    }
+
+    &.slide2 {
+      top: 50%;
+      left: 100%;
+      transform: translate(-50%, -50%) rotate(90deg);
+      background-color: #5e61ff;
+    }
+
+    &.slide3 {
+      top: 50%;
+      left: 0%;
+      transform: translate(-50%, -50%) rotate(-90deg);
+      background-color: #fc1;
+    }
+
+    &.slide4 {
+      top: 100%;
+      left: 50%;
+      transform: translate(-50%, -100%) rotate(-180deg);
+      background-color: #cc11c3;
+    }
+  }
+}

@@ -184,7 +184,7 @@ header {
           font-size: 5vw; } }
       @media screen and (max-width: 900px) {
         #main .titleContainer li h2 {
-          font-size: 15.5vw; } }
+          font-size: 13.5vw; } }
     @media screen and (min-width: 900px) {
       #main .titleContainer li.active h2 {
         -webkit-text-stroke-color: #111;
@@ -261,10 +261,12 @@ header {
       @media screen and (min-width: 900px) {
         #main .descContainer p {
           font-size: 0.8vw; } }
+      @media screen and (min-width: 900px) and (max-width: 1200px) {
+        #main .descContainer p {
+          padding-right: 20px; } }
       @media screen and (max-width: 900px) {
         #main .descContainer p {
           color: #f1f1f1;
-          padding-right: 20px;
           box-sizing: border-box;
           font-size: 3vw; } }
 

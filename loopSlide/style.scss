@@ -236,7 +236,7 @@ header {
         }
 
         @media screen and (max-width: 900px) {
-          font-size: 15.5vw;
+          font-size: 13.5vw;
         }
       }
 
@@ -314,9 +314,12 @@ header {
         font-size: 0.8vw;
       }
 
+      @media screen and (min-width: 900px) and (max-width: 1200px) {
+        padding-right: 20px;
+      }
+
       @media screen and (max-width: 900px) {
         color: #f1f1f1;
-        padding-right: 20px;
         box-sizing: border-box;
         font-size: 3vw;
       }

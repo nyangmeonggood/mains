@@ -1,0 +1,87 @@
+#main {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden; }
+
+.mainCircle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  height: 500px; }
+  .mainCircle > ul {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    border-radius: 100%;
+    border: 2px solid #f0f0f0; }
+    .mainCircle > ul > .circle {
+      position: absolute;
+      width: 50%;
+      height: 50%;
+      border: 2px solid transparent;
+      box-sizing: border-box; }
+      .mainCircle > ul > .circle:hover {
+        border-width: 8px; }
+        .mainCircle > ul > .circle:hover.circle1 {
+          border-top-color: #f0f0f0; }
+        .mainCircle > ul > .circle:hover.circle2 {
+          border-right-color: #f0f0f0; }
+        .mainCircle > ul > .circle:hover.circle3 {
+          border-right-color: #f0f0f0; }
+        .mainCircle > ul > .circle:hover.circle4 {
+          border-left-color: #f0f0f0; }
+      .mainCircle > ul > .circle.circle1 {
+        top: 0;
+        left: 0;
+        border-radius: 100% 0 0 0; }
+      .mainCircle > ul > .circle.circle2 {
+        top: 0;
+        right: 0;
+        border-radius: 0 100% 0 0; }
+      .mainCircle > ul > .circle.circle3 {
+        bottom: 0;
+        right: 0;
+        border-radius: 0 0 100% 0; }
+      .mainCircle > ul > .circle.circle4 {
+        bottom: 0;
+        left: 0;
+        border-radius: 0 0 0 100%; }
+
+.slideContainer {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: transform 1s;
+  z-index: -1;
+  width: calc(100% + 2 * 100vh);
+  height: calc(100% + 2 * 100vw); }
+  .slideContainer > .slide {
+    position: absolute; }
+    .slideContainer > .slide.slide1 {
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #ac1; }
+    .slideContainer > .slide.slide2 {
+      top: 50%;
+      left: 100%;
+      transform: translate(-50%, -50%) rotate(90deg);
+      background-color: #5e61ff; }
+    .slideContainer > .slide.slide3 {
+      top: 50%;
+      left: 0%;
+      transform: translate(-50%, -50%) rotate(-90deg);
+      background-color: #fc1; }
+    .slideContainer > .slide.slide4 {
+      top: 100%;
+      left: 50%;
+      transform: translate(-50%, -100%) rotate(-180deg);
+      background-color: #cc11c3; }
+
+/*# sourceMappingURL=style.css.map */

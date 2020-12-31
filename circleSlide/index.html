@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1"
+    />
+    <title>circleSlide</title>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+      integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp"
+      crossorigin="anonymous"
+    /><link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../scss/css reset.css" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <section id="main">
+
+        <div class="mainCircle">
+            <ul>
+                <li class="circle circle1" data-degree="0"></li>
+                <li class="circle circle2" data-degree="1"></li>
+                <li class="circle circle3" data-degree="2"></li>
+                <li class="circle circle4" data-degree="3"></li>
+            </ul>
+        </div>
+
+        <ul class="slideContainer">
+            <li class="slide slide1">1</li>
+            <li class="slide slide2">2</li>
+            <li class="slide slide3">3</li>
+            <li class="slide slide4">4</li>
+        </ul>
+    </section>
+    <script>
+        const $slideContainer = document.querySelector(".slideContainer"),
+            $mainCircle = document.querySelector(".mainCircle"),
+            $circles = Object.values(document.getElementsByClassName("circle")),
+            $slide = Object.values($slideContainer.children);
+
+        function clickEvent(){
+            $circles.map((item)=>{
+                item.addEventListener("click",(e)=>{
+                    let rotateDegree = e.target.dataset.degree;
+                    $slideContainer.style.transform = `translateX(-50%) rotate(${-90 * rotateDegree}deg)`
+                })
+            })
+        }
+
+        function resize(){
+            if(document.body.clientWidth >= document.body.clientHeight){
+                $mainCircle.style.width = $mainCircle.style.height = `${document.body.clientHeight /1.5}px`
+            }
+            if(document.body.clientWidth < document.body.clientHeight){
+                $mainCircle.style.width = $mainCircle.style.height = `${document.body.clientWidth /1.5}px`
+            }
+
+            $slideContainer.style.width = `${document.body.clientWidth + document.body.clientHeight*2}px`
+            $slideContainer.style.height = `${document.body.clientHeight + document.body.clientWidth*2}px`
+
+            $slide.map((item)=>{
+                item.style.width = `${document.body.clientWidth}px`
+                item.style.height = `${document.body.clientHeight}px`
+            })
+        }
+
+        window.addEventListener("resize",()=>{
+            resize()
+        })
+
+        init()
+        function init(){
+            resize()
+            clickEvent()
+        }
+    </script>
+  </body>
+  </html>
