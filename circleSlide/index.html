@@ -13,7 +13,7 @@
       integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp"
       crossorigin="anonymous"
     /><link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,900&family=Roboto:wght@300;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../scss/css reset.css" />
     <link rel="stylesheet" href="./style.css" />
   </head>
@@ -21,51 +21,209 @@
     <section id="main">
 
         <div class="mainCircle">
-            <ul>
+            <ul class="circles">
                 <li class="circle circle1" data-degree="0"></li>
                 <li class="circle circle2" data-degree="1"></li>
                 <li class="circle circle3" data-degree="2"></li>
                 <li class="circle circle4" data-degree="3"></li>
             </ul>
+            <div class="textBox">
+                <h2>Tiger</h2>
+                <p>"Tigress" redirects here</p>
+            </div>
         </div>
 
         <ul class="slideContainer">
-            <li class="slide slide1">1</li>
-            <li class="slide slide2">2</li>
-            <li class="slide slide3">3</li>
-            <li class="slide slide4">4</li>
+            <li class="slide slide1">
+                <div class="left">
+                    <div class="box">
+                        <h3>Bengal tiger</h3>
+                        <p>
+                            Linnaeus's scientific description of the tiger was based on descriptions by earlier naturalists such as Conrad Gessner and Ulisse Aldrovandi. Bengal tiger skins in the collection of the Natural History Museum, London vary from light yellow to reddish yellow with black stripes.
+                        </p>
+                    </div>
+                </div>
+                <div class="right">
+                    <h3>
+                        The tiger is the<br>
+                        largest extant cat species
+                    </h3>
+                </div>
+            </li>
+            <li class="slide slide2">
+                <div class="left">
+                    <div class="box">
+                        <h3>Caspian tiger</h3>
+                        <p>
+                            Illiger's description was not based on a particular specimen, but he only assumed that tigers in the Caspian area differ from those elsewhere. It was later described as having narrow and closely set stripes. The size of its skull did not differ significantly from that of the Bengal tiger.
+                        </p>
+                    </div>
+                </div>
+                <div class="right">
+                    <h3>
+                        and a member of<br>the genus Panthera.
+                    </h3>
+                </div>
+            </li>
+            <li class="slide slide3">
+                <div class="left">
+                    <div class="box">
+                        <h3>Siberian tiger</h3>
+                        <p>
+                            Temminck's description was based on an unspecified number of tiger skins with long hairs and dense coats that were traded between Korea and Japan. He assumed they originated in the Altai Mountains. The Siberian tiger was later described as having pale coats with few dark brown stripes.
+                        </p>
+                    </div>
+                </div>
+                <div class="right">
+                    <h3>
+                        It is most recognisable<br>for its dark vertical stripes
+                    </h3>
+                </div>
+            </li>
+            <li class="slide slide4">
+                <div class="left">
+                    <div class="box">
+                        <h3>Malayan tiger</h3>
+                        <p>
+                            It was proposed as a distinct subspecies on the basis of mtDNA and micro-satellite sequences that differ from the Indochinese tiger. In pelage colour or skull size, it does not differ significantly from Indochinese tigers.
+                        </p>
+                    </div>
+                </div>
+                <div class="right">
+                    <h3>
+                        on orange-brown fur<br>with a lighter underside.
+                    </h3>
+                </div>
+            </li>
         </ul>
     </section>
+    <svg>
+        <defs>
+            <filter id="jiggle0">
+                <feTurbulence id="turbulence" baseFrequency="0.02" numOctaves="3" result="noise" seed="0" />
+                <feDisplacementMap id="displacement" in="SourceGraphic" in2="noise" scale="6" />
+            </filter>
+            <filter id="jiggle1">
+                <feTurbulence id="turbulence" baseFrequency="0.02" numOctaves="3" result="noise" seed="1" />
+                <feDisplacementMap in="SourceGraphic" in2="noise" scale="8" />
+            </filter>
+
+            <filter id="jiggle2">
+                <feTurbulence id="turbulence" baseFrequency="0.02" numOctaves="3" result="noise" seed="2" />
+                <feDisplacementMap in="SourceGraphic" in2="noise" scale="6" />
+            </filter>
+            <filter id="jiggle3">
+                <feTurbulence id="turbulence" baseFrequency="0.02" numOctaves="3" result="noise" seed="3" />
+                <feDisplacementMap in="SourceGraphic" in2="noise" scale="8" />
+            </filter>
+
+            <filter id="jiggle4">
+                <feTurbulence id="turbulence" baseFrequency="0.02" numOctaves="3" result="noise" seed="4" />
+                <feDisplacementMap in="SourceGraphic" in2="noise" scale="6" />
+            </filter>
+        </defs>
+    </svg>
     <script>
         const $slideContainer = document.querySelector(".slideContainer"),
             $mainCircle = document.querySelector(".mainCircle"),
             $circles = Object.values(document.getElementsByClassName("circle")),
+            $innerCircle = document.querySelector(".innerCircle"),
             $slide = Object.values($slideContainer.children);
+
+        let rotateDegree = 0,
+        isLock = false;
 
         function clickEvent(){
             $circles.map((item)=>{
                 item.addEventListener("click",(e)=>{
-                    let rotateDegree = e.target.dataset.degree;
-                    $slideContainer.style.transform = `translateX(-50%) rotate(${-90 * rotateDegree}deg)`
+                    rotateDegree = e.target.dataset.degree;
+                    moveSlide()
                 })
             })
         }
 
+        function scrollEvent(){
+            window.addEventListener("wheel", function (event) {
+                if (!isLock) {
+                    if (event.deltaY < 0) {
+                        isLock=true
+                        rotateDegree--;
+                        moveSlide()
+                    } else if (event.deltaY > 0) {
+                        isLock=true
+                        rotateDegree++;
+                        moveSlide()
+                    }
+                }
+            });
+        }
+
+        function moveSlide(){
+            if(rotateDegree>3) rotateDegree = 0
+            if(rotateDegree<0) rotateDegree = 3
+
+            $slideContainer.style.transform = `translateX(-50%) rotate(${90 * rotateDegree}deg)`
+
+            const rotateActive = [$slide,$circles]
+
+            rotateActive.map((item)=>{
+                item.map((item2)=>{
+                    item2.classList.remove("active")
+                })
+                item[rotateDegree].classList.add("active")                
+            })
+
+            document.body.className = ""
+            document.body.classList.add(`bg${rotateDegree}`)
+
+            $mainCircle.className = "mainCircle"
+            $mainCircle.classList.add(`active${rotateDegree}`)
+
+            isLock = false
+        }
+
+
         function resize(){
-            if(document.body.clientWidth >= document.body.clientHeight){
-                $mainCircle.style.width = $mainCircle.style.height = `${document.body.clientHeight /1.5}px`
-            }
-            if(document.body.clientWidth < document.body.clientHeight){
-                $mainCircle.style.width = $mainCircle.style.height = `${document.body.clientWidth /1.5}px`
+            if(document.body.clientWidth >= 1000){
+                if(document.body.clientWidth >= document.body.clientHeight){
+                    $mainCircle.style.width = $mainCircle.style.height = `${document.body.clientHeight /2.3}px`
+                    $slideContainer.classList.remove("vertical")
+                }
+                if(document.body.clientWidth < document.body.clientHeight){
+                    $mainCircle.style.width = $mainCircle.style.height = `${document.body.clientWidth /2.3}px`
+                    $slideContainer.classList.add("vertical")
+                }
+
+                $slide.map((item)=>{
+                    item.querySelector(".left").style.width = 
+                    item.querySelector(".right").style.width = `calc(100% - ${$mainCircle.style.width})`
+                })
+            }else{
+                if(document.body.clientWidth >= document.body.clientHeight){
+                    $mainCircle.style.width = $mainCircle.style.height = `${document.body.clientHeight /6}px`
+                    $slideContainer.classList.remove("vertical")
+                }
+                if(document.body.clientWidth < document.body.clientHeight){
+                    $mainCircle.style.width = $mainCircle.style.height = `${document.body.clientWidth /6}px`
+                    $slideContainer.classList.add("vertical")
+                }
+
+                $slide.map((item)=>{
+                    item.querySelector(".left").style.width = 
+                    item.querySelector(".right").style.width = `100%`
+                })
             }
 
-            $slideContainer.style.width = `${document.body.clientWidth + document.body.clientHeight*2}px`
-            $slideContainer.style.height = `${document.body.clientHeight + document.body.clientWidth*2}px`
+            $slideContainer.style.width = $slideContainer.style.height = `${document.body.clientHeight + document.body.clientWidth*2}px`
+
+            $slide[1].style.left = `${document.body.clientHeight/2}px`
+            $slide[3].style.left = `${document.body.clientHeight/2 + document.body.clientWidth*2}px`
 
             $slide.map((item)=>{
                 item.style.width = `${document.body.clientWidth}px`
                 item.style.height = `${document.body.clientHeight}px`
             })
+
         }
 
         window.addEventListener("resize",()=>{
@@ -76,6 +234,14 @@
         function init(){
             resize()
             clickEvent()
+            scrollEvent()
+
+            const firstActive = [".circle1",".slide1"]
+            firstActive.map((item)=>{
+                document.querySelector(item).classList.add("active")
+            })
+
+            document.body.classList.add("bg0")
         }
     </script>
   </body>

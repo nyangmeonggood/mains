@@ -1,12 +1,56 @@
 @import "../scss/styleguide.scss";
 
-$borderColor: #f0f0f0;
+$borderColor: #fff9e7;
+$mainColor: #26120b;
+$subColor: #734a32;
+$textColor: #f2c8a2;
+
+@mixin circleBorder($target1, $target2, $target3, $lineWidth) {
+  border-#{$target1}-width: #{$lineWidth};
+  border-#{$target2}-width: #{$lineWidth};
+  border-#{$target1}-color: $borderColor;
+  border-#{$target3}-width: 0;
+}
+
+body {
+  position: relative;
+  background-color: #111;
+  font-family: "Roboto", sans-serif;
+
+  svg {
+    display: none;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-position: center top;
+    background-size: cover;
+    background-repeat: no-repeat;
+    transition: background-image 0.5s;
+    z-index: -1;
+    opacity: 0.7;
+  }
+
+  @for $i from 0 through 3 {
+    &.bg#{$i} {
+      &::after {
+        background-image: url(./#{$i+1}.jpg);
+      }
+    }
+  }
+}
 
 #main {
   width: 100%;
   height: 100%;
   position: relative;
   overflow: hidden;
+  z-index: 1;
 }
 
 .mainCircle {
@@ -14,7 +58,38 @@ $borderColor: #f0f0f0;
   width: 500px;
   height: 500px;
 
-  > ul {
+  @for $i from 0 through 3 {
+    &.active#{$i} {
+      &::before {
+        transform: scale(1.08) rotate($i * 90deg);
+      }
+    }
+  }
+
+  @media screen and (max-width: 1000px) {
+    top: 3%;
+    left: 88%;
+    transform: translate(-50%, 0);
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 50%;
+    border: 8px solid $borderColor;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    border-radius: 100% 0 0 0;
+    box-sizing: border-box;
+    transform: scale(1.08);
+    transform-origin: right bottom;
+    transition: transform 0.5s 0.2s;
+  }
+
+  > ul.circles {
     display: flex;
     flex-wrap: wrap;
     width: 100%;
@@ -22,48 +97,79 @@ $borderColor: #f0f0f0;
     box-sizing: border-box;
     border-radius: 100%;
     border: 2px solid $borderColor;
+
     > .circle {
       position: absolute;
       width: 50%;
       height: 50%;
       border: 2px solid transparent;
       box-sizing: border-box;
-
-      &:hover {
-        border-width: 8px;
-        &.circle1 {
-          border-top-color: $borderColor;
-        }
-        &.circle2 {
-          border-right-color: $borderColor;
-        }
-        &.circle3 {
-          border-right-color: $borderColor;
-        }
-        &.circle4 {
-          border-left-color: $borderColor;
-        }
-      }
+      cursor: pointer;
 
       &.circle1 {
         top: 0;
         left: 0;
         border-radius: 100% 0 0 0;
+
+        &.active,
+        &:hover {
+          border-top-color: $borderColor;
+        }
       }
       &.circle2 {
         top: 0;
         right: 0;
         border-radius: 0 100% 0 0;
+
+        &.active,
+        &:hover {
+          border-right-color: $borderColor;
+        }
       }
       &.circle3 {
         bottom: 0;
         right: 0;
         border-radius: 0 0 100% 0;
+
+        &.active,
+        &:hover {
+          border-bottom-color: $borderColor;
+        }
       }
       &.circle4 {
         bottom: 0;
         left: 0;
         border-radius: 0 0 0 100%;
+
+        &.active,
+        &:hover {
+          border-left-color: $borderColor;
+        }
+      }
+    }
+  }
+
+  .textBox {
+    @include posCenter;
+    color: white;
+    text-align: center;
+
+    h2 {
+      font-size: 100px;
+      text-transform: uppercase;
+    }
+    p {
+      font-size: 16px;
+      font-weight: 100;
+      color: #f0f0f0;
+    }
+
+    @media screen and (max-width: 1000px) {
+      h2 {
+        font-size: 3.4vw;
+      }
+      p {
+        display: none;
       }
     }
   }
@@ -74,40 +180,172 @@ $borderColor: #f0f0f0;
   top: 0;
   left: 50%;
   transform: translateX(-50%);
-  transition: transform 1s;
+  transition: transform 1s 0.2s;
   z-index: -1;
   width: calc(100% + 2 * 100vh);
   height: calc(100% + 2 * 100vw);
 
   > .slide {
     position: absolute;
+    opacity: 0;
+    transition: opacity 0.5s;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    @media screen and (max-width: 1000px) {
+      flex-direction: column-reverse;
+    }
+
+    &.active {
+      .left,
+      .right {
+        opacity: 1;
+      }
+
+      .left {
+        @media screen and (min-width: 1000px) {
+          transition: opacity 0.5s 1s;
+        }
+        @media screen and (max-width: 1000px) {
+          transition: opacity 0.5s 1s;
+        }
+      }
+      .right {
+        @media screen and (min-width: 1000px) {
+          transition: opacity 0.5s 1s;
+        }
+        @media screen and (max-width: 1000px) {
+          transition: opacity 0.5s 0.7s;
+        }
+      }
+    }
+
+    .left,
+    .right {
+      display: flex;
+      align-items: center;
+      color: white;
+      font-size: 1.8vw;
+      opacity: 0;
+
+      @media screen and (min-width: 1000px) {
+        width: 50%;
+        height: 100%;
+      }
+      @media screen and (max-width: 1000px) {
+        width: 100%;
+        flex-direction: column-reverse;
+      }
+    }
+    .left {
+      position: relative;
+      text-align: left;
+      justify-content: flex-start;
+      @media screen and (max-width: 1000px) {
+        height: 35%;
+      }
+
+      .box {
+        position: absolute;
+        background-color: rgba(0, 0, 0, 0.4);
+        box-sizing: border-box;
+        letter-spacing: 0.01em;
+
+        @media screen and (min-width: 1000px) {
+          left: 6%;
+          bottom: 5%;
+          width: 50%;
+          padding: 26px 14px;
+        }
+        @media screen and (max-width: 1000px) {
+          left: 2.5%;
+          bottom: 10%;
+          width: 95%;
+          padding: 20px 14px;
+        }
+
+        h3 {
+          margin-bottom: 16px;
+          font-family: "Merriweather", serif;
+          text-transform: capitalize;
+          @media screen and (min-width: 1000px) {
+            font-size: 28px;
+          }
+          @media screen and (max-width: 1000px) {
+            font-size: 4.5vw;
+          }
+          &::after {
+            content: "";
+            display: block;
+            margin-top: 8px;
+            width: 100%;
+            height: 1px;
+            background-color: white;
+          }
+        }
+        p {
+          font-weight: 100;
+          line-height: 1.3em;
+          @media screen and (min-width: 1000px) {
+            font-size: 14px;
+          }
+          @media screen and (max-width: 1000px) {
+            font-size: 3.5vw;
+          }
+        }
+      }
+    }
+    .right {
+      @media screen and (min-width: 1000px) {
+        justify-content: flex-end;
+        text-align: right;
+      }
+      @media screen and (max-width: 1000px) {
+        height: 65%;
+        justify-content: end;
+        text-align: center;
+      }
+
+      h3 {
+        font-family: "Merriweather", serif;
+        @media screen and (min-width: 1000px) {
+          font-size: 38px;
+          margin-right: 6%;
+        }
+        @media screen and (max-width: 1000px) {
+          font-size: 6.7vw;
+        }
+      }
+    }
+
+    &.active {
+      opacity: 1;
+      z-index: 1;
+    }
 
     &.slide1 {
       top: 0;
       left: 50%;
       transform: translateX(-50%);
-      background-color: #ac1;
+    }
+
+    &.slide4 {
+      top: 50%;
+      left: 100%;
+      transform: translate(-50%, -50%) rotate(90deg);
+    }
+
+    &.slide3 {
+      top: 100%;
+      left: 50%;
+      transform: translate(-50%, -100%) rotate(-180deg);
     }
 
     &.slide2 {
       top: 50%;
-      left: 100%;
-      transform: translate(-50%, -50%) rotate(90deg);
-      background-color: #5e61ff;
-    }
-
-    &.slide3 {
-      top: 50%;
       left: 0%;
       transform: translate(-50%, -50%) rotate(-90deg);
-      background-color: #fc1;
-    }
-
-    &.slide4 {
-      top: 100%;
-      left: 50%;
-      transform: translate(-50%, -100%) rotate(-180deg);
-      background-color: #cc11c3;
     }
   }
 }
