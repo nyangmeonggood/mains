@@ -1,0 +1,242 @@
+body {
+  font-family: "Encode Sans", sans-serif; }
+  body.modalFix {
+    height: 100vh;
+    overflow: hidden; }
+
+#main {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-color: black;
+  transition: background-image 0.5s; }
+  #main .textBox {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    text-align: center;
+    text-shadow: 0 0 10px black;
+    color: #f0f0f0; }
+    #main .textBox h2 {
+      font-family: "Cardo", serif; }
+      @media screen and (min-width: 900px) {
+        #main .textBox h2 {
+          font-size: 70px; } }
+      @media screen and (max-width: 900px) {
+        #main .textBox h2 {
+          font-size: 7.5vw;
+          margin-bottom: 10px; } }
+    #main .textBox p {
+      letter-spacing: 0.01em; }
+      @media screen and (min-width: 900px) {
+        #main .textBox p {
+          font-size: 17px; } }
+      @media screen and (max-width: 900px) {
+        #main .textBox p {
+          font-size: 2.6vw;
+          line-height: 1.4em; } }
+  #main .mouse {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 50px;
+    border: 2px solid #f0f0f0;
+    border-radius: 14px 14px 10px 10px;
+    transition: opacity 0.2s; }
+    #main .mouse .cursor {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 8px;
+      height: 8px;
+      border-radius: 100%;
+      background-color: #f0f0f0;
+      opacity: 0;
+      animation: cursor 1s infinite; }
+@keyframes cursor {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -150%); }
+  80% {
+    opacity: 1;
+    transform: translate(-50%, 130%); }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, 130%); } }
+#collectionList {
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 150px;
+  min-height: 100vh; }
+  @media screen and (min-width: 900px) {
+    #collectionList {
+      margin-top: 200px; } }
+  @media screen and (max-width: 900px) {
+    #collectionList {
+      margin-top: 100px; } }
+  #collectionList::after {
+    content: "";
+    display: block;
+    clear: both; }
+  #collectionList .collection {
+    float: left;
+    position: relative;
+    transform-style: preserve-3d;
+    backface-visibility: visible;
+    box-shadow: 0px 0px 50px 20px rgba(0, 0, 0, 0.05);
+    box-sizing: border-box;
+    margin-right: 3%;
+    padding: 14px 10px 20px 10px;
+    border-radius: 4px;
+    background-color: white; }
+    @media screen and (min-width: 900px) {
+      #collectionList .collection {
+        width: 30%;
+        margin-bottom: 130px; }
+        #collectionList .collection:hover {
+          transform: scale(1.3) !important;
+          box-shadow: 0px 0px 50px 20px rgba(0, 0, 0, 0.1);
+          z-index: 1; } }
+    @media screen and (max-width: 900px) {
+      #collectionList .collection {
+        width: 100%;
+        transform: translateY(0) !important;
+        margin-bottom: 30px; } }
+    #collectionList .collection::after {
+      content: "";
+      display: block;
+      clear: both; }
+    #collectionList .collection > img {
+      display: block;
+      width: 100%;
+      margin-bottom: 14px;
+      cursor: pointer; }
+    #collectionList .collection .textBox h3 {
+      font-family: "Cardo", serif;
+      font-weight: bold;
+      font-size: 20px;
+      margin-bottom: 2px;
+      letter-spacing: 0.05em; }
+    #collectionList .collection .textBox span {
+      color: #ababab;
+      font-size: 14px;
+      letter-spacing: 0.03em; }
+
+#modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 500; }
+  #modal .modalBG {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3); }
+  #modal.active {
+    display: block; }
+  #modal .modalBox {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: white;
+    animation-name: fadeIn;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards; }
+    @media screen and (min-width: 900px) {
+      #modal .modalBox {
+        display: flex;
+        justify-content: center;
+        min-height: 70%;
+        max-width: 90%;
+        max-height: 90%;
+        padding: 14px; }
+        #modal .modalBox > img {
+          width: 70%; } }
+    @media screen and (max-width: 900px) {
+      #modal .modalBox {
+        width: 90%;
+        height: 90%;
+        padding: 14px;
+        padding-top: 50px;
+        overflow-y: scroll; }
+        #modal .modalBox > img {
+          width: 100%; } }
+    #modal .modalBox > img {
+      display: block; }
+    #modal .modalBox .textBox {
+      position: relative;
+      padding: 20px 14px;
+      box-sizing: border-box;
+      letter-spacing: 0.03em; }
+      @media screen and (min-width: 900px) {
+        #modal .modalBox .textBox {
+          width: 30%; }
+          #modal .modalBox .textBox .title {
+            margin-bottom: 2px;
+            font-size: 30px; }
+          #modal .modalBox .textBox .type {
+            margin-bottom: 30px;
+            font-size: 16px; }
+          #modal .modalBox .textBox .desc {
+            font-size: 15px; } }
+      @media screen and (max-width: 900px) {
+        #modal .modalBox .textBox {
+          width: 100%; }
+          #modal .modalBox .textBox .title {
+            font-size: 7vw;
+            line-height: 1.2em;
+            margin-bottom: 8px; }
+          #modal .modalBox .textBox .type {
+            font-size: 3vw;
+            margin-bottom: 12px; }
+          #modal .modalBox .textBox .desc {
+            font-size: 3.5vw; } }
+      #modal .modalBox .textBox .title {
+        font-family: "Cardo", serif;
+        font-weight: 700;
+        color: #111; }
+      #modal .modalBox .textBox .type {
+        display: block;
+        color: #c7c7c7; }
+      #modal .modalBox .textBox .desc {
+        font-weight: 300; }
+    #modal .modalBox button {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 20px;
+      height: 20px; }
+      #modal .modalBox button:active {
+        transform: scale(0.8); }
+      #modal .modalBox button span {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        height: 2px;
+        background-color: #111; }
+        #modal .modalBox button span:first-child {
+          transform: translate(-50%, -50%) rotate(45deg); }
+        #modal .modalBox button span:last-child {
+          transform: translate(-50%, -50%) rotate(-45deg); }
+
+@keyframes fadeIn {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+
+/*# sourceMappingURL=style.css.map */

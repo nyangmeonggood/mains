@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1"
+    />
+    <title>Gallery</title>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+      integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp"
+      crossorigin="anonymous"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cardo:wght@400;700&family=Encode+Sans:wght@100;300&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../scss/css reset.css" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div id="main">
+      <div class="textBox">
+        <h2>Vincent Willem van Gogh</h2>
+        <p>
+          I want to touch people with my art.<br />I want them to say: he feels
+          deeply, he feels tenderly.
+        </p>
+      </div>
+      <div class="mouse">
+        <span class="cursor"></span>
+      </div>
+    </div>
+    <div id="collectionList"></div>
+
+    <div id="modal">
+      <div class="modalBG"></div>
+      <div class="modalBox">
+        <img src="" alt />
+        <div class="textBox">
+          <h5 class="title"></h5>
+          <span class="type"></span>
+          <p class="desc"></p>
+        </div>
+        <button class="close"><span></span><span></span></button>
+      </div>
+    </div>
+
+    <script>
+      const $main = document.querySelector("#main"),
+        $collectionList = document.querySelector("#collectionList"),
+        $modal = document.querySelector("#modal"),
+        $modalCloseBtn = $modal.querySelector("button");
+
+      let $collections;
+
+      let scrollTop, targetTop, parallex;
+
+      const collectionInfo = [
+        {
+          name: "Self Portrait with Grey Felt hat",
+          desc:
+            "Self-Portrait with Grey Felt Hat. painting by Vincent van Gogh, 1887",
+          type: "Oil on canvas",
+          src: "./Selfportraitwithgreyfelthat.jpg",
+        },
+        {
+          name: "Wheatfield under thunderclouds",
+          desc:
+            "Wheatfield under Thunderclouds. painting by Vincent van Gogh. also known as Wheat field under a stormy sky.",
+          type: "Oil on canvas",
+          src: "./Wheatfieldunderthunderclouds.jpg",
+        },
+        {
+          name: "The starry night",
+          desc:
+            "The Starry Night is an oil on canvas painting by Dutch Post-Impressionist painter Vincent van Gogh. Painted in June 1889.",
+          type: "Oil on canvas",
+          src: "./starrynight.jpg",
+        },
+        {
+          name: "Self-Portrait",
+          desc:
+            "Dutch Post-Impressionist artist Vincent van Gogh painted a self-portrait in oil on canvas in September 1889.",
+          type: "Oil on canvas",
+          src: "./Self-Portrait.jpg",
+        },
+        {
+          name: "Café Terrace at Night",
+          desc:
+            "Café Terrace at Night is an 1888 oil painting by the Dutch artist Vincent van Gogh. It is also known as The Cafe Terrace on the Place du Forum, and, when first exhibited in 1891, was entitled Coffeehouse, in the evening",
+          type: "Oil on canvas",
+          src: "./CaféTerraceatNight.jpeg",
+        },
+        {
+          name: "Bedroom in Arles",
+          desc:
+            "painting by Vincent van Gogh in the Van Gogh Museum, Amsterdam",
+          type: "Oil on canvas",
+          src: "./BedroominArles.jpg",
+        },
+        {
+          name: "Starry Night Over the Rhone",
+          desc:
+            "Starry Night (September 1888, French: La Nuit étoilée), commonly known as Starry Night Over the Rhône, is one of Vincent van Gogh's paintings of Arles at night.",
+          type: "Oil on canvas",
+          src: "./StarryNightOvertheRhone.jpg",
+        },
+        {
+          name: "Self-Portrait With a Bandaged Ear",
+          desc:
+            "Self-Portrait with Bandaged Ear is an 1889 self-portrait by Dutch, Post-Impressionist artist Vincent van Gogh. The painting is now in the collection of the Courtauld Institute of Art and on display in the Gallery at Somerset House.",
+          type: "Oil on canvas",
+          src: "./Self-PortraitWithaBandagedEar.jpg",
+        },
+        {
+          name: "Wheatfield with Crows",
+          desc:
+            "Wheatfield with Crows is a July 1890 painting by Vincent van Gogh. It has been cited by several critics as one of his greatest works.",
+          type: "Oil on canvas",
+          src: "./WheatfieldwithCrows.jpg",
+        },
+        {
+          name: "Sunflowers",
+          desc:
+            "painting by Vincent van Gogh from the Sunflowers series in the Neue Pinakothek, Munich",
+          type: "Oil on canvas",
+          src: "./Sunflowers.jpg",
+        },
+      ];
+
+      const setCollectionList = () => {
+        for (let i = 0; i < collectionInfo.length; i++) {
+          collectionInfo[i].parallexRatio = Math.random() * 0.1 + 0.05;
+        }
+
+        collectionInfo.map((item, index) => {
+          var $collection = document.createElement("div"),
+            $textBox = document.createElement("div");
+          $collection.classList.add("collection", `collection${index}`);
+          $textBox.classList.add("textBox");
+
+          var $h3 = document.createElement("h3"),
+            $span = document.createElement("span"),
+            $img = document.createElement("img");
+
+          $h3.innerText = item.name;
+          $span.innerText = item.type;
+          $img.src = item.src;
+          $img.dataset.collection = index;
+
+          $textBox.appendChild($h3);
+          $textBox.appendChild($span);
+
+          $collection.appendChild($img);
+          $collection.appendChild($textBox);
+
+          $collectionList.appendChild($collection);
+
+          $img.addEventListener("click", setModal);
+        });
+
+        $collections = Object.values(
+          document.getElementsByClassName("collection")
+        );
+      };
+
+      const setModal = async (e) => {
+        await setModalText(e);
+        toggleModal();
+      };
+      const toggleModal = () => {
+        $modal.classList.toggle("active");
+      };
+
+      const setModalText = (e) => {
+        $modal.querySelector("img").src =
+          collectionInfo[e.target.dataset.collection].src;
+        $modal.querySelector(".textBox .title").innerHTML =
+          collectionInfo[e.target.dataset.collection].name;
+        $modal.querySelector(".textBox .type").innerHTML =
+          collectionInfo[e.target.dataset.collection].type;
+        $modal.querySelector(".textBox .desc").innerHTML =
+          collectionInfo[e.target.dataset.collection].desc;
+      };
+
+      $modalCloseBtn.addEventListener("click", toggleModal);
+      $modal.querySelector(".modalBG").addEventListener("click", toggleModal);
+
+      function parallexFunc() {
+        scrollTop = window.pageYOffset;
+
+        if (scrollTop > 40) {
+          document.querySelector(".mouse").style.opacity = 0;
+        } else {
+          document.querySelector(".mouse").style.opacity = 1;
+        }
+
+        if (document.body.clientWidth >= 900) {
+          $collections.map((item, index) => {
+            targetTop = item.offsetTop;
+            parallex =
+              (scrollTop - (targetTop - window.innerHeight * 0.7)) *
+              collectionInfo[index].parallexRatio;
+            item.style.transform = `translateY(${parallex}px)`;
+          });
+        } else if (document.body.clientWidth < 900) {
+          $collections.map((item, index) => {
+            item.style.transform = `translateY(0px)`;
+          });
+        }
+      }
+
+      window.addEventListener("scroll", () => {
+        parallexFunc();
+      });
+
+      window.addEventListener("resize", () => {
+        parallexFunc();
+      });
+
+      init();
+      function init() {
+        setCollectionList();
+
+        var randomBg = Math.floor(Math.random() * (collectionInfo.length - 1));
+        $main.style.backgroundImage = `url(${collectionInfo[randomBg].src})`;
+      }
+    </script>
+  </body>
+</html>
