@@ -267,6 +267,11 @@
             });
           });
         });
+
+        document.querySelector("svg").addEventListener("click", () => {
+          $currentBallPos = -1;
+          moveSlide();
+        });
       }
 
       function wheelEvent() {

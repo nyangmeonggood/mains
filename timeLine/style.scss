@@ -22,7 +22,7 @@ body {
     @include posCenter;
     width: 40%;
     transition: all 0.5s;
-
+    z-index: 100;
     &.active {
       top: 5%;
       width: 10%;
