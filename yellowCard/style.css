@@ -6,6 +6,12 @@ canvas {
   left: 0;
   z-index: -1; }
 
+body {
+  -ms-overflow-style: none;
+  scrollbar-width: none; }
+  body::-webkit-scrollbar {
+    display: none; }
+
 body > section {
   position: fixed;
   top: 0;

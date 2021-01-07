@@ -11,6 +11,14 @@ canvas {
   z-index: -1;
 }
 
+body {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 body > section {
   position: fixed;
   top: 0;
