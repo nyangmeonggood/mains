@@ -26,7 +26,7 @@
       <!--205-->
       <div class="frame"></div>
       <iframe
-        src="https://www.youtube.com/embed/nM0xDI5R50E?playlist=nM0xDI5R50E&autoplay=1&loop=1&mute=1&controls=0&showinfo=&modestbranding=1&cc_load_policy=0&iv_load_policy=3"
+        src="https://www.youtube.com/embed/nM0xDI5R50E?playlist=nM0xDI5R50E&autoplay=1&loop=1&mute=1&controls=0&showinfo=&modestbranding=1&cc_load_policy=0&iv_load_policy=3&start=142"
         frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
       ></iframe>
@@ -37,7 +37,7 @@
         <div class="bottom"><span>BBI BBI</span></div>
       </div>
     </section>
-    <section id="main">dd</section>
+    <section id="main"></section>
 
     <svg style="display: none">
       <defs>
@@ -116,21 +116,21 @@
       }
 
       function titleScroll() {
-        (scrollY = window.scrollY), (windowHeight = window.innerHeight);
+        scrollY = window.scrollY;
+        windowHeight = window.innerHeight;
 
         $mainHeight = ((scrollY * 2) / windowHeight) * 150;
-
         $mainHeight < 50 ? 0 : $mainHeight;
 
         $main.style.height = `${$mainHeight}px`;
         $titleTop.style.top = $titleBottom.style.bottom = `${
           ((scrollY * 2) / windowHeight) * -100
         }px`;
+
+        $titleBox.style.filter = `url(#jiggle${Math.floor(scrollY % 5)})`;
         $titleTop.style.filter = $titleBottom.style.filter = `saturate(${
           1 - scrollY / windowHeight
         })`;
-
-        $titleBox.style.filter = `url(#jiggle${Math.floor(scrollY % 5)})`;
       }
 
       window.addEventListener("scroll", () => {

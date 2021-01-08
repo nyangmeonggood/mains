@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1"
+    />
+    <title>sideHideMenu</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;600&family=Lobster&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+      integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../scss/css reset.css" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <section id="main">
+      <div class="textBox">
+        <h2>Cat</h2>
+        <div class="border"><span></span><span></span><span></span></div>
+        <h5>All cats love fish but fear to wet their paws.</h5>
+      </div>
+      <p>
+        The cat is the only domesticated species in the family Felidae and<br />
+        is often referred to as the domestic cat to distinguish it from the<br />
+        wild members of the family.
+      </p>
+      <div class="box"><span></span><span></span><span></span></div>
+    </section>
+    <div id="menu">
+      <div class="border border1"><span></span><span></span><span></span></div>
+      <h2>Cat</h2>
+      <ul class="nav">
+        <li>ABOUT</li>
+        <li>INFO</li>
+        <li>SHOP</li>
+        <li>CONTACT</li>
+      </ul>
+      <ul class="user">
+        <li>LOGIN</li>
+        <li>MYPAGE</li>
+        <li>JOIN</li>
+      </ul>
+      <div class="border border2"><span></span><span></span><span></span></div>
+    </div>
+
+    <script>
+      const $main = document.getElementById("main"),
+        $menu = document.getElementById("menu"),
+        $box = document.querySelector(".box");
+
+      let isClicked = false,
+        isOpened = false,
+        prevX,
+        prevY,
+        nextX,
+        nextY,
+        moveDistance,
+        bodySize,
+        menuSize;
+
+      const setSlidePos = (left, setOpened) => {
+        $main.style.left = left;
+        $main.classList.add("active");
+        prevX = nextX = undefined;
+
+        if (setOpened) {
+          $box.classList.add("active");
+        } else {
+          $box.classList.remove("active");
+        }
+
+        $main.addEventListener("transitionend", () => {
+          $main.classList.remove("active");
+          isOpened = setOpened;
+        });
+      };
+
+      function slideFunc() {
+        $main.addEventListener("pointerdown", (e) => {
+          if (
+            e.clientX > document.body.clientWidth * 0.8 &&
+            !isClicked &&
+            !isOpened
+          ) {
+            isClicked = true;
+            prevX = e.clientX;
+          }
+        });
+
+        $main.addEventListener("pointermove", (e) => {
+          if (isClicked) {
+            nextX = e.clientX;
+            moveDistance = ((nextX - prevX) / document.body.clientWidth) * 100;
+            if (moveDistance >= 0) moveDistance = 0;
+            if (moveDistance < -0.5 * menuSize) {
+              moveDistance = -0.5 * menuSize;
+            }
+            $main.style.left = `${moveDistance}%`;
+          }
+        });
+
+        $main.addEventListener("pointerup", (e) => {
+          if (moveDistance >= 0 * menuSize && isClicked) {
+            isOpened = false;
+          }
+          if (moveDistance > -0.08 * menuSize && isClicked) {
+            setSlidePos(`0%`, false);
+          }
+          if (moveDistance <= -0.08 * menuSize && isClicked) {
+            setSlidePos(`${-1 * menuSize}%`, true);
+          }
+          isClicked = false;
+        });
+
+        $box.addEventListener("click", () => {
+          if (isOpened) {
+            setSlidePos(`0%`, false);
+            isOpened = !isOpened;
+          }
+        });
+
+        window.addEventListener(
+          "touchstart",
+          function (event) {
+            var touch = event.touches[0];
+            touchstartX = touch.clientX;
+            touchstartY = touch.clientY;
+          },
+          false
+        );
+        window.addEventListener(
+          "touchend",
+          function (event) {
+            if (event.touches.length == 0) {
+              var touch = event.changedTouches[event.changedTouches.length - 1];
+              touchendX = touch.clientX;
+              touchendY = touch.clientY;
+
+              touchoffsetX = touchendX - touchstartX;
+              touchoffsetY = touchendY - touchstartY;
+              if (Math.abs(touchoffsetX) > 100) {
+                if (touchoffsetX > 100) {
+                  setSlidePos(`0%`, false);
+                }
+                if (touchoffsetX < 100) {
+                  setSlidePos(`${-1 * menuSize}%`, true);
+                }
+              }
+            }
+          },
+          false
+        );
+      }
+
+      window.addEventListener("resize", () => {
+        resize();
+        slideFunc();
+        setSlidePos(`0%`, false);
+      });
+
+      function resize() {
+        bodySize = document.body.clientWidth;
+        bodySize > 900 ? (menuSize = 30) : (menuSize = 80);
+      }
+
+      init();
+      function init() {
+        resize();
+        slideFunc();
+      }
+    </script>
+  </body>
+</html>

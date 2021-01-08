@@ -30,7 +30,7 @@ body > section {
     font-size: 20vw;
     text-align: center;
     color: #ffdb3d;
-    text-shadow: -1.3vw 1.3vw #d6ae00;
+    text-shadow: -1.3vw 1.3vw #574600;
     filter: url(#jiggle0); }
     #intro .titleBox > div {
       position: absolute;
@@ -59,7 +59,7 @@ body > section {
   position: fixed;
   width: 100%;
   height: 0;
-  background-color: #ffdb3d; }
+  background: linear-gradient(110deg, #ffdb3d 100px, #111111 100px, #111111 200px, #ffdb3d 200px, #ffdb3d 300px, #111111 300px) 0% 0%/214px 100%; }
 
 #bg {
   position: absolute;

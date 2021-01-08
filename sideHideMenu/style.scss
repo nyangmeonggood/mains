@@ -1,0 +1,313 @@
+@import "../scss/styleguide.scss";
+
+body {
+  font-family: "Cairo", sans-serif;
+  overflow: hidden;
+}
+
+#main {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-size: 150% auto;
+  background-position: left center;
+  border-radius: 0 40px 40px 0;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  background-image: url(./bg.jpg);
+  background-position: center;
+  background-size: cover;
+  background-color: black;
+  user-select: none;
+  z-index: 2;
+
+  &.active {
+    transition: all 0.5s;
+  }
+
+  .textBox {
+    @include posCenter;
+    width: 100%;
+    text-align: center;
+    color: white;
+
+    h2 {
+      font-family: "Lobster", cursive;
+      line-height: 1em;
+
+      @media screen and (min-width: 900px) {
+        font-size: 110px;
+      }
+      @media screen and (max-width: 900px) {
+        font-size: 27vw;
+      }
+    }
+    h5 {
+      letter-spacing: 0.01em;
+
+      @media screen and (min-width: 900px) {
+        font-size: 18px;
+      }
+      @media screen and (max-width: 900px) {
+        font-size: 3vw;
+      }
+    }
+    .border {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 6px;
+
+      span {
+        margin: 0 6px;
+        width: 4px;
+        height: 4px;
+        border-radius: 100%;
+        background-color: #dbdbdb;
+      }
+    }
+  }
+
+  > p {
+    position: absolute;
+    left: 5%;
+    bottom: 5%;
+    line-height: 1em;
+    color: #afafaf;
+    letter-spacing: 0.05em;
+
+    @media screen and (min-width: 900px) {
+      width: 60%;
+      font-size: 14px;
+    }
+    @media screen and (max-width: 900px) {
+      width: 70%;
+      font-size: 2.5vw;
+
+      br {
+        display: none;
+      }
+    }
+  }
+
+  .box {
+    position: absolute;
+    right: 20px;
+    transform: translateY(-50%);
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    animation: swipe 1s infinite;
+
+    @media screen and (min-width: 900px) {
+      top: 50%;
+    }
+    @media screen and (max-width: 900px) {
+      bottom: 10px;
+    }
+
+    &::before {
+      content: "SWIPE";
+      position: absolute;
+      bottom: calc(100% + 4px);
+      left: 50%;
+      transform: translateX(-50%);
+      color: white;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+
+      @media screen and (min-width: 900px) {
+        font-size: 12px;
+      }
+      @media screen and (max-width: 900px) {
+        font-size: 1vw;
+      }
+    }
+
+    @keyframes swipe {
+      0% {
+        transform: translateY(-50%);
+      }
+      65% {
+        transform: translate(-10px, -50%);
+      }
+      100% {
+        transform: translateY(-50%);
+      }
+    }
+
+    &.active {
+      animation: none;
+
+      @media screen and (min-width: 900px) {
+        right: 30px;
+      }
+      @media screen and (max-width: 900px) {
+        right: 10%;
+        transform: translate(50%, -50%);
+      }
+
+      &::before {
+        content: "CLOSE";
+      }
+      span {
+        &:nth-of-type(1) {
+          width: 100%;
+          transform: translate(-50%, -50%) rotate(45deg);
+          transform-origin: center;
+        }
+        &:nth-of-type(2) {
+          opacity: 0;
+        }
+
+        &:nth-of-type(3) {
+          width: 100%;
+          transform: translate(-50%, -50%) rotate(-45deg);
+          transform-origin: center;
+        }
+      }
+    }
+
+    span {
+      @include posCenter;
+      width: 100%;
+      height: 2px;
+      background-color: #f0f0f0;
+      transition: all 0.5s;
+      border-radius: 20px;
+
+      &:nth-of-type(1) {
+        width: 50%;
+        transform: translate(-95%, -50%) rotate(45deg);
+        transform-origin: left center;
+      }
+
+      &:nth-of-type(3) {
+        width: 50%;
+        transform: translate(-95%, -50%) rotate(-45deg);
+        transform-origin: left center;
+      }
+    }
+  }
+}
+
+#menu {
+  position: absolute;
+  height: 100%;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  @media screen and (min-width: 900px) {
+    width: 30%;
+  }
+  @media screen and (max-width: 900px) {
+    width: 78.5%;
+  }
+
+  .border {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @media screen and (min-width: 900px) {
+      width: 50%;
+    }
+    @media screen and (max-width: 900px) {
+      width: 65%;
+    }
+    &.border1 {
+      border-bottom: 1px solid #dbdbdb;
+      padding-bottom: 10px;
+      margin-bottom: 2px;
+    }
+    &.border2 {
+      border-top: 1px solid #dbdbdb;
+
+      padding-top: 10px;
+      margin-top: 10px;
+    }
+    span {
+      margin: 0 6px;
+      width: 4px;
+      height: 4px;
+      border-radius: 100%;
+      background-color: #dbdbdb;
+    }
+  }
+
+  h2 {
+    font-family: "Lobster", cursive;
+    color: #111;
+    letter-spacing: 0.01em;
+    margin-bottom: 20px;
+
+    @media screen and (min-width: 900px) {
+      font-size: 80px;
+    }
+    @media screen and (max-width: 900px) {
+      font-size: 20vw;
+    }
+  }
+
+  li {
+    cursor: pointer;
+    font-weight: 600;
+    opacity: 0.8;
+
+    @media screen and (min-width: 900px) {
+      font-size: 16px;
+    }
+    @media screen and (max-width: 900px) {
+      font-size: 3.5vw;
+    }
+
+    &:hover {
+      opacity: 1;
+      transform: scale(1.1);
+    }
+  }
+
+  .nav {
+    margin-bottom: 28px;
+    text-align: center;
+    li {
+      margin-bottom: 6px;
+    }
+  }
+
+  .user {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    @media screen and (min-width: 900px) {
+      width: 50%;
+    }
+    @media screen and (max-width: 900px) {
+      width: 80%;
+    }
+
+    li {
+      position: relative;
+      width: 33.33%;
+      text-align: center;
+
+      &:not(:last-child) {
+        &::after {
+          content: "";
+          position: absolute;
+          top: 50%;
+          left: 100%;
+          transform: translateY(-50%);
+          width: 1px;
+          height: 60%;
+          background-color: rgb(134, 134, 134);
+        }
+      }
+    }
+  }
+}
