@@ -55,7 +55,8 @@ An edge-to-edge OLED display. Ceramic Shield with four times better drop perform
   </body>
 
   <script>
-      const $productContainer = document.querySelector(".productContainer"),
+      const $main = document.querySelector("#main"),
+      $productContainer = document.querySelector(".productContainer"),
       $productList = document.querySelector(".productList"),
       $product = Object.values($productList.getElementsByClassName("product")),
       $preview = document.getElementById("preview"),
@@ -101,7 +102,8 @@ An edge-to-edge OLED display. Ceramic Shield with four times better drop perform
                     $preview.innerHTML = `<img src="./${index+1}.png" alt>`
                     $preview.classList.remove("opacity")
                     $buyBtn.style.backgroundColor = $productInfo[index].color
-                        $buyBtn.style.color = $productInfo[index].font
+                    $buyBtn.style.color = $productInfo[index].font
+                    $main.style.background = `linear-gradient(100deg, #fff 50%, ${$productInfo[index].color} 50%)`
                 })
             })
         })
