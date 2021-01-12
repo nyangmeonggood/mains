@@ -5,9 +5,21 @@ $radius: 500px;
 body {
   height: 200vh;
   font-family: "Rajdhani", sans-serif;
-  background-image: url(./left.jpg);
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+}
+
+.mainBg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+
+  img {
+    @include posCenter;
+    min-width: 100%;
+    min-height: 100%;
+  }
 }
 
 .arrow {
