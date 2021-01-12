@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1"
+    />
+    <title>blockList</title>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+      integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp"
+      crossorigin="anonymous"
+    /><link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../scss/css reset.css" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+      <header>
+          <ul>
+              <li>HOME</li>
+              <li>ABOUT</li>
+              <li>INFO</li>
+              <li>CONTACT</li>
+          </ul>
+      </header>
+    <section id="main">
+        <div class="textBox">
+            <h5>Apple.</h5>
+            <h2>iPhone 12</h2>
+            <p>
+                5G speed. A14 Bionic, the fastest chip in a smartphone.
+An edge-to-edge OLED display. Ceramic Shield with four times better drop performance. And Night mode on every camera. iPhone 12 has it all — in two perfect sizes.
+            </p>
+            <button class="buyBtn">Buy from $799</button>
+        </div>
+        <figure id="preview">
+            <img src="./1.png" alt>
+        </figure>
+    </section>
+    <div class="productContainer">
+        <ul class="productList">
+            <li class="product product1 active"><img src="./1.png" alt></li>
+            <li class="product product2"><img src="./2.png" alt></li>
+            <li class="product product3"><img src="./3.png" alt></li>
+            <li class="product product4"><img src="./4.png" alt></li>
+            <li class="product product5"><img src="./5.png" alt></li>
+        </ul>
+        <button class="pop">
+            <span></span><span></span>
+        </button>
+    </div>
+  </body>
+
+  <script>
+      const $productContainer = document.querySelector(".productContainer"),
+      $productList = document.querySelector(".productList"),
+      $product = Object.values($productList.getElementsByClassName("product")),
+      $preview = document.getElementById("preview"),
+      $pop = document.querySelector(".pop"),
+      $buyBtn = document.querySelector(".buyBtn");
+
+      const $productInfo = [
+            {name:"white",color:"#f7f3f0",font:"#ff784b"},
+            {name:"black",color:"#333039",font:"#f0f0f0"},
+            {name:"blue",color:"#0f456b",font:"#f0f0f0"},
+            {name:"green",color:"#daf0d9",font:"#50976a"},
+            {name:"red",color:"#da3d3d",font:"#f0f0f0"}
+        ];
+
+    let rx,
+        ry,
+        previewTimeout;
+        
+    let mouse = {
+        x:undefined,
+        y:undefined,
+    }
+
+      const resize = () => {
+          $productList.style.width = `${$productList.clientHeight / $product.length}px`
+
+          $product.map((item,index)=>{
+              item.style.height = `${100 / $product.length}%`;
+          })
+      }
+
+      function product(){
+        $product.map((item,index)=>{
+            item.style.backgroundColor = $productInfo[index].color
+
+            item.addEventListener("click",()=>{
+                $product.map(item => item.classList.remove("active"))
+                $product[index].classList.add("active")
+
+                $preview.classList.add("opacity")
+
+                $preview.addEventListener("transitionend",()=>{
+                    $preview.innerHTML = `<img src="./${index+1}.png" alt>`
+                    $preview.classList.remove("opacity")
+                    $buyBtn.style.backgroundColor = $productInfo[index].color
+                        $buyBtn.style.color = $productInfo[index].font
+                })
+            })
+        })
+
+        $pop.addEventListener("click",()=>{
+            $productContainer.classList.toggle("active")
+        })
+      }
+
+      function tilt(){
+        $preview.addEventListener("mousemove",(e)=>{
+            mouse.x = e.offsetX
+            mouse.y = e.offsetY
+            $previewWidth = $preview.clientWidth
+            $previewHeight = $preview.clientHeight
+
+            $preview.classList.remove("lifted")
+
+            rx = -20 + mouse.x / $previewWidth * 40
+            ry = -20 + mouse.y / $previewHeight * 40
+
+            if(mouse.y > $previewHeight/2){
+                ry = -ry
+            }
+            $preview.style.transform = `translate(-50%,-50%) rotateX(${ry}deg) rotateY(${rx}deg)`
+        })
+
+        $preview.addEventListener("mouseleave",(e)=>{
+            clearTimeout(previewTimeout)
+            previewTimeout = setTimeout(()=>{
+                $preview.classList.add("lifted")
+                $preview.style.transform = `translate(-50%,-50%) rotateX(0deg) rotateY(0deg)`
+                
+                $preview.addEventListener("transitionend",()=>{
+                    $preview.classList.remove("lifted")
+                })
+
+            },500)
+        })          
+      }
+
+      window.addEventListener("resize",()=>{
+          resize()
+          tilt()
+      })
+
+      init()
+      function init(){
+        resize()
+        tilt()
+        product()
+
+        if(document.body.clientWidth > 900){
+            $productContainer.classList.add("active")
+        }
+      }
+  </script>
+</html>

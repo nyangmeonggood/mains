@@ -1,0 +1,219 @@
+@import "../scss/styleguide.scss";
+
+body {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: "Rubik", sans-serif;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 60px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid #f0f0f0;
+
+  ul {
+    li {
+      writing-mode: vertical-rl;
+      cursor: pointer;
+      margin-bottom: 20px;
+      line-height: 0.7em;
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
+}
+
+#main {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+
+  .textBox {
+    position: absolute;
+    left: 100px;
+
+    @media screen and (min-width: 1400px) {
+      top: 50%;
+      left: 10%;
+      width: 30%;
+      transform: translateY(-50%);
+    }
+
+    @media screen and (min-width: 1000px) and (max-width: 1400px) {
+      top: 50%;
+      left: 10%;
+      width: 40%;
+      transform: translateY(-50%);
+    }
+    @media screen and (max-width: 1000px) {
+      left: calc(50% + 30px);
+      bottom: 5%;
+      width: 70%;
+      transform: translateX(-50%);
+    }
+
+    h5 {
+      color: #dbdbdb;
+      @media screen and (min-width: 1000px) {
+        font-size: 20px;
+      }
+      @media screen and (max-width: 1000px) {
+        font-size: 3vw;
+        margin-bottom: 4px;
+      }
+    }
+
+    h2 {
+      line-height: 1em;
+      color: #111;
+      letter-spacing: -0.05em;
+      @media screen and (min-width: 1000px) {
+        margin-left: -4px;
+        font-size: 90px;
+        margin-bottom: 10px;
+      }
+      @media screen and (max-width: 1000px) {
+        font-size: 8vw;
+        margin-bottom: 10px;
+      }
+    }
+
+    p {
+      @media screen and (min-width: 1000px) {
+        font-size: 16px;
+        margin-bottom: 30px;
+      }
+      @media screen and (max-width: 1000px) {
+        font-size: 3.1vw;
+        word-break: break-all;
+        margin-bottom: 20px;
+      }
+    }
+
+    button {
+      background-color: #f7f3f0;
+      color: #ff784b;
+      padding: 12px 20px;
+      font-size: 16px;
+      border-radius: 14px;
+      box-sizing: border-box;
+      transition: background-color 0.3s, color 0.3s, transform 0.2s;
+      transform-origin: left center;
+
+      &:active {
+        transform: scaleX(0.98);
+      }
+      @media screen and (min-width: 1000px) {
+        font-size: 16px;
+      }
+      @media screen and (max-width: 1000px) {
+        font-size: 3.1vw;
+      }
+    }
+  }
+
+  #preview {
+    @include posCenter;
+
+    @media screen and (min-width: 1400px) {
+      left: 70%;
+    }
+    @media screen and (min-width: 1000px) and (max-width: 1400px) {
+      left: 75%;
+    }
+    @media screen and (min-width: 750px) and (max-width: 1000px) {
+      top: 30%;
+      left: 55%;
+      width: 90%;
+    }
+    @media screen and (max-width: 750px) {
+      top: 40%;
+      left: 55%;
+      width: 90%;
+    }
+
+    transition: opacity 0.5s;
+    cursor: pointer;
+
+    img {
+      display: block;
+      width: 100%;
+    }
+
+    &.lifted {
+      transition: all 0.5s !important;
+    }
+
+    &.opacity {
+      opacity: 0;
+    }
+  }
+}
+
+.productContainer {
+  position: fixed;
+  top: 0;
+  left: 100%;
+  height: 100%;
+  box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.02);
+  transition: transform 0.5s ease-in-out;
+
+  &.active {
+    transform: translateX(-100%);
+  }
+
+  .productList {
+    height: 100%;
+
+    .product {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      filter: saturate(0);
+      cursor: pointer;
+
+      &:hover,
+      &.active {
+        filter: saturate(1);
+      }
+
+      img {
+        @include posCenter;
+        transform: translate(-50%, -50%) scale(0.8);
+        width: 100%;
+      }
+    }
+  }
+
+  button {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 20px;
+    height: 100px;
+    background-color: #f0f0f0;
+    border-radius: 10px 0 0 10px;
+    transform: translate(-100%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    span {
+      display: inline-block;
+      width: 2px;
+      height: 55%;
+      margin: 0 2px;
+      border-radius: 10px;
+      background-color: #9e9e9e;
+    }
+  }
+}

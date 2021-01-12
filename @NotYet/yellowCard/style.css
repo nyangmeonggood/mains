@@ -1,89 +1,52 @@
-canvas {
-  position: absolute;
-  width: 100%;
-  height: 100vh;
-  top: 0;
-  left: 0;
-  z-index: -1; }
+/*
+Error: File to import not found or unreadable: ../scss/styleguide.scss.
+       Load path: C:/Users/banan/Desktop/sideProject/Mains/@NotYet/yellowCard
+        on line 1 of C:\Users\banan\Desktop\sideProject\Mains\@NotYet\yellowCard\style.scss
 
-body {
-  -ms-overflow-style: none;
-  scrollbar-width: none; }
-  body::-webkit-scrollbar {
-    display: none; }
+1: @import "../scss/styleguide.scss";
+2: 
+3: $mainColor: #ffdb3d;
+4: 
+5: canvas {
+6:   position: absolute;
 
-body > section {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100vh; }
-
-#intro {
-  width: 100%; }
-  #intro .titleBox {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    font-family: "Black Han Sans", sans-serif;
-    font-size: 20vw;
-    text-align: center;
-    color: #ffdb3d;
-    text-shadow: -1.3vw 1.3vw #574600;
-    filter: url(#jiggle0); }
-    #intro .titleBox > div {
-      position: absolute;
-      left: 0;
-      width: 100%;
-      height: 50%;
-      overflow: hidden; }
-      #intro .titleBox > div.top {
-        top: 0; }
-        #intro .titleBox > div.top span {
-          top: 0; }
-      #intro .titleBox > div.bottom {
-        bottom: 0; }
-        #intro .titleBox > div.bottom span {
-          bottom: 0; }
-      #intro .titleBox > div span {
-        position: absolute;
-        left: 0;
-        width: 100%; }
-
-#main {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  position: fixed;
-  width: 100%;
-  height: 0;
-  background: linear-gradient(110deg, #ffdb3d 100px, #111111 100px, #111111 200px, #ffdb3d 200px, #ffdb3d 300px, #111111 300px) 0% 0%/214px 100%; }
-
-#bg {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  position: fixed;
-  transform: translate(-50%, -50%) scale(1.5);
-  overflow: hidden;
-  min-width: 100%;
-  min-height: 100%;
-  background-color: #111; }
-  #bg .frame {
-    width: 1920px;
-    height: 1080px;
-    min-width: 100%;
-    min-height: 100%; }
-  #bg iframe {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    height: 100%;
-    opacity: 0.4; }
-
-/*# sourceMappingURL=style.css.map */
+Backtrace:
+C:\Users\banan\Desktop\sideProject\Mains\@NotYet\yellowCard\style.scss:1
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/import_node.rb:67:in `rescue in import'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/import_node.rb:45:in `import'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/import_node.rb:28:in `imported_file'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/import_node.rb:37:in `css_import?'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:314:in `visit_import'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/base.rb:36:in `visit'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:162:in `block in visit'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/stack.rb:79:in `block in with_base'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/stack.rb:135:in `with_frame'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/stack.rb:79:in `with_base'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:162:in `visit'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/base.rb:52:in `block in visit_children'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/base.rb:52:in `map'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/base.rb:52:in `visit_children'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:171:in `block in visit_children'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:183:in `with_environment'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:170:in `visit_children'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/base.rb:36:in `block in visit'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:190:in `visit_root'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/base.rb:36:in `visit'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:161:in `visit'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:10:in `visit'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/root_node.rb:36:in `css_tree'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/root_node.rb:29:in `render_with_sourcemap'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/engine.rb:389:in `_render_with_sourcemap'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/engine.rb:307:in `render_with_sourcemap'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/exec/sass_scss.rb:391:in `run'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/exec/sass_scss.rb:63:in `process_result'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/exec/base.rb:52:in `parse'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/exec/base.rb:19:in `parse!'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/bin/sass:13:in `<top (required)>'
+C:/Program Files (x86)/Koala/bin/sass:22:in `load'
+C:/Program Files (x86)/Koala/bin/sass:22:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Error: File to import not found or unreadable: ../scss/styleguide.scss.\A        Load path: C:/Users/banan/Desktop/sideProject/Mains/@NotYet/yellowCard\A         on line 1 of C:\Users\banan\Desktop\sideProject\Mains\@NotYet\yellowCard\style.scss\A \A 1: @import \"../scss/styleguide.scss\";\A 2: \A 3: $mainColor: #ffdb3d;\A 4: \A 5: canvas {\A 6:   position: absolute;"; }

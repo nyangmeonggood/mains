@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1"
+    />
+    <title>slideList</title>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+      integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../scss/css reset.css" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <section id="bg"><p></p></section>
+    <section id="main">
+        <div class="phone phone0"><img src="./0.png" alt></div>
+        <div class="phone phone1"><img src="./white.png" alt></div>
+        <div class="phone phone2"><img src="./black.png" alt></div>
+        <div class="phone phone3"><img src="./blue.png" alt></div>
+        <div class="phone phone4"><img src="./green.png" alt></div>
+        <div class="phone phone5"><img src="./red.png" alt></div>
+    </section>
+    <script>
+        const $main = document.getElementById("main"),
+        $bg = document.getElementById("bg"),
+        $bgInfo = [
+            {name:"white",color:"#f7f3f0"},
+            {name:"black",color:"#333039"},
+            {name:"blue",color:"#0f456b"},
+            {name:"green",color:"#daf0d9"},
+            {name:"red",color:"#da3d3d"}
+        ],
+        $keyframe = {
+            opacity : [0,1]
+        };
+
+        let win_w = window.innerWidth,
+        win_h = window.innerHeight,
+        scrollY = 0,
+        currentScroll = 0,
+        currentIndex = 0;
+
+        function resize(){
+            win_w = window.innerWidth;
+            win_h = window.innerHeight;
+        }
+
+        window.addEventListener("resize",()=>{
+            resize()
+        })
+
+        function scroll(){
+            scrollY = window.scrollY
+            currentScroll = Math.floor(scrollY / win_h)
+            if(currentScroll === 0 || currentScroll === 1){
+                currentIndex = 0
+            }
+            if(currentScroll === 2 || currentScroll === 3){
+                currentIndex = 1  
+            }
+            if(currentScroll === 4 || currentScroll === 5){
+                currentIndex = 2
+            }
+            if(currentScroll === 6 || currentScroll === 7){
+                currentIndex = 3
+            }
+            if(currentScroll === 8 || currentScroll === 9){
+                currentIndex = 4
+            }
+
+            $bg.querySelector("p").innerHTML = $bgInfo[currentIndex].name
+            $bg.querySelector("p").style.opacity = ($keyframe.opacity[currentScroll % 2 + 1]  + $keyframe.opacity[currentScroll % 2]) * (scrollY - (win_h * currentScroll)) / win_h
+            $bg.style.backgroundColor = $bgInfo[currentIndex].color  
+
+        }
+
+        window.addEventListener("scroll",()=>{
+            scroll()
+        })
+
+        init()
+        function init(){
+            resize()
+            scroll()
+        }
+    </script>
+  </body>
+</html>

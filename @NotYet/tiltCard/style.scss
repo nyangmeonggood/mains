@@ -1,0 +1,287 @@
+@import "../scss/styleguide.scss";
+
+body {
+  font-family: "Rubik", sans-serif;
+}
+
+.blind {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  background-color: white;
+  opacity: 1;
+
+  &.active {
+    top: -100%;
+    opacity: 0;
+    transition: opacity 0.4s, top 0s 0.5s, transform 1s;
+
+    .card {
+      transform: translate(-50%, -50%) scale(0.5);
+      transition: all 0.5s;
+    }
+  }
+
+  .card {
+    @include posCenter;
+    width: 80%;
+    height: 80%;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    color: #f0f0f0;
+
+    h2 {
+      font-size: 60px;
+    }
+
+    h5 {
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+
+    input {
+      border: none;
+      background-color: transparent;
+      padding: 6px 10px;
+      box-sizing: border-box;
+      outline: none;
+      border-bottom: 2px solid #f0f0f0;
+
+      &::placeholder {
+        color: #dbdbdb;
+        font-weight: 500;
+      }
+    }
+  }
+}
+
+#main {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @media screen and (max-width: 900px) {
+    flex-direction: column;
+  }
+
+  > .textBox {
+    overflow: hidden;
+
+    @media screen and (min-width: 900px) {
+      width: 0%;
+      height: 100%;
+    }
+
+    @media screen and (max-width: 900px) {
+      width: 90%;
+      height: 0%;
+    }
+  }
+
+  &.active {
+    #card {
+      .content {
+        transition: all 0.5s;
+      }
+    }
+
+    @media screen and (min-width: 900px) {
+      > .textBox {
+        width: 50%;
+        transition: width 1s 1s;
+      }
+
+      #card {
+        width: 50%;
+        .content {
+          width: 80%;
+          height: 75%;
+        }
+      }
+    }
+
+    @media screen and (max-width: 900px) {
+      > .textBox {
+        height: 50%;
+        transition: height 1s 1s;
+      }
+
+      #card {
+        width: 90%;
+        .content {
+          width: 80%;
+          height: 80%;
+        }
+      }
+    }
+  }
+}
+
+#card {
+  transform-style: preserve-3d;
+  cursor: pointer;
+  border-radius: 20px;
+
+  @media screen and (min-width: 900px) {
+    width: 50%;
+    max-width: 900px;
+  }
+
+  @media screen and (max-width: 900px) {
+    width: 90%;
+  }
+
+  &.lifted {
+    transition: all 0.5s;
+  }
+
+  .content {
+    @include posCenter;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: inherit;
+
+    &.active {
+      li.front {
+        transform: translate(-50%, -50%) rotateY(180deg);
+      }
+
+      li.back {
+        transform: translate(-50%, -50%) rotateY(0deg);
+      }
+    }
+
+    > li {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.5s;
+      box-shadow: 0 0 30px 10px rgba(0, 0, 0, 0.4);
+      backface-visibility: hidden;
+      color: #f0f0f0;
+
+      &.front {
+        transform: translate(-50%, -50%) rotateY(0deg);
+        background: linear-gradient(135deg, #ac3 30%, #fc3);
+
+        .textBox {
+          position: absolute;
+          bottom: 10%;
+          width: 80%;
+          left: 50%;
+          transform: translateX(-50%);
+
+          .cardNumber {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 40px;
+          }
+          .name {
+            width: 50%;
+            font-size: 30px;
+          }
+          .validNumber {
+            width: 50%;
+            font-size: 20px;
+          }
+        }
+      }
+
+      &.back {
+        transform: translate(-50%, -50%) rotateY(180deg);
+        background: linear-gradient(225deg, #ac3 30%, #fc3);
+
+        .line {
+          position: absolute;
+          top: 12%;
+          left: 0;
+          width: 100%;
+          height: 20%;
+          background-color: #333d0f;
+        }
+
+        .desc {
+          position: absolute;
+          top: 50%;
+          width: 100%;
+          height: 50%;
+
+          @media screen and (min-width: 900px) {
+            left: 0;
+            width: 100%;
+          }
+
+          @media screen and (max-width: 900px) {
+            left: 5%;
+            width: 90%;
+            font-size: 2.4vw;
+          }
+        }
+      }
+    }
+  }
+}
+
+.colorBall {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 50%;
+  height: 5%;
+  max-width: 400px;
+  max-height: 200px;
+  transform: translateX(-50%);
+  border-radius: 50% 50% 0 0;
+  background-color: #ececec;
+  cursor: pointer;
+
+  &.active {
+    li {
+      bottom: calc(100% + 20px);
+      opacity: 1;
+      transition: opacity 0.5s, bottom 0.3s;
+    }
+  }
+
+  li {
+    position: absolute;
+    bottom: 0;
+    opacity: 0;
+    width: 24px;
+    height: 24px;
+    border-radius: 200px;
+    transition: opacity 0.2s, bottom 0.3s;
+    z-index: -1;
+    cursor: pointer;
+
+    &:nth-of-type(1) {
+      transform: translate(0, 20px);
+    }
+    &:nth-of-type(2),
+    &:nth-of-type(4) {
+      transform: translate(-50%, 0px);
+    }
+    &:nth-of-type(3) {
+      transform: translate(-50%, -10px);
+    }
+    &:nth-of-type(5) {
+      transform: translate(-100%, 20px);
+    }
+  }
+}

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1"
+    />
+    <title>TiltCard</title>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+      integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp"
+      crossorigin="anonymous"
+    /><link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../scss/css reset.css" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <section id="main">
+        <div id="card">
+            <ul class="content">
+                <li class="back">
+                    <div class="line"></div>
+                    <div class="desc">
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. 
+                    </div>
+                </li>
+                <li class="front">
+                    <div class="textBox">
+                        <ul class="cardNumber">
+                            <li class="num num1">0000</li>
+                            <li class="num num2">1234</li>
+                            <li class="num num3">5678</li>
+                            <li class="num num4">9100</li>
+                        </ul>
+
+                        <div class="name">CHOI</div>
+
+                        <ul class="validNumber">
+                            <li class="num num1">0000</li>
+                            <li class="num num2">1234</li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="textBox">
+            <h3>Card Title</h3>
+            <p>
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. 
+            </p>
+        </div>
+
+        <ul class="colorBall">
+            <li data-color="0"></li>
+            <li data-color="1"></li>
+            <li data-color="2"></li>
+            <li data-color="3"></li>
+            <li data-color="4"></li>
+        </ul>
+    </section>
+
+    <div class="blind">
+        <div class="card">
+            <h2>Card in Your Pocket</h2>        
+            <h5>Type Your Name and Press Enter Key</h5>
+            <input type="text" placeholder="Write Name" maxlength="20" name="name" class="nameInput" autofocus=true>
+        </div>
+    </div>
+
+    <script>
+        const $main = document.getElementById("main"),
+            $card = document.getElementById("card"),
+            $content =  document.querySelector(".content"),
+            $front =  $content.querySelector(".front"),
+            $name =  $front.querySelector(".name"),
+            $nameInput =  document.querySelector(".nameInput"),
+            $back =  $content.querySelector(".back"),
+            $colorBalls = Object.values(document.querySelector(".colorBall").getElementsByTagName("li")),
+            $blind = document.querySelector(".blind");  
+        
+        const colors = [
+        {front:"#ac3", back:"#fc3"},{front:"#353b48", back:"#192a56"},{front:"#1abc9c", back:"#2ecc71"},{front:"#ffcccc", back:"#ff4d4d"},{front:"#cd84f1", back:"#f8a5c2"}
+        ]
+
+        let $cardWidth,
+            $cardHeight,
+            rx,
+            ry,
+            cardTimeout;
+        
+        let mouse = {
+            x:undefined,
+            y:undefined,
+        }
+
+        function setColorBalls(){
+            document.querySelector(".colorBall").addEventListener("click",()=>{
+                document.querySelector(".colorBall").classList.toggle("active")
+            })
+            $colorBalls.map((item,index)=>{
+                item.style.background = `linear-gradient(to right, ${colors[index].front} 50%, ${colors[index].back} 50%)`
+                item.style.left = `${100 / ($colorBalls.length -1) * index}%`
+
+                item.addEventListener("click",(e)=>{
+                    let setColor = e.target.dataset.color;
+                    $front.style.background = `linear-gradient(135deg , ${colors[index].front} 30%, ${colors[index].back})`
+                    $back.style.background = `linear-gradient(225deg , ${colors[index].front} 30%, ${colors[index].back} )`
+                })
+            })
+        }
+
+        function resize(){
+            $card.style.height = `${$card.clientWidth * 0.6}px`
+            $blind.querySelector(".card").style.height = `${$blind.querySelector(".card").clientWidth * 0.6}px`
+        }
+
+        window.addEventListener("resize",()=>{
+            resize()
+        })
+
+        $card.addEventListener("mousemove",(e)=>{
+            mouse.x = e.offsetX
+            mouse.y = e.offsetY
+            $cardWidth = $card.clientWidth
+            $cardHeight = $card.clientHeight
+
+            $card.classList.remove("lifted")
+
+            rx = -10 + mouse.x / $cardWidth * 20
+            ry = -10 + mouse.y / $cardHeight * 20
+
+            if(mouse.y > $cardHeight/2){
+                ry = -ry
+            }
+            $card.style.transform = ` rotateX(${ry}deg) rotateY(${rx}deg)`
+        })
+
+        $card.addEventListener("mouseleave",(e)=>{
+            clearTimeout(cardTimeout)
+            cardTimeout = setTimeout(()=>{
+                $card.classList.add("lifted")
+                $card.style.transform = ` rotateX(0deg) rotateY(0deg)`
+                
+                $card.addEventListener("transitionend",()=>{
+                    $card.classList.remove("lifted")
+                })
+
+            },500)
+        })
+
+        $content.addEventListener("click",()=>{
+            $content.classList.toggle("active")
+        })
+
+        $nameInput.addEventListener("input",(e)=>{
+            $name.innerHTML = e.target.value
+        })
+
+        $nameInput.addEventListener("keydown",(e)=>{
+            if(e.keyCode === 13) {$blind.classList.add("active")}
+
+            $blind.addEventListener("transitionend",()=>{
+                $main.classList.add("active")
+            })
+            
+        })
+
+        init()
+        function init(){
+            resize()
+            setColorBalls()
+
+            let randomNum = Math.floor(Math.random() * colors.length)
+
+            $blind.querySelector(".card").style.background =
+            $front.style.background = `linear-gradient(135deg , ${colors[randomNum].front} 30%, ${colors[randomNum].back})`
+            $back.style.background = `linear-gradient(225deg , ${colors[randomNum].front} 30%, ${colors[randomNum].back} )`
+
+        }
+    </script>
+  </body>
+</html>

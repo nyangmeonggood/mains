@@ -1,0 +1,209 @@
+body {
+  font-family: "Rubik", sans-serif; }
+
+.blind {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  background-color: white;
+  opacity: 1; }
+  .blind.active {
+    top: -100%;
+    opacity: 0;
+    transition: opacity 0.4s, top 0s 0.5s, transform 1s; }
+    .blind.active .card {
+      transform: translate(-50%, -50%) scale(0.5);
+      transition: all 0.5s; }
+  .blind .card {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 80%;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    color: #f0f0f0; }
+    .blind .card h2 {
+      font-size: 60px; }
+    .blind .card h5 {
+      font-size: 16px;
+      margin-bottom: 20px; }
+    .blind .card input {
+      border: none;
+      background-color: transparent;
+      padding: 6px 10px;
+      box-sizing: border-box;
+      outline: none;
+      border-bottom: 2px solid #f0f0f0; }
+      .blind .card input::placeholder {
+        color: #dbdbdb;
+        font-weight: 500; }
+
+#main {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+  @media screen and (max-width: 900px) {
+    #main {
+      flex-direction: column; } }
+  #main > .textBox {
+    overflow: hidden; }
+    @media screen and (min-width: 900px) {
+      #main > .textBox {
+        width: 0%;
+        height: 100%; } }
+    @media screen and (max-width: 900px) {
+      #main > .textBox {
+        width: 90%;
+        height: 0%; } }
+  #main.active #card .content {
+    transition: all 0.5s; }
+  @media screen and (min-width: 900px) {
+    #main.active > .textBox {
+      width: 50%;
+      transition: width 1s 1s; }
+    #main.active #card {
+      width: 50%; }
+      #main.active #card .content {
+        width: 80%;
+        height: 75%; } }
+  @media screen and (max-width: 900px) {
+    #main.active > .textBox {
+      height: 50%;
+      transition: height 1s 1s; }
+    #main.active #card {
+      width: 90%; }
+      #main.active #card .content {
+        width: 80%;
+        height: 80%; } }
+
+#card {
+  transform-style: preserve-3d;
+  cursor: pointer;
+  border-radius: 20px; }
+  @media screen and (min-width: 900px) {
+    #card {
+      width: 50%;
+      max-width: 900px; } }
+  @media screen and (max-width: 900px) {
+    #card {
+      width: 90%; } }
+  #card.lifted {
+    transition: all 0.5s; }
+  #card .content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: inherit; }
+    #card .content.active li.front {
+      transform: translate(-50%, -50%) rotateY(180deg); }
+    #card .content.active li.back {
+      transform: translate(-50%, -50%) rotateY(0deg); }
+    #card .content > li {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.5s;
+      box-shadow: 0 0 30px 10px rgba(0, 0, 0, 0.4);
+      backface-visibility: hidden;
+      color: #f0f0f0; }
+      #card .content > li.front {
+        transform: translate(-50%, -50%) rotateY(0deg);
+        background: linear-gradient(135deg, #ac3 30%, #fc3); }
+        #card .content > li.front .textBox {
+          position: absolute;
+          bottom: 10%;
+          width: 80%;
+          left: 50%;
+          transform: translateX(-50%); }
+          #card .content > li.front .textBox .cardNumber {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 40px; }
+          #card .content > li.front .textBox .name {
+            width: 50%;
+            font-size: 30px; }
+          #card .content > li.front .textBox .validNumber {
+            width: 50%;
+            font-size: 20px; }
+      #card .content > li.back {
+        transform: translate(-50%, -50%) rotateY(180deg);
+        background: linear-gradient(225deg, #ac3 30%, #fc3); }
+        #card .content > li.back .line {
+          position: absolute;
+          top: 12%;
+          left: 0;
+          width: 100%;
+          height: 20%;
+          background-color: #333d0f; }
+        #card .content > li.back .desc {
+          position: absolute;
+          top: 50%;
+          width: 100%;
+          height: 50%; }
+          @media screen and (min-width: 900px) {
+            #card .content > li.back .desc {
+              left: 0;
+              width: 100%; } }
+          @media screen and (max-width: 900px) {
+            #card .content > li.back .desc {
+              left: 5%;
+              width: 90%;
+              font-size: 2.4vw; } }
+
+.colorBall {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 50%;
+  height: 5%;
+  max-width: 400px;
+  max-height: 200px;
+  transform: translateX(-50%);
+  border-radius: 50% 50% 0 0;
+  background-color: #ececec;
+  cursor: pointer; }
+  .colorBall.active li {
+    bottom: calc(100% + 20px);
+    opacity: 1;
+    transition: opacity 0.5s, bottom 0.3s; }
+  .colorBall li {
+    position: absolute;
+    bottom: 0;
+    opacity: 0;
+    width: 24px;
+    height: 24px;
+    border-radius: 200px;
+    transition: opacity 0.2s, bottom 0.3s;
+    z-index: -1;
+    cursor: pointer; }
+    .colorBall li:nth-of-type(1) {
+      transform: translate(0, 20px); }
+    .colorBall li:nth-of-type(2), .colorBall li:nth-of-type(4) {
+      transform: translate(-50%, 0px); }
+    .colorBall li:nth-of-type(3) {
+      transform: translate(-50%, -10px); }
+    .colorBall li:nth-of-type(5) {
+      transform: translate(-100%, 20px); }
+
+/*# sourceMappingURL=style.css.map */

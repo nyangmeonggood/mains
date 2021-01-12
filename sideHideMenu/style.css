@@ -1,6 +1,7 @@
 body {
   font-family: "Cairo", sans-serif;
-  overflow: hidden; }
+  overflow: hidden;
+  background-color: white; }
 
 #main {
   position: relative;
