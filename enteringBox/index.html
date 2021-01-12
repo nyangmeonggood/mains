@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1"
+    />
+    <title>EnteringBox</title><link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&family=Rajdhani:wght@300;500&display=swap" rel="stylesheet">
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+      integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../scss/css reset.css" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <section id="main">
+        <div class="left box"></div>
+        <div class="textBox">
+            <h2>Space </h2>
+            <h5>Space is the boundless three-dimensional extent in which objects<br /> and events have relative position and direction.</h5>
+            <button>View More</button>
+        </div>
+        <div class="right box"></div>
+        <div class="arrow"></div>
+    </section>
+
+    <script>
+        const $main = document.querySelector("#main"),
+            $left = document.querySelector(".left"),
+            $right = document.querySelector(".right"),
+            $boxs = Object.values(document.getElementsByClassName("box")),
+            $textBox = document.querySelector(".textBox"),
+            $arrow = document.querySelector(".arrow")
+        
+        const keyframes = {
+            box:[60,100],
+            scale:[1.2,1],
+            bg:[1,0.5]
+        }
+
+        let scrollY,
+            stageWidth,
+            stageHeight,
+            boxParallex = 0;
+
+        function scrollEvent(){
+            scrollY = window.scrollY
+
+            let box = calcParallex(keyframes.box),
+                scale = calcParallex(keyframes.scale),
+                bg = calcParallex(keyframes.bg)
+
+            $boxs.map((item,index)=>{
+                index === 0 ? box = box : box *= -1
+                if(document.body.clientWidth > 900){
+                    item.style.transform = `translate(0,${box}%)`
+                }else{
+                    item.style.transform = `translate(${box}%,0)`
+                }
+            })
+
+            $textBox.style.transform = `translate(-50%,-50%) scale(${scale})`
+            $main.style.backgroundColor = `rgba(17,17,17,${bg})`
+
+            if(scrollY === stageHeight){
+                $arrow.classList.add("active")
+                $textBox.classList.add("active")
+            }else{
+                $arrow.classList.remove("active")
+                $textBox.classList.remove("active")
+            }
+        }
+
+        function calcParallex(target){
+            return (target[1] - target[0]) * scrollY / stageHeight + target[0]
+        }
+        window.addEventListener("scroll",()=>{
+            scrollEvent()
+        })
+
+        function resize(){
+            stageWidth = window.innerWidth
+            stageHeight = window.innerHeight
+        }
+
+        window.addEventListener("resize",()=>{
+            resize()
+            scrollEvent()
+        })
+
+        init()
+        function init(){
+            resize()
+            scrollEvent()
+        }
+    </script>
+  </body>
+  </html>

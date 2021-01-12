@@ -1,0 +1,166 @@
+@import "../scss/styleguide.scss";
+
+$radius: 500px;
+
+body {
+  height: 200vh;
+  font-family: "Rajdhani", sans-serif;
+  background-image: url(./left.jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.arrow {
+  width: 14px;
+  height: 14px;
+  border-bottom: 2px solid #f0f0f0;
+  border-right: 2px solid #f0f0f0;
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translate(-50%, 0) rotate(45deg);
+
+  &.active {
+    animation: arrow2 1s infinite;
+    transform: translate(-50%, 0) rotate(135deg);
+  }
+
+  animation: arrow 1s infinite;
+  @keyframes arrow {
+    0% {
+      transform: translate(-50%, -10px) rotate(45deg);
+    }
+    100% {
+      transform: translate(-50%, 0) rotate(45deg);
+    }
+  }
+  @keyframes arrow2 {
+    0% {
+      transform: translate(-50%, 10px) rotate(225deg);
+    }
+    100% {
+      transform: translate(-50%, 0) rotate(225deg);
+    }
+  }
+}
+
+#main {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+
+  .box {
+    position: absolute;
+    overflow: hidden;
+    background-color: black;
+    background-size: cover;
+
+    &.left {
+      background: #00887a;
+    }
+    &.right {
+      background: #1b4e73;
+    }
+
+    @media screen and (min-width: 900px) {
+      width: 30%;
+      height: 100%;
+
+      &.left {
+        left: 5%;
+        top: 0;
+        transform: translateY(-100%);
+        border-radius: $radius $radius 0 0;
+      }
+      &.right {
+        right: 5%;
+        bottom: 0;
+        transform: translateY(100%);
+        border-radius: 0 0 $radius $radius;
+      }
+    }
+
+    @media screen and (max-width: 900px) {
+      width: 100%;
+      height: 25%;
+
+      &.left {
+        left: 0;
+        top: 5%;
+        transform: translateX(-100%);
+        border-radius: $radius 0 0 $radius;
+      }
+      &.right {
+        right: 0;
+        bottom: 5%;
+        transform: translateX(100%);
+        border-radius: 0 $radius $radius 0;
+      }
+    }
+  }
+
+  .textBox {
+    @include posCenter;
+    width: 100%;
+    text-align: center;
+
+    &.active {
+      button {
+        transform: translateY(0px);
+        opacity: 1;
+      }
+    }
+
+    h2 {
+      font-size: 80px;
+      font-family: "Libre Baskerville", serif;
+      text-transform: uppercase;
+      color: #f0f0f0;
+
+      @media screen and (min-width: 900px) {
+        font-size: 80px;
+      }
+
+      @media screen and (max-width: 900px) {
+        font-size: 14vw;
+      }
+    }
+    h5 {
+      color: #8e8e8e;
+      margin-bottom: 20px;
+
+      @media screen and (min-width: 900px) {
+        font-size: 16px;
+      }
+
+      @media screen and (max-width: 900px) {
+        font-size: 3.2vw;
+      }
+    }
+    button {
+      transform: translateY(-10px);
+      opacity: 0;
+      transition: all 0.5s;
+      box-sizing: border-box;
+      padding: 8px 14px;
+      border-radius: 10px;
+      color: #f0f0f0;
+      background-color: #007488;
+
+      @media screen and (min-width: 900px) {
+        font-size: 16px;
+      }
+
+      @media screen and (max-width: 900px) {
+        font-size: 16px;
+      }
+
+      &:hover {
+        transform: translateY(0px) scale(1.05);
+      }
+    }
+  }
+}
