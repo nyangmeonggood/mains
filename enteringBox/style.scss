@@ -5,7 +5,7 @@ $radius: 500px;
 body {
   height: 200vh;
   font-family: "Rajdhani", sans-serif;
-  overflow: hidden;
+  overflow-x: hidden;
   -ms-overflow-style: none;
   scrollbar-width: none;
   &::-webkit-scrollbar {
