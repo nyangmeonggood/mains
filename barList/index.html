@@ -76,7 +76,7 @@
           let $li = document.createElement("li")
           $li.classList.add("slide",`slide${i+1}`)
           $li.dataset.list = i+1
-          $li.innerHTML = `${product[i].name}<img src="./${i + 1}p.png" alt>`
+          $li.innerHTML = `${product[i].name}<img data-list="${i+1}" src="./${i + 1}p.png" alt>`
 
           $listContainer.appendChild($li)
 
