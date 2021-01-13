@@ -1,0 +1,229 @@
+@import "../scss/styleguide.scss";
+
+$mainColor1: #f2b700;
+$mainColor2: #008938;
+
+body {
+  background-color: #4c006a;
+  font-family: "Poppins", sans-serif;
+}
+
+#main {
+  @include posCenter;
+
+  width: 90%;
+  height: 80vh;
+  background-color: #f0f0f0;
+  box-shadow: 0 0 10px 4px rgba($color: #111, $alpha: 0.05);
+  border-radius: 10px;
+
+  .visual {
+    svg {
+      @include posCenter;
+      width: 50%;
+    }
+  }
+
+  .contents {
+    @include posCenter;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+
+    li {
+      &.active {
+        width: 100%;
+        background-color: #f0f0f0;
+        background-position: 50% center;
+        transition: background-position 120s;
+      }
+
+      @include posCenter;
+      display: none;
+      width: 0%;
+      height: 100%;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      flex-direction: column;
+      overflow: hidden;
+      background-size: cover;
+      background-position: 35% center;
+      background-repeat: no-repeat;
+      border-radius: inherit;
+
+      > div {
+        padding-left: 10%;
+        color: #f0f0f0;
+        letter-spacing: -0.05em;
+        box-sizing: border-box;
+
+        @media screen and (min-width: 900px) {
+          width: 40%;
+        }
+        @media screen and (max-width: 900px) {
+          width: 90%;
+        }
+
+        span {
+          display: inline-block;
+          border-bottom: 2px solid $mainColor1;
+          margin-bottom: 14px;
+          padding-bottom: 2px;
+          font-weight: 200;
+          color: #f0f0f0;
+
+          @media screen and (min-width: 900px) {
+            font-size: 14px;
+          }
+          @media screen and (max-width: 900px) {
+            font-size: 3.2vw;
+          }
+        }
+        h2 {
+          font-weight: 700;
+          line-height: 0.9em;
+          margin-left: -4px;
+          margin-bottom: 14px;
+
+          @media screen and (min-width: 900px) {
+            font-size: 80px;
+          }
+          @media screen and (max-width: 900px) {
+            font-size: 12vw;
+          }
+        }
+        p {
+          font-size: 14px;
+          line-height: 1.3em;
+          margin-bottom: 30px;
+
+          @media screen and (min-width: 900px) {
+            font-size: 15px;
+          }
+          @media screen and (max-width: 900px) {
+            font-size: 3.5vw;
+          }
+        }
+
+        button {
+          padding: 10px 20px;
+          color: #f0f0f0;
+          background-color: $mainColor2;
+
+          @media screen and (min-width: 900px) {
+            font-size: 15px;
+          }
+          @media screen and (max-width: 900px) {
+            font-size: 3.5vw;
+          }
+        }
+      }
+
+      @for $i from 1 through 4 {
+        &:nth-of-type(#{$i}) {
+          background-image: url("./#{$i}w.jpg");
+        }
+      }
+    }
+  }
+
+  .changeBg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background-color: $mainColor1;
+    transform-origin: left center;
+    transition: width 0.7s;
+    border-radius: inherit;
+
+    &.active {
+      width: 100%;
+      left: initial;
+      right: 0;
+      background-color: $mainColor2;
+      transform-origin: right center;
+    }
+  }
+
+  #close {
+    position: absolute;
+    font-size: 20px;
+    color: #f0f0f0;
+
+    @media screen and (min-width: 900px) {
+      top: 2%;
+      right: 2%;
+    }
+    @media screen and (max-width: 900px) {
+      top: 2%;
+      right: 5%;
+    }
+  }
+
+  .listContainer {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 10vh;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    text-align: center;
+    box-shadow: 0 0 10px 4px rgba($color: #111, $alpha: 0.05);
+
+    @media screen and (min-width: 900px) {
+      width: 50%;
+    }
+    @media screen and (max-width: 900px) {
+      width: 90%;
+    }
+
+    li {
+      position: relative;
+      width: 20%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 500;
+      line-height: 1.1em;
+      cursor: pointer;
+
+      @media screen and (min-width: 900px) {
+        font-size: 15px;
+      }
+      @media screen and (max-width: 900px) {
+        font-size: 3.3vw;
+      }
+
+      img {
+        position: absolute;
+        top: 0;
+        left: 100%;
+        transform: translate(-70%, -50%);
+        width: 50%;
+        opacity: 0;
+      }
+
+      &:hover {
+        img {
+          opacity: 1;
+        }
+        &:nth-of-type(odd) {
+          background-color: $mainColor1;
+          color: $mainColor2;
+        }
+        &:nth-of-type(even) {
+          background-color: $mainColor2;
+          color: $mainColor1;
+        }
+      }
+    }
+  }
+}

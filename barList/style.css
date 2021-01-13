@@ -1,0 +1,193 @@
+body {
+  background-color: #4c006a;
+  font-family: "Poppins", sans-serif; }
+
+#main {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  height: 80vh;
+  background-color: #f0f0f0;
+  box-shadow: 0 0 10px 4px rgba(17, 17, 17, 0.05);
+  border-radius: 10px; }
+  #main .visual svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%; }
+  #main .contents {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    border-radius: inherit; }
+    #main .contents li {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: none;
+      width: 0%;
+      height: 100%;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      flex-direction: column;
+      overflow: hidden;
+      background-size: cover;
+      background-position: 35% center;
+      background-repeat: no-repeat;
+      border-radius: inherit; }
+      #main .contents li.active {
+        width: 100%;
+        background-color: #f0f0f0;
+        background-position: 50% center;
+        transition: background-position 120s; }
+      #main .contents li > div {
+        padding-left: 10%;
+        color: #f0f0f0;
+        letter-spacing: -0.05em;
+        box-sizing: border-box; }
+        @media screen and (min-width: 900px) {
+          #main .contents li > div {
+            width: 40%; } }
+        @media screen and (max-width: 900px) {
+          #main .contents li > div {
+            width: 90%; } }
+        #main .contents li > div span {
+          display: inline-block;
+          border-bottom: 2px solid #f2b700;
+          margin-bottom: 14px;
+          padding-bottom: 2px;
+          font-weight: 200;
+          color: #f0f0f0; }
+          @media screen and (min-width: 900px) {
+            #main .contents li > div span {
+              font-size: 14px; } }
+          @media screen and (max-width: 900px) {
+            #main .contents li > div span {
+              font-size: 3.2vw; } }
+        #main .contents li > div h2 {
+          font-weight: 700;
+          line-height: 0.9em;
+          margin-left: -4px;
+          margin-bottom: 14px; }
+          @media screen and (min-width: 900px) {
+            #main .contents li > div h2 {
+              font-size: 80px; } }
+          @media screen and (max-width: 900px) {
+            #main .contents li > div h2 {
+              font-size: 12vw; } }
+        #main .contents li > div p {
+          font-size: 14px;
+          line-height: 1.3em;
+          margin-bottom: 30px; }
+          @media screen and (min-width: 900px) {
+            #main .contents li > div p {
+              font-size: 15px; } }
+          @media screen and (max-width: 900px) {
+            #main .contents li > div p {
+              font-size: 3.5vw; } }
+        #main .contents li > div button {
+          padding: 10px 20px;
+          color: #f0f0f0;
+          background-color: #008938; }
+          @media screen and (min-width: 900px) {
+            #main .contents li > div button {
+              font-size: 15px; } }
+          @media screen and (max-width: 900px) {
+            #main .contents li > div button {
+              font-size: 3.5vw; } }
+      #main .contents li:nth-of-type(1) {
+        background-image: url("./1w.jpg"); }
+      #main .contents li:nth-of-type(2) {
+        background-image: url("./2w.jpg"); }
+      #main .contents li:nth-of-type(3) {
+        background-image: url("./3w.jpg"); }
+      #main .contents li:nth-of-type(4) {
+        background-image: url("./4w.jpg"); }
+  #main .changeBg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background-color: #f2b700;
+    transform-origin: left center;
+    transition: width 0.7s;
+    border-radius: inherit; }
+    #main .changeBg.active {
+      width: 100%;
+      left: initial;
+      right: 0;
+      background-color: #008938;
+      transform-origin: right center; }
+  #main #close {
+    position: absolute;
+    font-size: 20px;
+    color: #f0f0f0; }
+    @media screen and (min-width: 900px) {
+      #main #close {
+        top: 2%;
+        right: 2%; } }
+    @media screen and (max-width: 900px) {
+      #main #close {
+        top: 2%;
+        right: 5%; } }
+  #main .listContainer {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 10vh;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    text-align: center;
+    box-shadow: 0 0 10px 4px rgba(17, 17, 17, 0.05); }
+    @media screen and (min-width: 900px) {
+      #main .listContainer {
+        width: 50%; } }
+    @media screen and (max-width: 900px) {
+      #main .listContainer {
+        width: 90%; } }
+    #main .listContainer li {
+      position: relative;
+      width: 20%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 500;
+      line-height: 1.1em;
+      cursor: pointer; }
+      @media screen and (min-width: 900px) {
+        #main .listContainer li {
+          font-size: 15px; } }
+      @media screen and (max-width: 900px) {
+        #main .listContainer li {
+          font-size: 3.3vw; } }
+      #main .listContainer li img {
+        position: absolute;
+        top: 0;
+        left: 100%;
+        transform: translate(-70%, -50%);
+        width: 50%;
+        opacity: 0; }
+      #main .listContainer li:hover img {
+        opacity: 1; }
+      #main .listContainer li:hover:nth-of-type(odd) {
+        background-color: #f2b700;
+        color: #008938; }
+      #main .listContainer li:hover:nth-of-type(even) {
+        background-color: #008938;
+        color: #f2b700; }
+
+/*# sourceMappingURL=style.css.map */
