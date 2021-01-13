@@ -1,0 +1,137 @@
+body {
+  background-image: url(./bg.jpg);
+  background-color: #505050;
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: overlay;
+  font-family: "Poppins", sans-serif; }
+  body * {
+    user-select: none; }
+
+#main {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: calc(100% - 100px);
+  height: calc(100% - 100px); }
+  #main .corners {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    border: 1px solid #f0f0f0;
+    box-sizing: border-box; }
+    #main .corners .corner {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      border: 1px solid #f0f0f0;
+      background-color: #6f6f6f;
+      transform: translate(-50%, -50%);
+      box-sizing: border-box; }
+      #main .corners .corner.corner1 {
+        top: 0;
+        left: 0; }
+      #main .corners .corner.corner2 {
+        top: 0;
+        left: 100%; }
+      #main .corners .corner.corner3 {
+        top: 100%;
+        left: 0; }
+      #main .corners .corner.corner4 {
+        top: 100%;
+        left: 100%; }
+
+.textBox {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  z-index: 1;
+  text-align: center; }
+  .textBox h2 {
+    font-family: "Big Shoulders Stencil Text", cursive;
+    color: #f0f0f0;
+    font-size: 80px; }
+    @media screen and (max-width: 600px) {
+      .textBox h2 {
+        font-size: 14vw; } }
+    .textBox h2 span {
+      display: inline-block;
+      animation: spin 3s infinite;
+      transform-origin: center; }
+@keyframes spin {
+  0% {
+    transform: rotate(0); }
+  50% {
+    transform: rotate(360deg); }
+  100% {
+    transform: rotate(1080deg); } }
+  .textBox h5 {
+    color: #dbdbdb;
+    font-size: 16px;
+    font-weight: 100;
+    margin-bottom: 30px; }
+    @media screen and (max-width: 600px) {
+      .textBox h5 {
+        font-size: 2.8vw; } }
+  .textBox .inputbox {
+    display: inline-block;
+    background-color: #f0f0f0;
+    padding: 14px 10px 14px 36px;
+    border-radius: 100px;
+    color: #111; }
+    @media screen and (max-width: 600px) {
+      .textBox .inputbox {
+        width: 60%; } }
+    .textBox .inputbox input {
+      background-color: transparent;
+      outline: none;
+      border: none;
+      border-bottom: 1px solid #b5b5b5;
+      margin-right: 10px;
+      padding: 4px 14px;
+      box-sizing: border-box; }
+      @media screen and (max-width: 600px) {
+        .textBox .inputbox input {
+          width: calc(100% - 60px); } }
+    .textBox .inputbox button {
+      width: 40px;
+      height: 40px;
+      background-color: #dbdbdb;
+      border-radius: 100%; }
+      .textBox .inputbox button:active {
+        transform: scale(0.95);
+        background-color: #a07e39;
+        color: #f0f0f0; }
+
+.cursor {
+  font-family: "Big Shoulders Stencil Text", "Do Hyeon", sans-serif; }
+  .cursor.color li:nth-of-type(1) {
+    color: transparent; }
+  .cursor.color li:not(:nth-of-type(1)) {
+    -webkit-text-stroke-color: transparent; }
+  .cursor.active li {
+    opacity: 1 !important; }
+  .cursor li {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transform: translate(0, -50%);
+    position: fixed;
+    will-change: top, left;
+    font-size: 50px; }
+    .cursor li:nth-of-type(1) {
+      color: #f0f0f0; }
+    .cursor li:not(:nth-of-type(1)) {
+      opacity: 0;
+      -webkit-text-stroke: 2px;
+      -webkit-text-stroke-color: #f0f0f0;
+      color: transparent; }
+
+/*# sourceMappingURL=style.css.map */

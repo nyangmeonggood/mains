@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1"
+    />
+    <title>cursorChaser</title>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+      integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp"
+      crossorigin="anonymous"
+    /><link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Big+Shoulders+Stencil+Text:wght@700;900&family=Poppins:wght@200;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../scss/css reset.css" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <section id="main">
+      <ul class="corners"><li class="corner corner1"></li><li class="corner corner2"></li><li class="corner corner3"></li><li class="corner corner4"></li></ul>
+      <div class="textBox">
+        <h2>FOLLOWER <span>+</span></h2>
+        <h5>You can change 'Follower' What you Want</h5>
+        <div class="inputbox">
+          <input id="textInput" type="text" maxlength="15" placeholder="Change Here +" onfocus="this.placeholder=''">
+          <button id="textBtn"><i class="far fa-trash-alt"></i></button>
+        </div>
+      </div>
+    </section>
+    <script>
+      const $body = document.body,
+        $inputbox = document.querySelector(".inputbox"),
+        $textInput = document.getElementById("textInput"),
+        $textBtn = document.getElementById("textBtn");
+
+      let $cursor,
+      $cursors,
+      cursorText = "+",
+      cursorLength = 5,
+      cursorTimeout;
+
+      let mouse = {
+        x:undefined,
+        y:undefined
+      }
+      
+      function cursor(){
+        let $ul = document.createElement("ul")
+          $ul.classList.add("cursor")
+
+          for (let i = 0; i < cursorLength;i++){
+            let $li = document.createElement("li")
+            $li.innerText = cursorText
+            $li.style.transition = `all ${i * 0.05}s`
+            $ul.appendChild($li)
+          }
+          $body.appendChild($ul)
+
+          $cursor = document.querySelector("ul.cursor")
+          $cursors = Object.values($cursor.childNodes)
+
+          window.addEventListener("pointermove",(e)=>{
+            document.querySelector("ul.cursor").classList.add("active")
+            clearTimeout(cursorTimeout)
+            cursorTimeout = setTimeout(()=>{
+              document.querySelector("ul.cursor").classList.remove("active")
+            },100)
+            mouse.x = e.clientX
+            mouse.y = e.clientY
+          })
+
+          $inputbox.addEventListener("pointerenter",(e)=>{
+            $cursor.classList.add("color")
+          })
+
+          $inputbox.addEventListener("pointerleave",(e)=>{
+            $cursor.classList.remove("color")
+          })
+      }
+
+      function input(){
+        $textInput.addEventListener("input",(e)=>{
+          let inputValue = e.target.value
+
+          document.querySelector("h5").innerHTML = `You changed 'Follower' to <b>${inputValue}</b>`
+          $cursors.map((item)=>{
+            item.innerText = `${inputValue} .`
+          })
+        })
+
+        $textBtn.addEventListener("click",()=>{
+          $textInput.value = ""
+          $textInput.placeholder = "Change Here +"
+          
+          $cursors.map((item)=>{
+            item.innerText = "+"
+          })
+        })
+      }
+
+      function animate(){
+        window.requestAnimationFrame(animate)
+
+        $cursors.map((item)=>{
+          item.style.top = `${mouse.y + 20}px`
+          item.style.left = `${mouse.x + 20}px`
+        })
+      }
+
+      init()
+      function init(){
+        cursor()
+        input()
+        animate()
+      }
+    </script>
+  </body>
+  
+  </html>
