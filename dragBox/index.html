@@ -39,7 +39,6 @@
       let stageWidth = document.body.clientWidth,
         stageHeight = document.body.clientHeight,
         fieldSize,
-        isClicked = false,
         isTouched = false,
         prevX,
         prevY,
@@ -132,6 +131,8 @@
 
             nextX - prevX > 0 ? (setSkew = 5) : (setSkew = -5);
             console.log("move" + nextX, nextY, currentPosX, currentPosY);
+
+            $text.innerHTML = "Go to Center";
           }
         };
         const up = (e) => {
@@ -165,15 +166,10 @@
       }
 
       function textEvent() {
-        $text.addEventListener("mouseover", () => {
-          $text.innerHTML = "Click to Center";
-        });
-        $text.addEventListener("mouseleave", () => {
-          $text.innerHTML = "Click and Drag to Anywere";
-        });
         $text.addEventListener("pointerup", () => {
           prevPosX = prevPosY = currentPosX = currentPosY = -50;
           $title.innerText = "animals";
+          $text.innerHTML = "Click and Drag to Anywere";
         });
       }
 

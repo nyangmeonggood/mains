@@ -39,8 +39,9 @@ body {
     .text {
       font-size: 2.5vw; } }
   .text:hover::after {
-    animation-play-state: paused;
-    transform: scaleX(0) !important; }
+    animation-name: none;
+    transition: transform 1s;
+    transform: scaleX(1) !important; }
   .text::after {
     content: "";
     position: absolute;
