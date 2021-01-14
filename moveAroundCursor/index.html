@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1"
+    />
+    <title>MoveAroundCursor</title>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+      integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../scss/css reset.css" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="textBox">
+      <h2>Main Title</h2>
+      <p>Button makes circle different</p>
+      <button id="wideBtn">Wide</button>
+      <button id="chaseBtn">Chase</button>
+    </div>
+  </body>
+
+  <script>
+    const $canvas = document.createElement("canvas"),
+      $ctx = $canvas.getContext("2d");
+    document.body.appendChild($canvas);
+
+    const $wideBtn = document.getElementById("wideBtn"),
+      $chaseBtn = document.getElementById("chaseBtn");
+
+    let mouse = {
+      x: document.body.clientWidth / 2,
+      y: document.body.clientHeight / 2,
+      radius: 100,
+    };
+
+    let stageWidth,
+      stageHeight,
+      isPress = false,
+      isChasing = false,
+      pixelRatio = window.devicePixelRatio > 2 ? 2 : 1;
+
+    let numOfCircle = 12,
+      arrayOfCircle;
+
+    const colors = ["#f6b93b", "#2ecc71", "#60a3bc", "#e55039"];
+
+    class Circle {
+      constructor(radius, pos, size, color, speed) {
+        this.radius = radius;
+        this.radiusOG = radius;
+        this.pos = pos;
+        this.size = size;
+        this.color = color;
+        this.speed = speed;
+      }
+
+      draw() {
+        $ctx.save();
+        $ctx.beginPath();
+        $ctx.arc(
+          mouse.x + this.radius * Math.sin(this.pos),
+          mouse.y + this.radius * Math.cos(this.pos),
+          this.size,
+          0,
+          Math.PI * 2
+        );
+        $ctx.fillStyle = this.color;
+        $ctx.fill();
+        $ctx.closePath();
+        $ctx.restore();
+      }
+
+      update() {
+        this.pos += this.speed;
+
+        if (isPress) {
+          if (this.radius >= this.radiusOG) {
+            this.radius += 2;
+          } else if ((this.radius = this.radiusOG * 2)) {
+            this.radius = this.radiusOG * 2;
+          }
+        } else {
+          this.radius > this.radiusOG
+            ? (this.radius -= 3)
+            : (this.radius = this.radiusOG);
+        }
+
+        this.draw();
+      }
+    }
+
+    function resize() {
+      stageWidth = document.body.clientWidth;
+      stageHeight = document.body.clientHeight;
+
+      $canvas.width = stageWidth;
+      $canvas.height = stageHeight;
+      $ctx.scale(pixelRatio, pixelRatio);
+
+      if (stageWidth > stageHeight) {
+        mouse.radius = stageHeight * 0.3;
+      } else {
+        mouse.radius = stageWidth * 0.4;
+      }
+
+      setCircle();
+    }
+    window.addEventListener("resize", () => {
+      resize();
+    });
+
+    function setChase(e) {
+      if (isChasing) {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+      } else {
+        mouse.x = stageWidth / 2;
+        mouse.y = stageHeight / 2;
+      }
+    }
+
+    function mouseEvent() {
+      $chaseBtn.addEventListener("click", () => {
+        isChasing = !isChasing;
+      });
+
+      window.addEventListener("mousemove", (e) => {
+        setChase(e);
+      });
+
+      $wideBtn.addEventListener("mousedown", () => {
+        isPress = true;
+      });
+
+      $wideBtn.addEventListener("mouseup", () => {
+        isPress = false;
+      });
+    }
+
+    function animate() {
+      window.requestAnimationFrame(animate);
+      $ctx.fillRect(0, 0, stageWidth, stageHeight);
+      $ctx.fillStyle = `rgba(0, 0, 0, 0.2)`;
+      $ctx.fill();
+      arrayOfCircle.map((item) => {
+        item.update();
+      });
+    }
+
+    function setCircle() {
+      arrayOfCircle = [];
+
+      setChase();
+
+      for (let i = 0; i < numOfCircle; i++) {
+        let radius = mouse.radius + Math.random() * 30 - 10,
+          pos = Math.random() * Math.PI * 2,
+          speed = Math.random() * 0.02 + 0.02,
+          color = colors[Math.floor(Math.random() * colors.length)];
+        arrayOfCircle.push(new Circle(radius, pos, 8, color, speed));
+      }
+    }
+
+    init();
+    function init() {
+      resize();
+      setCircle();
+      mouseEvent();
+      animate();
+    }
+  </script>
+</html>

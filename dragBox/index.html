@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1"
+    />
+    <title>DragBox</title>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+      integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp"
+      crossorigin="anonymous"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sulphur+Point:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../scss/css reset.css" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <ul id="boxContainer"></ul>
+    <div class="textBox">
+      <h2>Animals</h2>
+    </div>
+    <p class="text">Click and Drag to Anywere</p>
+
+    <script>
+      const $boxContainer = document.getElementById("boxContainer"),
+        $text = document.querySelector(".text"),
+        $textBox = document.querySelector(".textBox"),
+        $title = $textBox.querySelector("h2");
+
+      let $box;
+
+      let stageWidth = document.body.clientWidth,
+        stageHeight = document.body.clientHeight,
+        fieldSize,
+        isClicked = false,
+        isTouched = false,
+        prevX,
+        prevY,
+        nextX,
+        nextY,
+        prevPosX = -50,
+        prevPosY = -50,
+        currentPosX = -50,
+        currentPosY = -50,
+        setSkew = 0,
+        setScale = 0.9;
+
+      const animals = [
+        { name: "crow", src: "./crow.jpg", color: "#847a81" },
+        { name: "deer", src: "./deer.jpg", color: "#c6a889" },
+        { name: "eagle", src: "./eager.jpg", color: "#e59940" },
+        { name: "elephant", src: "./elephant.jpg", color: "#4d4d52" },
+        { name: "flamingo", src: "./flamingo.jpg", color: "#e99ea5" },
+        { name: "fox", src: "./fox.jpg", color: "#c5623a" },
+        { name: "giraffe", src: "./giraffe.jpg", color: "#a18c73" },
+        { name: "impala", src: "./impala.jpg", color: "#ab8157" },
+        { name: "jaguar", src: "./jaguar.jpg", color: "#c1b28a" },
+        { name: "koala", src: "./koala.jpg", color: "#bec3bc" },
+        { name: "puffin", src: "./puffin.jpg", color: "#b75245" },
+        { name: "lynx", src: "./lynx.jpg", color: "#7f6c50" },
+        { name: "raccoon", src: "./raccoon.jpg", color: "#716469" },
+        { name: "redpanda", src: "./redpanda.jpg", color: "#d38575" },
+        { name: "rino", src: "./rino.jpg", color: "#9f9190" },
+        { name: "zebra", src: "./zebra.jpg", color: "#fefefc" },
+      ];
+
+      function setSlide() {
+        for (let i = 0; i < animals.length; i++) {
+          let $li = document.createElement("li"),
+            $img = document.createElement("img"),
+            $h3 = document.createElement("h3"),
+            $div = document.createElement("div");
+
+          $li.classList.add("box", `box${i + 1}`);
+          $img.src = animals[i].src;
+          $img.draggable = false;
+          $h3.innerHTML = animals[i].name;
+
+          $div.appendChild($h3);
+          $li.appendChild($img);
+          $li.appendChild($div);
+
+          $boxContainer.appendChild($li);
+
+          $li.addEventListener("click", () => {
+            $title.innerText = animals[i].name;
+          });
+        }
+
+        $box = Object.values($boxContainer.children);
+      }
+
+      function resize() {
+        (stageWidth = document.body.clientWidth),
+          (stageHeight = document.body.clientHeight);
+
+        if (stageWidth >= stageHeight) {
+          fieldSize = stageWidth;
+        } else {
+          fieldSize = stageHeight;
+        }
+
+        $boxContainer.style.width = `${fieldSize * 1.5}px`;
+        $boxContainer.style.height = `${fieldSize * 1.5}px`;
+      }
+
+      window.addEventListener("resize", () => {
+        resize();
+      });
+
+      function scrollEvent() {
+        const down = (e) => {
+          isTouched = true;
+          prevX = e.clientX;
+          prevY = e.clientY;
+          setScale = 0.8;
+          console.log("start" + prevX, prevY);
+        };
+        const move = (e) => {
+          if (isTouched) {
+            nextX = e.clientX;
+            nextY = e.clientY;
+            currentPosX = prevPosX + ((nextX - prevX) * 100) / fieldSize;
+            currentPosY = prevPosY + ((nextY - prevY) * 100) / fieldSize;
+
+            nextX - prevX > 0 ? (setSkew = 5) : (setSkew = -5);
+            console.log("move" + nextX, nextY, currentPosX, currentPosY);
+          }
+        };
+        const up = (e) => {
+          if (isTouched) {
+            if (currentPosX > -10) currentPosX = -10;
+            if (currentPosX < -90) currentPosX = -90;
+            if (currentPosY > -10) currentPosY = -10;
+            if (currentPosY < -90) currentPosY = -90;
+
+            prevPosX = currentPosX;
+            prevPosY = currentPosY;
+            if (prevPosX === undefined) prevPosX = -50;
+            if (prevPosY === undefined) prevPosY = -50;
+
+            setScale = 0.9;
+            setSkew = 0;
+            console.log("end" + prevPosX, prevPosY);
+            isTouched = false;
+          }
+        };
+
+        window.addEventListener("pointerdown", (e) => {
+          down(e);
+        });
+        window.addEventListener("pointermove", (e) => {
+          move(e);
+        });
+        window.addEventListener("pointerup", (e) => {
+          up(e);
+        });
+      }
+
+      function textEvent() {
+        $text.addEventListener("mouseover", () => {
+          $text.innerHTML = "Click to Center";
+        });
+        $text.addEventListener("mouseleave", () => {
+          $text.innerHTML = "Click and Drag to Anywere";
+        });
+        $text.addEventListener("pointerup", () => {
+          prevPosX = prevPosY = currentPosX = currentPosY = -50;
+          $title.innerText = "animals";
+        });
+      }
+
+      function animate() {
+        window.requestAnimationFrame(animate);
+        $boxContainer.style.transform = `translate(${currentPosX}%,${currentPosY}%)`;
+        if ($box) {
+          $box.map((item) => {
+            item.style.transform = `scale(${setScale}) skewX(${setSkew}deg)`;
+          });
+        }
+      }
+
+      init();
+      function init() {
+        setSlide();
+        resize();
+        scrollEvent();
+        textEvent();
+        animate();
+      }
+    </script>
+  </body>
+</html>
