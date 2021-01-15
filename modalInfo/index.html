@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1"
+    />
+    <title>modalInfo</title>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+      integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp"
+      crossorigin="anonymous"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@100;300;500&family=Yeseva+One&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../scss/css reset.css" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <section id="main">
+      <div class="imgBox">
+        <img src="./bg.jpg" alt />
+        <img src="./mainChair.png" class="chair" alt />
+        <img src="./mainPillow.png" class="pillow" alt />
+
+        <div class="textBox">
+          <h2>Furniture <br />For You</h2>
+          <p>
+            Furniture refers to movable objects intended to support various
+            human<br />
+            activities such as seating (e.g., chairs, stools, and sofas),
+            eating<br />
+            (tables), and sleeping (e.g., beds). Furniture is also used to
+            hold<br />
+            objects at a convenient height for work or to store things
+          </p>
+        </div>
+
+        <i class="fas fa-chevron-up up"></i>
+      </div>
+
+      <div class="modal chair" data-product="chair">
+        <button>
+          <span></span>
+          <span></span>
+        </button>
+        <div>
+          <span>New</span>
+          <h3>chair</h3>
+          <h5>300</h5>
+          <p>One of the basic pieces of furniture, a chair is a type of seat</p>
+          <button>Go to Buy</button>
+        </div>
+        <img src="./chair.png" />
+      </div>
+      <div class="modal pillow" data-product="pillow">
+        <button>
+          <span></span>
+          <span></span>
+        </button>
+        <div>
+          <span>Out of stock</span>
+          <h3>pillow</h3>
+          <h5>15</h5>
+          <p>
+            A pillow is a support of the body at rest for comfort, therapy, or
+            decoration.
+          </p>
+          <button>Go to Buy</button>
+        </div>
+        <img src="./pillow.png" />
+      </div>
+    </section>
+
+    <script>
+      const $modal = document.getElementsByClassName("modal"),
+        $imgBox = document.querySelector(".imgBox");
+
+      Object.values($modal).map((item) => {
+        item.addEventListener("mouseenter", (e) => {
+          let target = e.target.dataset.product;
+          $imgBox.classList.add("imgModal");
+          $imgBox.querySelector(`.${target}`).classList.add("active");
+        });
+        item.addEventListener("mouseleave", (e) => {
+          let target = e.target.dataset.product;
+          $imgBox.classList.remove("imgModal");
+          Object.values($imgBox.getElementsByTagName("img")).map((item) =>
+            item.classList.remove("active")
+          );
+        });
+      });
+    </script>
+  </body>
+</html>
