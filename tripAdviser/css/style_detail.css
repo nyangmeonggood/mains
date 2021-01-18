@@ -1,0 +1,104 @@
+@font-face {
+  font-family: 'S-CoreDream-3Light';
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff") format("woff");
+  font-weight: normal;
+  font-style: normal; }
+@font-face {
+  font-family: 'S-CoreDream-5Medium';
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-5Medium.woff") format("woff");
+  font-weight: normal;
+  font-style: normal; }
+html, body, #tripAdviser {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  font-family: 'S-CoreDream-3Light';
+  background-color: black; }
+
+/*  header  */
+#header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  font-size: 16px;
+  color: #FFF;
+  font-weight: 500;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 0 30px;
+  box-sizing: border-box; }
+  #header .menu-items.left {
+    float: left; }
+  #header .menu-items.right {
+    float: right; }
+    #header .menu-items.right a {
+      margin: 0 5px; }
+
+/* //header */
+#detailContainer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70%;
+  color: white; }
+  #detailContainer::-webkit-scrollbar {
+    width: 10px;
+    background-color: transparent; }
+  #detailContainer::-webkit-scrollbar-thumb {
+    background-color: transparent; }
+  #detailContainer::-webkit-scrollbar-track {
+    background-color: transparent; }
+  #detailContainer .detailHeader {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px; }
+    #detailContainer .detailHeader li {
+      font-size: 14px; }
+      #detailContainer .detailHeader li:first-child {
+        font-size: 20px;
+        font-weight: 600; }
+  #detailContainer #detailMap {
+    width: 100%;
+    height: 300px;
+    margin-bottom: 40px; }
+  #detailContainer .detailTitle {
+    font-size: 18px;
+    margin-bottom: 10px; }
+  #detailContainer .detailDescText {
+    font-size: 14px;
+    letter-spacing: 0.02em;
+    line-height: 1.4em; }
+  @media screen and (max-width: 900px) {
+    #detailContainer {
+      top: 90px;
+      width: 85%;
+      height: calc(100% - 90px);
+      overflow: scroll;
+      transform: translateX(-50%); }
+      #detailContainer .detailHeader {
+        display: block;
+        margin-bottom: 30px; }
+        #detailContainer .detailHeader li:first-child {
+          margin-bottom: 10px; } }
+
+#detailImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden; }
+  #detailImage img {
+    display: block;
+    min-width: 100%;
+    min-height: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.4; }
+
+/*# sourceMappingURL=style_detail.css.map */

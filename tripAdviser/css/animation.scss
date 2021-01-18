@@ -1,0 +1,17 @@
+@keyframes fadeIn{
+    from{
+        opacity: 0;
+    }to{
+        opacity: 0.7;
+    }
+}
+
+@keyframes moveDown{
+    0%{
+        transform: translate(-50%,0) rotate(-45deg) skew(10deg, 10deg);
+    }50%{
+        transform: translate(-50%,10px) rotate(-45deg) skew(10deg, 10deg);
+    }100%{
+        transform: translate(-50%,0) rotate(-45deg) skew(10deg, 10deg);
+    }
+}

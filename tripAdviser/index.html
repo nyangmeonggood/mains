@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css">  
+    
+    <!--calendar-->
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./jquery-ui/jquery-ui.min.css">
+    <script src="./jquery-ui/jquery-ui.min.js"></script>
+    <script src="scripts/calendar.js"></script>
+    <!--calendar-->
+
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/animation.css">
+    <link rel="stylesheet" href="css/style.css">
+    
+    <title>TripAdviser</title>
+</head>
+<body>
+    <img id="bg" src="./images/bg/1.jpg" alt="">
+    <section id="tripAdviser">
+        <div id="header">
+            <div class="menu-items left">
+                <a href="index.html"><span>여행가자 여행</span></a>
+            </div>
+            <div class="menu-items right">
+                <a href="wishlist.html">마이트립<span class="myTripCount"></span></a>
+                <a href="login.html">로그인</a>
+            </div>
+        </div>
+
+        <div id="greeting">
+            <h1>어디로 떠나볼까요?</h1>
+            <p>Where do you want to go?</p>
+        </div>
+        
+        <div id="search-panel">
+            <form id="form-search">
+                <div class="panel-block date">
+                    <label for="from">
+                        일정이 언제부터
+                    </label>
+                    <div>
+                        <input type="text" id="from" readonly class="dateInput"/>
+                    </div>
+                </div>
+
+                <div class="panel-block date">
+                    <label for="to">
+                        언제까지에요?
+                    </label>
+                    <div>
+                        <input type="text" id="to" readonly class="dateInput"/>
+                    </div>
+                </div>
+
+                <div class="panel-block search">
+                    <button type="submit" class="btn_search">
+                        <img src="./images/icon_search_on.png" alt/>
+                        검색
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <div id="spot_list">
+            <div class="closeBtn"></div>
+        </div>
+    </section>
+    
+    <ul id="list_item-template" class="list-item">
+        <li><img class="list_item_pic" alt=""></li>
+        <li class="list_item_desc">
+            <ul>
+                <li class="list_item_name"></li>
+                <li class="list_item_city">
+                    <img src="./images/icon_list_location.png" alt="">
+                    <span class="list_item_city_name"></span>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <div id="downArrow" class="arrow"><span></span></div>
+    <div id="datepicker-bg"></div>
+
+    <script src="scripts/scroll.js"></script>
+    <script src="scripts/bg.js"></script>
+    <script src="scripts/js_cookie.js"></script>
+</body>
+</html>

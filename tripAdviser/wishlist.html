@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css">  
+    
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style_wishlist.css">
+    
+    <title>Wishlist</title>
+</head>
+<body>
+    <img id="bg" src="./images/bg/1.jpg" alt="">
+    <section id="tripAdviser">
+        <div id="header">
+            <div class="menu-items left">
+                <a href="index.html"><span>여행가자 여행</span></a>
+            </div>
+            <div class="menu-items right">
+                <a href="wishlist.html">마이트립<span class="myTripCount"></span></a>
+                <a href="login.html">로그인</a>
+            </div>
+        </div>
+
+        <div id="wishList">
+            <div id="map"></div>
+            <ul id="list"></ul>
+        </div>
+    </section>
+
+    <li class="list_content" id="list_template">
+        <span class="listIcon"><img src="images/icon_list_location.png" alt=""></span>
+        <span class="listName"></span>
+        <span class="listLine"></span>
+        <span class="listCityName"></span>
+        <span class="listRemove"><img src="images/btn_close.png" alt=""></span>
+    </li>
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="scripts/bg.js"></script>
+    <script src="scripts/js_cookie.js"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4eb068c8279429d6ff0ebad854be7c88"></script>
+    <script src="scripts/wishlist.js"></script>
+</body>
+</html>

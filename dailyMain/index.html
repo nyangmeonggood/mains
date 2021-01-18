@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Rubik:wght@500&display=swap" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+    <title>Daily_main.</title>
+</head>
+<body>
+    <section id="main">
+        <div class="pos_center">
+            <!-- clock -->
+            <ul class="timeline">
+                <li class="timeline_ing"></li>
+                <li class="remain_time"></li>
+            </ul>
+            <div class="js_clock clock">
+                <h1>00<span>:</span>00</h1>
+            </div>
+            <!-- //clock -->
+            
+            <!-- name -->
+            <div class="js_name">
+                <form class="js_form">
+                    <input type="text" placeholder="이름을 입력하신 후 엔터를 눌러주세요" 
+                    onfocus="this.placeholder = ''"
+                    onblur="this.placeholder = '이름을 입력하신 후 엔터를 눌러주세요'"/>
+                </form>
+
+                <div class="bar"></div>
+
+                <div class="js_welcome">
+                    <h3 class="js_hi"></h3>
+                    <span class="js_changeName">이름을 바꾸고싶다면?</span>
+                </div>
+            </div>
+            <!-- //name -->
+            
+            <!-- doto list -->
+            <div class="js_toDo">
+                <form class="js_form">
+                    <input type="text" placeholder="오늘의 할 일은?" 
+                    onfocus="this.placeholder = ''"
+                    onblur="this.placeholder = ''"/>
+                </form>
+                <ul class="js_toDoList"></ul>
+            </div>
+            <!-- //doto list -->
+        </div>
+        
+        <div class="weather">
+            <span class="js_weather"></span>
+        </div>
+    </section>
+    
+    <script src="clock.js"></script>
+    <script src="name.js"></script>
+    <script src="bg.js"></script>
+    <script src="todo.js"></script>
+    <script src="weather.js"></script>
+</body>
+</html>

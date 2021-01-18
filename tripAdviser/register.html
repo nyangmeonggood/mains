@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css">  
+
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/register.css">
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+
+    <title>Sign In</title>
+</head>
+<body>
+    <img id="bg" src="./images/bg/1.jpg" alt="">
+    <section id="tripAdviser">
+        <div id="header">
+            <div class="menu-items left">
+                <a href="index.html"><span>여행가자 여행</span></a>
+            </div>
+            <div class="menu-items right">
+                <a href="wishlist.html">마이트립<span class="myTripCount"></span></a>
+                <a href="login.html">로그인</a>
+            </div>
+        </div>
+
+        <div class="form_box md_box">
+            <div class="inner">
+                <div class="title">
+                    <span>여행가자 여행</span>
+                </div>
+                <span class="subTitle">필수 정보를 입력하세요.</span>
+
+                <form id="form_register">
+                    <ul>
+                        <li>
+                            <input id="inpEmail" class="inputLine" type="email" name="email" placeholder="이메일 주소" autofocus />
+                            <div class="txt_warning"></div>
+                        </li>
+
+                        <li>
+                            <input id="inpPW" class="inputLine" type="password" name="password" placeholder="비밀번호"/>
+                            <div class="txt_warning"></div>
+                        </li>
+    
+                        <li>
+                            <input id="inpPWConfirm" class="inputLine" type="password" name="passwordConfirm" placeholder="비밀번호 확인"/>
+                            <div class="txt_warning"></div>
+                        </li>
+                        <li>
+                            <div class="inpBirth">
+                                <select id="selectBirth" class="inputLine">
+                                    <option value="">출생년도 선택</option>
+                                </select>
+                                <div class="txt_warning"></div>
+                            </div>    
+                        </li>
+                        <li>
+                            <ul class="style">
+                                <li><input id="inpOut" type="radio" name="style" value="out" /><label for="inpOut">관광형</label></li>
+                                <li><input id="inpIn" type="radio" name="style" value="in" /><label for="inpIn">휴식형</label></li>
+                                <li class="txt_warning"></li>
+                            </ul>    
+                        </li>
+                        <li>
+                            <div class="divAccept">
+                                <input id="inpAccept" type="checkbox" />
+                                <label for="inpAccept">회원가입을 위한 개인정보 제공에 동의합니다.</label>
+                                <div class="txt_warning"></div>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <div class="btnBox">
+                        <button id="btn_submit" type="submit">가입하기</button>
+                        <button id="btn_back" type="button">돌아가기</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <script src="scripts/bg.js"></script>
+    <script src="scripts/resister.js"></script>
+</body>
+</html>

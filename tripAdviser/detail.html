@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css">  
+
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style_detail.css">
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <title>TripAdviser_Detail</title>
+</head>
+<body>    
+    <section id="tripAdviser">
+        <div id="detailImage"></div>
+        
+        <div id="header">
+            <div class="menu-items left">
+                <a href="index.html"><span>여행가자 여행</span></a>
+            </div>
+            <div class="menu-items right">
+                <a href="wishlist.html">마이트립<span id="myTripCount"></span></a>
+                <a href="login.html">로그인</a>
+            </div>
+        </div>
+        
+        <div id="detailContainer">            
+            <ul class="detailHeader">
+                <li>
+                    <img src="./images/icon_list_location.png" alt=""/>
+                    <span class="detailHeaderName"></span>
+                    <span class="detailHeaderCityName"></span>
+                </li>
+                <li>
+                    <button class="resisterBtn">여행지로 등록하기</button>
+                </li>
+            </ul>
+            <div id="detailMap"></div>
+            <div class="detailDesc">
+                <h2 class="detailTitle">장소소개</h2>
+                <p class="detailDescText"></p>
+            </div>
+            
+        </div>
+    </section>
+    
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4eb068c8279429d6ff0ebad854be7c88"></script>
+    <script src="./scripts/js_cookie.js"></script>
+    <script src="./scripts/detail.js"></script>
+</body>
+</html>

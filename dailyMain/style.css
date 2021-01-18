@@ -1,0 +1,315 @@
+*{
+    margin:0; padding:0;
+    font-family: 'noto sans kr';
+    font-size:inherit;
+    color: inherit;
+    letter-spacing: inherit;
+    text-align: inherit;
+    text-decoration: none;
+    font-style: normal;
+}
+
+li{list-style:none}
+
+input,select,textarea,button{
+	box-sizing:border-box;
+}
+i,em{
+	font-style:normal;
+}
+button{background:none;border:none;cursor:pointer;outline:none;}
+
+body,html{
+    width: 100%; height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+body{background-color: black;overflow: hidden;}
+
+#main{
+    width: 100%; height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.pos_center{
+    position: absolute;
+    top: 50%;left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.show{display: block !important;}
+
+#main>.pos_center{width: 100%;color: white;}
+
+
+
+@media screen and (max-width: 900px) {
+    #main>.pos_center{
+        top:15%;
+        transform: translateX(-50%);
+    }
+}
+
+/* clock */
+
+.timeline{
+    display: none;
+    width: 15vw; height: 0.4vw;
+    position: relative;
+    background-color: #ddd;
+    margin: 0 auto;
+    border-radius: 30vw;
+    position: absolute;
+    left: 50%;
+    bottom: 100%;
+    transform: translateX(-50%);
+    transition: height 0.3s ease-out;
+}
+
+.timeline:hover{
+    height:0.6vw;
+}
+
+.timeline:hover li.remain_time{
+    transform: translateX(-50%) scale(1);
+}
+
+.timeline li.timeline_ing{background-color: #FC2; height: inherit;width: 0%;position: relative;border-radius: inherit;}
+.timeline li.remain_time{
+    text-align: center;
+    position: absolute;
+    bottom: calc(100% + 16px);left: 0;
+    width: 100%;height: 40px;
+    line-height: 39px;
+    background: #fff;
+    transform: translateX(-50%) scale(0);
+    transform-origin: bottom;
+    border-radius: 20px;
+    transition: all 0.5s;
+    color: #111;
+    font-weight: 500;
+}
+.timeline li.remain_time span{
+    display: inline-block;
+    margin: 0 4px;
+    transform: scale(1.1);
+    color: #FC2;
+}
+.timeline li.remain_time::after{
+    content: "";
+    display: block;
+    width: 0; height: 0;
+    margin: 0 auto;
+    margin-top: -1px;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;    
+    border-top: 10px solid #fff;
+
+}
+
+.clock{
+    text-align: center;
+    letter-spacing: 0.08em;
+}
+
+.clock h1{
+    font-family: 'Rubik', sans-serif;
+    font-size: 7vw;
+}
+
+.clock span{font-size: 4.5vw;overflow: hidden;display: inline-block;}
+
+@media screen and (max-width: 900px) {
+    .clock h1{
+        font-size: 25vw;
+    }
+    
+    .clock span{
+        font-size: 14.5vw;
+    }    
+
+    .timeline{
+        width: 50vw; height: 1.3vw;
+        border-radius: 10vw;    
+    }
+
+    .timeline li.remain_time{
+        display: none;
+    }
+}
+/* //clock */
+
+
+/* hi */
+.js_name{
+    text-align: center;
+}
+
+.js_name .js_form,
+.js_welcome,
+.bar{display: none;background-color: transparent;}
+
+.js_name .js_form input{
+    width: 100%;
+    border:none;
+    outline: none;
+    background-color: inherit;
+    color: #fff;
+}
+
+.js_name .js_form input::placeholder{color: white;}
+
+.js_hi{
+    font-size: 1.4vw;
+    margin-bottom: 0.1vw;
+}
+
+.js_changeName{
+    color: #dbdbdb;
+    padding-bottom: 0.1vw;
+    border-bottom: 0.5px solid;
+    font-size: 0.8vw;
+}
+
+.bar{
+    width: 10%;
+    height: 1px;
+    background-color:white;
+    margin:4px auto;
+    animation: blnk;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes blnk{
+    0%{
+        opacity: 0;
+    }
+    70%{
+        opacity: 1;
+    }
+    100%{opacity: 0;}
+}
+
+@media screen and (max-width: 900px) {
+    .js_hi{
+        font-size: 6vw;
+        margin-bottom: 0.1vw;
+    }
+    
+    .js_changeName{
+        font-size: 3vw;
+    }
+}
+/* //hi */
+
+/* to do */
+.js_toDo{
+    display: none;
+    width: 14vw;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 60px;
+}
+
+.js_toDo .js_form{
+    border: 2px solid white;
+    border-radius: 4px;
+}
+
+.js_toDo .js_form input{
+    padding: 4px 0;
+    border:2px solid #111;
+    color: #111;
+    display: block;
+    width: 100%;
+}
+
+.js_toDo .js_form input::placeholder{
+    color: #999;
+}
+
+.wbg_txt{
+    color: #111 !important;
+}
+
+.wbg_box{    
+    border: 2px solid #111;
+    border-radius: 4px;
+}
+
+.js_toDoList{
+    margin-top: 20px;
+    text-align: left;
+}
+
+.js_toDoList li{
+    position: relative;
+    margin-bottom: 6px;
+    padding-left: 18px;
+    box-sizing: border-box;
+    color: white;
+    word-break: break-all;
+}
+.js_toDoList li button{
+    position: absolute;
+    top: 50%; left: 0;
+    transform: translateY(-45%);
+    width: 14px;
+    height: 100%;
+    border: none;
+}
+
+.js_toDoList li button .line{
+    position: absolute;
+    top: 50%; left: 0;
+    transform: translateY(-50%);
+    width: 10px;
+    height: 1px;
+    background-color: white;
+    transition: transform 0.2s;
+}
+.js_toDoList li button .line_0{height: 100%;z-index: 1;background-color:transparent}
+.js_toDoList li button:hover .line_1,
+.js_toDoList li button:hover .line_2{
+    background-color: #EA2027;
+    width: 100%;
+    height: 2px;
+}
+.js_toDoList li button:hover .line_1{transform: translateY(-50%) rotate(-45deg);}
+.js_toDoList li button:hover .line_2{transform: translateY(-50%) rotate(45deg);}
+
+@media screen and (max-width: 900px) {
+    .js_toDo{
+        width: 80%;
+    }
+}
+
+/* //to do */
+
+@keyframes fadeIn{
+    from{
+        opacity: 0;
+    }to{
+        opacity: 0.7;
+    }
+}
+
+.bg{
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+    min-width: 100%; min-height: 100%;
+    z-index: 0;
+    animation: fadeIn 0.5s;
+    opacity: 0.7;
+}
+
+
+/* weather */
+.weather{position: absolute;top: 10px;right: 24px;}
+.js_weather{color: white;
+    font-family: 'Rubik', sans-serif;}
+/* //weather */

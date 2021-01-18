@@ -1,0 +1,255 @@
+body {
+  -ms-overflow-style: none;
+  scrollbar-width: none; }
+  body::-webkit-scrollbar {
+    display: none; }
+
+#main {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh; }
+  #main .textBox {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    color: #f0f0f0; }
+    #main .textBox .innerBox {
+      max-width: 1600px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between; }
+      @media screen and (max-width: 900px) {
+        #main .textBox .innerBox {
+          flex-wrap: wrap;
+          padding: 0 14px;
+          box-sizing: border-box; } }
+    #main .textBox .top {
+      align-items: flex-end; }
+      #main .textBox .top .titleBox h2 {
+        position: relative;
+        display: inline-block;
+        line-height: 0.9em;
+        filter: url(#jiggle0); }
+        @media screen and (min-width: 900px) {
+          #main .textBox .top .titleBox h2 {
+            font-size: 100px; } }
+        @media screen and (max-width: 900px) {
+          #main .textBox .top .titleBox h2 {
+            width: 100%;
+            font-size: 12vw; } }
+        #main .textBox .top .titleBox h2.active:after {
+          position: absolute;
+          content: "";
+          top: 50%;
+          transform: translateY(-40%) rotate(10deg);
+          background-color: #ffdb3d;
+          animation: bbipCard 1s infinite; }
+@keyframes bbipCard {
+  0% {
+    transform: translateY(-40%) rotate(10deg) scale(1); }
+  20% {
+    transform: translateY(-40%) rotate(10deg) scale(1.05); }
+  40% {
+    transform: translateY(-40%) rotate(10deg) scale(1); }
+  60% {
+    transform: translateY(-40%) rotate(10deg) scale(1.05); }
+  80% {
+    transform: translateY(-40%) rotate(10deg) scale(1); }
+  100% {
+    transform: translateY(-40%) rotate(10deg) scale(1); } }
+          @media screen and (min-width: 900px) {
+            #main .textBox .top .titleBox h2.active:after {
+              left: calc(100% + 18px);
+              width: 40px;
+              height: 70px; } }
+          @media screen and (max-width: 900px) {
+            #main .textBox .top .titleBox h2.active:after {
+              top: 20%;
+              left: 96%;
+              width: 6vw;
+              height: 9vw;
+              z-index: -1; } }
+      #main .textBox .top .titleBox::before {
+        content: "IU";
+        display: block;
+        font-weight: 200; }
+        @media screen and (min-width: 900px) {
+          #main .textBox .top .titleBox::before {
+            font-size: 18px;
+            margin-left: 10px; } }
+        @media screen and (max-width: 900px) {
+          #main .textBox .top .titleBox::before {
+            font-size: 3vw;
+            margin-left: 0.5vw; } }
+      #main .textBox .top > span {
+        font-size: 12px;
+        letter-spacing: 0.01em;
+        font-weight: 200; }
+        @media screen and (max-width: 900px) {
+          #main .textBox .top > span {
+            display: none; } }
+        #main .textBox .top > span a {
+          color: #ffdb3d;
+          font-weight: 500; }
+    #main .textBox .bottom {
+      align-items: flex-start;
+      letter-spacing: 0.01em; }
+      @media screen and (min-width: 900px) {
+        #main .textBox .bottom {
+          font-size: 14px; } }
+      @media screen and (max-width: 900px) {
+        #main .textBox .bottom {
+          font-size: 2.5vw; } }
+      #main .textBox .bottom p {
+        font-weight: 100;
+        box-sizing: border-box; }
+        @media screen and (min-width: 900px) {
+          #main .textBox .bottom p {
+            padding-left: 10px; } }
+        @media screen and (max-width: 900px) {
+          #main .textBox .bottom p {
+            padding-left: 1vw; } }
+      @media screen and (max-width: 900px) {
+        #main .textBox .bottom > div {
+          margin: 14px 0 0 1vw; } }
+      #main .textBox .bottom > div a:not(:last-child) {
+        margin-right: 10px; }
+      @media screen and (max-width: 900px) {
+        #main .textBox .bottom > div a {
+          font-size: 2.8vw; } }
+      #main .textBox .bottom > div a:hover:first-child i {
+        color: #ff0202; }
+      #main .textBox .bottom > div a:hover:last-child i {
+        color: #d22c85; }
+  #main .pointer {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #f0f0f0;
+    animation-duration: 1s;
+    animation-iteration-count: infinite; }
+    @media screen and (min-width: 900px) {
+      #main .pointer {
+        animation-name: pointer; } }
+    @media screen and (max-width: 900px) {
+      #main .pointer {
+        animation-name: pointerM; } }
+@keyframes pointer {
+  0% {
+    transform: translate(-50%, 0); }
+  100% {
+    transform: translate(-50%, 10px); } }
+@keyframes pointerM {
+  0% {
+    transform: translate(-50%, 0); }
+  100% {
+    transform: translate(-50%, -10px); } }
+    @media screen and (min-width: 900px) {
+      #main .pointer {
+        font-size: 16px; } }
+    @media screen and (max-width: 900px) {
+      #main .pointer {
+        font-size: 3.5vw; } }
+    #main .pointer.active {
+      animation-name: bbip !important;
+      animation-duration: 1.5s; }
+@keyframes bbip {
+  0% {
+    transform: translateX(-50%) scale(1); }
+  20% {
+    transform: translateX(-50%) scale(1.05); }
+  40% {
+    transform: translateX(-50%) scale(1); }
+  60% {
+    transform: translateX(-50%) scale(1.05); }
+  80% {
+    transform: translateX(-50%) scale(1); }
+  100% {
+    transform: translateX(-50%) scale(1); } }
+  @media screen and (min-width: 900px) {
+    #main .info {
+      display: none; } }
+  @media screen and (max-width: 900px) {
+    #main .info {
+      font-size: 2.5vw;
+      position: absolute;
+      top: 5vw;
+      right: 2vw;
+      width: 60%;
+      color: #f0f0f0;
+      text-align: right; }
+      #main .info i {
+        font-size: 4vw;
+        margin-right: 14px;
+        cursor: pointer; }
+      #main .info.active p {
+        opacity: 1;
+        margin-top: 10px; }
+      #main .info p {
+        background: #fff;
+        box-sizing: border-box;
+        padding: 10px 12px;
+        color: #111;
+        font-weight: 300;
+        word-break: break-all;
+        margin-top: 0;
+        opacity: 0;
+        border-radius: 10px;
+        transition: all 0.5s; }
+        #main .info p a {
+          color: #ffdb3d;
+          font-weight: 600; } }
+
+#line {
+  width: 100%;
+  height: 1px;
+  margin: 12px auto;
+  background: #f0f0f052; }
+  #line.active {
+    background: linear-gradient(110deg, #ffdb3d 100px, #111111 100px, #111111 200px, #ffdb3d 200px, #ffdb3d 300px, #111111 300px) 0% 0%/214px 100%; }
+
+#bg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: fixed;
+  transform: translate(-50%, -50%) scale(1.5);
+  overflow: hidden;
+  min-width: 100%;
+  min-height: 100%;
+  background-color: #111; }
+  #bg .frame {
+    width: 1920px;
+    height: 1080px;
+    min-width: 100%;
+    min-height: 100%; }
+  #bg iframe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    opacity: 0.4; }
+  #bg img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+    opacity: 0.4; }
+  @media screen and (min-width: 900px) {
+    #bg img {
+      display: none; } }
+  @media screen and (max-width: 900px) {
+    #bg iframe {
+      display: none; } }
+
+/*# sourceMappingURL=style.css.map */
