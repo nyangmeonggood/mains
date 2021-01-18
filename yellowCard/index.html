@@ -165,7 +165,7 @@
         ],
       };
 
-      let scrollY, windowHeight, $lineHeight;
+      let scrollY, windowHeight, $lineHeight, $currentIndex;
 
       function resize() {
         windowHeight = window.innerHeight;
@@ -202,10 +202,11 @@
           $pointer.innerHTML = `Do not Scroll!`;
         }
 
-        $title.innerHTML =
-          parallex.title[
-            Math.floor((scrollY / windowHeight) * (parallex.title.length - 1))
-          ];
+        $currentIndex = Math.floor(
+          (scrollY / windowHeight) * (parallex.title.length - 1)
+        );
+        if ($currentIndex <= 0) $currentIndex = 0;
+        $title.innerHTML = parallex.title[$currentIndex];
       }
 
       $info.querySelector("i").addEventListener("click", () => {
