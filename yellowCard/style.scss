@@ -1,0 +1,358 @@
+@import "../scss/styleguide.scss";
+
+$mainColor: #ffdb3d;
+body {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+#main {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+
+  .textBox {
+    @include posCenter;
+    width: 100%;
+    color: #f0f0f0;
+
+    .innerBox {
+      max-width: 1600px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+
+      @media screen and (max-width: 900px) {
+        flex-wrap: wrap;
+        padding: 0 20px;
+        box-sizing: border-box;
+      }
+    }
+
+    .top {
+      align-items: flex-end;
+      .titleBox {
+        h2 {
+          position: relative;
+          display: inline-block;
+          line-height: 0.9em;
+          filter: url(#jiggle0);
+
+          @media screen and (min-width: 900px) {
+            font-size: 100px;
+          }
+
+          @media screen and (max-width: 900px) {
+            width: 100%;
+            font-size: 12vw;
+          }
+
+          &.active {
+            &:after {
+              position: absolute;
+              content: "";
+              top: 50%;
+              transform: translateY(-40%) rotate(10deg);
+              background-color: $mainColor;
+              animation: bbipCard 1s infinite;
+
+              @keyframes bbipCard {
+                0% {
+                  transform: translateY(-40%) rotate(10deg) scale(1);
+                }
+                20% {
+                  transform: translateY(-40%) rotate(10deg) scale(1.05);
+                }
+                40% {
+                  transform: translateY(-40%) rotate(10deg) scale(1);
+                }
+                60% {
+                  transform: translateY(-40%) rotate(10deg) scale(1.05);
+                }
+                80% {
+                  transform: translateY(-40%) rotate(10deg) scale(1);
+                }
+                100% {
+                  transform: translateY(-40%) rotate(10deg) scale(1);
+                }
+              }
+
+              @media screen and (min-width: 900px) {
+                left: calc(100% + 18px);
+                width: 40px;
+                height: 70px;
+              }
+
+              @media screen and (max-width: 900px) {
+                left: calc(100% + 3vw);
+                width: 6vw;
+                height: 9vw;
+              }
+            }
+          }
+        }
+        &::before {
+          content: "IU";
+          display: block;
+          font-weight: 200;
+
+          @media screen and (min-width: 900px) {
+            font-size: 18px;
+            margin-left: 10px;
+          }
+
+          @media screen and (max-width: 900px) {
+            font-size: 3vw;
+            margin-left: 1.5vw;
+          }
+        }
+      }
+
+      > span {
+        font-size: 12px;
+        letter-spacing: 0.01em;
+        font-weight: 200;
+
+        @media screen and (max-width: 900px) {
+          display: none;
+        }
+        a {
+          color: $mainColor;
+          font-weight: 500;
+        }
+      }
+    }
+
+    .bottom {
+      align-items: flex-start;
+      letter-spacing: 0.01em;
+
+      @media screen and (min-width: 900px) {
+        font-size: 14px;
+      }
+
+      @media screen and (max-width: 900px) {
+        font-size: 2.5vw;
+      }
+      p {
+        font-weight: 100;
+        box-sizing: border-box;
+
+        @media screen and (min-width: 900px) {
+          padding-left: 10px;
+        }
+
+        @media screen and (max-width: 900px) {
+          padding-left: 1vw;
+        }
+      }
+
+      > div {
+        @media screen and (max-width: 900px) {
+          margin: 14px 0 0 1vw;
+        }
+        a {
+          &:not(:last-child) {
+            margin-right: 10px;
+          }
+
+          @media screen and (max-width: 900px) {
+            font-size: 2.8vw;
+          }
+
+          &:hover {
+            &:first-child i {
+              color: #ff0202;
+            }
+            &:last-child i {
+              color: #d22c85;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .pointer {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #f0f0f0;
+
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+
+    @media screen and (min-width: 900px) {
+      animation-name: pointer;
+    }
+
+    @media screen and (max-width: 900px) {
+      animation-name: pointerM;
+    }
+
+    @keyframes pointer {
+      0% {
+        transform: translate(-50%, 0);
+      }
+      100% {
+        transform: translate(-50%, 10px);
+      }
+    }
+
+    @keyframes pointerM {
+      0% {
+        transform: translate(-50%, 0);
+      }
+      100% {
+        transform: translate(-50%, -10px);
+      }
+    }
+
+    @media screen and (min-width: 900px) {
+      font-size: 16px;
+    }
+
+    @media screen and (max-width: 900px) {
+      font-size: 3.5vw;
+    }
+
+    &.active {
+      animation-name: bbip !important;
+      animation-duration: 1.5s;
+
+      @keyframes bbip {
+        0% {
+          transform: translateX(-50%) scale(1);
+        }
+        20% {
+          transform: translateX(-50%) scale(1.05);
+        }
+        40% {
+          transform: translateX(-50%) scale(1);
+        }
+        60% {
+          transform: translateX(-50%) scale(1.05);
+        }
+        80% {
+          transform: translateX(-50%) scale(1);
+        }
+        100% {
+          transform: translateX(-50%) scale(1);
+        }
+      }
+    }
+  }
+
+  .info {
+    @media screen and (min-width: 900px) {
+      display: none;
+    }
+
+    @media screen and (max-width: 900px) {
+      font-size: 2.5vw;
+      position: absolute;
+      top: 5vw;
+      right: 2vw;
+      width: 60%;
+      color: #f0f0f0;
+      text-align: right;
+
+      i {
+        font-size: 4vw;
+        margin-right: 14px;
+        cursor: pointer;
+      }
+
+      &.active {
+        p {
+          opacity: 1;
+          margin-top: 10px;
+        }
+      }
+
+      p {
+        background: #fff;
+        box-sizing: border-box;
+        padding: 10px 12px;
+        color: #111;
+        font-weight: 300;
+        word-break: break-all;
+        margin-top: 0;
+        opacity: 0;
+        border-radius: 10px;
+        transition: all 0.5s;
+
+        a {
+          color: $mainColor;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+}
+
+#line {
+  width: 100%;
+  height: 1px;
+  margin: 12px auto;
+  background: #f0f0f052;
+  &.active {
+    background: linear-gradient(
+        110deg,
+        $mainColor 100px,
+        rgb(17, 17, 17) 100px,
+        rgb(17, 17, 17) 200px,
+        $mainColor 200px,
+        $mainColor 300px,
+        rgb(17, 17, 17) 300px
+      )
+      0% 0% / 214px 100%;
+  }
+}
+
+#bg {
+  @include posCenter;
+  position: fixed;
+  transform: translate(-50%, -50%) scale(1.5);
+  overflow: hidden;
+  min-width: 100%;
+  min-height: 100%;
+  background-color: #111;
+
+  .frame {
+    width: 1920px;
+    height: 1080px;
+    min-width: 100%;
+    min-height: 100%;
+  }
+  iframe {
+    @include posCenter;
+    width: 100%;
+    height: 100%;
+    opacity: 0.4;
+  }
+  img {
+    @include posCenter;
+    min-width: 100%;
+    min-height: 100%;
+    opacity: 0.4;
+  }
+
+  @media screen and (min-width: 900px) {
+    img {
+      display: none;
+    }
+  }
+
+  @media screen and (max-width: 900px) {
+    iframe {
+      display: none;
+    }
+  }
+}

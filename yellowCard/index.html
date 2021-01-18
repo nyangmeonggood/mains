@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1"
+    />
+    <title>yellowCard</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+      integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../scss/css reset.css" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <section id="bg">
+      <!--205-->
+      <div class="frame"></div>
+      <iframe
+        src="https://www.youtube.com/embed/nM0xDI5R50E?playlist=nM0xDI5R50E&autoplay=1&loop=1&mute=1&controls=0&showinfo=&modestbranding=1&cc_load_policy=0&iv_load_policy=3&start=142"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      ></iframe>
+      <img src="./bg.jpg" alt />
+    </section>
+    <section id="main">
+      <div class="textBox">
+        <div class="top innerBox">
+          <div class="titleBox">
+            <h2 id="title">BBIBBI</h2>
+          </div>
+          <span>
+            This page layout is made using reference by designed
+            <a
+              href="https://dribbble.com/shots/6073105-Webdive"
+              target="_blank"
+            >
+              @Mahmood-Al-Daoud</a
+            >
+            of Dribbble.</span
+          >
+        </div>
+        <div id="line"></div>
+        <div class="bottom innerBox">
+          <p>
+            "Bbibbi" is a song recorded by South Korean singer-songwriter IU,<br />
+            released digitally on October 10, 2018 through Kakao M.
+          </p>
+          <div>
+            <a
+              href="https://www.youtube.com/watch?v=nM0xDI5R50E"
+              target="_blank"
+              ><i class="fab fa-youtube"></i> View MV</a
+            >
+            <a href="https://www.instagram.com/dlwlrma/?hl=ko" target="_blank"
+              ><i class="fab fa-instagram"></i> Instagram</a
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="pointer">Do not Scroll!</div>
+
+      <div class="info">
+        <i class="fas fa-info-circle"></i>
+        <p>
+          This page layout is made using reference by designed<br />
+          <a href="https://dribbble.com/shots/6073105-Webdive" target="_blank">
+            @Mahmood-Al-Daoud</a
+          >
+          of Dribbble.
+        </p>
+      </div>
+    </section>
+
+    <svg style="display: none">
+      <defs>
+        <filter id="jiggle0">
+          <feTurbulence
+            id="turbulence"
+            baseFrequency="0.02"
+            numOctaves="3"
+            result="noise"
+            seed="0"
+          />
+          <feDisplacementMap
+            id="displacement"
+            in="SourceGraphic"
+            in2="noise"
+            scale="6"
+          />
+        </filter>
+        <filter id="jiggle1">
+          <feTurbulence
+            id="turbulence"
+            baseFrequency="0.02"
+            numOctaves="3"
+            result="noise"
+            seed="1"
+          />
+          <feDisplacementMap in="SourceGraphic" in2="noise" scale="8" />
+        </filter>
+
+        <filter id="jiggle2">
+          <feTurbulence
+            id="turbulence"
+            baseFrequency="0.02"
+            numOctaves="3"
+            result="noise"
+            seed="2"
+          />
+          <feDisplacementMap in="SourceGraphic" in2="noise" scale="6" />
+        </filter>
+        <filter id="jiggle3">
+          <feTurbulence
+            id="turbulence"
+            baseFrequency="0.02"
+            numOctaves="3"
+            result="noise"
+            seed="3"
+          />
+          <feDisplacementMap in="SourceGraphic" in2="noise" scale="8" />
+        </filter>
+
+        <filter id="jiggle4">
+          <feTurbulence
+            id="turbulence"
+            baseFrequency="0.02"
+            numOctaves="3"
+            result="noise"
+            seed="4"
+          />
+          <feDisplacementMap in="SourceGraphic" in2="noise" scale="6" />
+        </filter>
+      </defs>
+    </svg>
+    <script>
+      const $line = document.querySelector("#line"),
+        $pointer = document.querySelector(".pointer"),
+        $info = document.querySelector(".info"),
+        $title = document.querySelector("#title");
+
+      const parallex = {
+        line: [1, 99],
+        lineMargin: [12, 24],
+        title: [
+          "BBIBBI",
+          "YEL",
+          "YELLO",
+          "YELLOW",
+          "YELLOW C",
+          "YELLOW CA",
+          "YELLOW CAR",
+          "YELLOW CARD",
+          "YELLOW CARD",
+        ],
+      };
+
+      let scrollY, windowHeight, $lineHeight;
+
+      function resize() {
+        windowHeight = window.innerHeight;
+        document.body.style.height = `${windowHeight * 2}px`;
+      }
+
+      function parallexFunc(target) {
+        return target[0] + ((target[1] - target[0]) * scrollY) / windowHeight;
+      }
+
+      function titleScroll() {
+        scrollY = window.scrollY;
+        windowHeight = window.innerHeight;
+
+        if (scrollY > 0) {
+          $line.classList.add("active");
+        } else {
+          $line.classList.remove("active");
+        }
+
+        $lineHeight = parallexFunc(parallex.line);
+        $line.style.height = `${$lineHeight}px`;
+
+        $lineMargin = parallexFunc(parallex.lineMargin);
+        $line.style.margin = `${$lineMargin}px auto`;
+
+        if (scrollY >= windowHeight) {
+          $title.classList.add("active");
+          $pointer.classList.add("active");
+          $pointer.innerHTML = `<span class="active">BBIP! BBIP!</span>`;
+        } else {
+          $title.classList.remove("active");
+          $pointer.classList.remove("active");
+          $pointer.innerHTML = `Do not Scroll!`;
+        }
+
+        $title.innerHTML =
+          parallex.title[
+            Math.floor((scrollY / windowHeight) * (parallex.title.length - 1))
+          ];
+      }
+
+      $info.querySelector("i").addEventListener("click", () => {
+        $info.classList.toggle("active");
+      });
+
+      window.addEventListener("scroll", () => {
+        titleScroll();
+      });
+
+      window.addEventListener("resize", () => {
+        resize();
+      });
+
+      init();
+      function init() {
+        resize();
+      }
+    </script>
+  </body>
+</html>
