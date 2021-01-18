@@ -206,6 +206,8 @@
           (scrollY / windowHeight) * (parallex.title.length - 1)
         );
         if ($currentIndex <= 0) $currentIndex = 0;
+        if ($currentIndex >= parallex.title.length - 1)
+          $currentIndex = parallex.title.length - 1;
         $title.innerHTML = parallex.title[$currentIndex];
       }
 
