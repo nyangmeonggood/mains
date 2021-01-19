@@ -90,8 +90,9 @@
 
       const color = ["#e00808", "#ffcc33", "#0bceda"];
 
-      const maxObj = 10,
-        windowWidth = document.body.clientWidth,
+      const maxObj = 10;
+
+      var windowWidth = document.body.clientWidth,
         windowHeight = document.body.clientHeight;
 
       const setMain = () => {
@@ -190,6 +191,8 @@
       };
 
       const canvasResize = () => {
+        windowWidth = document.body.clientWidth;
+        windowHeight = document.body.clientHeight;
         Object.values(document.getElementsByClassName("canvas")).map((item) => {
           item.width = windowWidth;
           item.height = windowHeight;
