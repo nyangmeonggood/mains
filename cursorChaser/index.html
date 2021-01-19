@@ -37,7 +37,7 @@
             id="textInput"
             type="text"
             maxlength="15"
-            placeholder="Change Here +"
+            placeholder="Type Here for Change +"
             onfocus="this.placeholder=''"
           />
           <button id="textBtn"><i class="far fa-trash-alt"></i></button>
@@ -109,7 +109,7 @@
 
         $textBtn.addEventListener("click", () => {
           $textInput.value = "";
-          $textInput.placeholder = "Change Here +";
+          $textInput.placeholder = "Type Here for Change +";
 
           $cursors.map((item) => {
             item.innerText = "+";
