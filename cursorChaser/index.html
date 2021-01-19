@@ -12,19 +12,34 @@
       href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
       integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp"
       crossorigin="anonymous"
-    /><link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Big+Shoulders+Stencil+Text:wght@700;900&family=Poppins:wght@200;400&display=swap" rel="stylesheet">
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Big+Shoulders+Stencil+Text:wght@700;900&family=Poppins:wght@200;400&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="../scss/css reset.css" />
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
     <section id="main">
-      <ul class="corners"><li class="corner corner1"></li><li class="corner corner2"></li><li class="corner corner3"></li><li class="corner corner4"></li></ul>
+      <ul class="corners">
+        <li class="corner corner1"></li>
+        <li class="corner corner2"></li>
+        <li class="corner corner3"></li>
+        <li class="corner corner4"></li>
+      </ul>
       <div class="textBox">
         <h2>FOLLOWER <span>+</span></h2>
         <h5>You can change 'Follower' What you Want</h5>
         <div class="inputbox">
-          <input id="textInput" type="text" maxlength="15" placeholder="Change Here +" onfocus="this.placeholder=''">
+          <input
+            id="textInput"
+            type="text"
+            maxlength="15"
+            placeholder="Change Here +"
+            onfocus="this.placeholder=''"
+          />
           <button id="textBtn"><i class="far fa-trash-alt"></i></button>
         </div>
       </div>
@@ -36,86 +51,87 @@
         $textBtn = document.getElementById("textBtn");
 
       let $cursor,
-      $cursors,
-      cursorText = "+",
-      cursorLength = 5,
-      cursorTimeout;
+        $cursors,
+        cursorText = "+",
+        cursorLength = 5,
+        cursorTimeout;
 
       let mouse = {
-        x:undefined,
-        y:undefined
-      }
-      
-      function cursor(){
-        let $ul = document.createElement("ul")
-          $ul.classList.add("cursor")
+        x: undefined,
+        y: undefined,
+      };
 
-          for (let i = 0; i < cursorLength;i++){
-            let $li = document.createElement("li")
-            $li.innerText = cursorText
-            $li.style.transition = `all ${i * 0.05}s`
-            $ul.appendChild($li)
-          }
-          $body.appendChild($ul)
+      function cursor() {
+        let $ul = document.createElement("ul");
+        $ul.classList.add("cursor");
 
-          $cursor = document.querySelector("ul.cursor")
-          $cursors = Object.values($cursor.childNodes)
+        for (let i = 0; i < cursorLength; i++) {
+          let $li = document.createElement("li");
+          $li.innerText = cursorText;
+          $li.style.transition = `all ${i * 0.05}s`;
+          $ul.appendChild($li);
+        }
+        $body.appendChild($ul);
 
-          window.addEventListener("pointermove",(e)=>{
-            document.querySelector("ul.cursor").classList.add("active")
-            clearTimeout(cursorTimeout)
-            cursorTimeout = setTimeout(()=>{
-              document.querySelector("ul.cursor").classList.remove("active")
-            },100)
-            mouse.x = e.clientX
-            mouse.y = e.clientY
-          })
+        $cursor = document.querySelector("ul.cursor");
+        $cursors = Object.values($cursor.childNodes);
 
-          $inputbox.addEventListener("pointerenter",(e)=>{
-            $cursor.classList.add("color")
-          })
+        window.addEventListener("pointermove", (e) => {
+          document.querySelector("ul.cursor").classList.add("active");
+          clearTimeout(cursorTimeout);
+          cursorTimeout = setTimeout(() => {
+            document.querySelector("ul.cursor").classList.remove("active");
+          }, 100);
+          mouse.x = e.clientX;
+          mouse.y = e.clientY;
+        });
 
-          $inputbox.addEventListener("pointerleave",(e)=>{
-            $cursor.classList.remove("color")
-          })
-      }
+        $inputbox.addEventListener("pointerenter", (e) => {
+          $cursor.classList.add("color");
+        });
 
-      function input(){
-        $textInput.addEventListener("input",(e)=>{
-          let inputValue = e.target.value
-
-          document.querySelector("h5").innerHTML = `You changed 'Follower' to <b>${inputValue}</b>`
-          $cursors.map((item)=>{
-            item.innerText = `${inputValue} .`
-          })
-        })
-
-        $textBtn.addEventListener("click",()=>{
-          $textInput.value = ""
-          $textInput.placeholder = "Change Here +"
-          
-          $cursors.map((item)=>{
-            item.innerText = "+"
-          })
-        })
+        $inputbox.addEventListener("pointerleave", (e) => {
+          $cursor.classList.remove("color");
+        });
       }
 
-      function animate(){
-        window.requestAnimationFrame(animate)
+      function input() {
+        $textInput.addEventListener("input", (e) => {
+          let inputValue = e.target.value;
 
-        $cursors.map((item)=>{
-          item.style.top = `${mouse.y + 20}px`
-          item.style.left = `${mouse.x + 20}px`
-        })
+          document.querySelector(
+            "h5"
+          ).innerHTML = `You changed 'Follower' to <b>${inputValue}</b>`;
+          $cursors.map((item) => {
+            item.innerText = `${inputValue}`;
+          });
+        });
+
+        $textBtn.addEventListener("click", () => {
+          $textInput.value = "";
+          $textInput.placeholder = "Change Here +";
+
+          $cursors.map((item) => {
+            item.innerText = "+";
+          });
+        });
       }
 
-      init()
-      function init(){
-        cursor()
-        input()
-        animate()
+      function animate() {
+        window.requestAnimationFrame(animate);
+
+        $cursors.map((item) => {
+          item.style.top = `${mouse.y + 20}px`;
+          item.style.left = `${mouse.x + 20}px`;
+        });
+      }
+
+      init();
+      function init() {
+        cursor();
+        input();
+        animate();
       }
     </script>
   </body>
-  
-  </html>
+</html>
