@@ -1,223 +1,223 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1"
-    />
-    <title>LoopSlide</title>
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;1,900&family=Roboto:wght@300&display=swap" rel="stylesheet">
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
-      integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp"
-      crossorigin="anonymous"
-    /><link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../scss/css reset.css" />
-    <link rel="stylesheet" href="./style.css" />
-  </head>
-  <body>
-    <header>
-      <h1>BREAD</h1>
-    </header>
-    <section id="main">
-      <ul class="scrollspy"></ul>
-      <div class="slideBox">
-        <ul class="slideContainer container" data-name="slide">
-        </ul>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <title>LoopSlide</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;1,900&family=Roboto:wght@300&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+    integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous" />
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../scss/css reset.css" />
+  <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+  <header>
+    <h1>BREAD</h1>
+  </header>
+  <section id="main">
+    <ul class="scrollspy"></ul>
+    <div class="slideBox">
+      <ul class="slideContainer container" data-name="slide">
+      </ul>
+    </div>
+    <div class="textBox">
+      <div class="subBox box">
+        <ul class="subContainer container" data-name="sub"></ul>
       </div>
-      <div class="textBox">
-        <div class="subBox box">
-          <ul class="subContainer container" data-name="sub"></ul>
-        </div>
-        <div class="titleBox box">
-          <ul class="titleContainer container" data-name="title"></ul>
-        </div>
-        <div class="descBox box">
-          <ul class="descContainer container" data-name="desc"></ul>
-        </div>
+      <div class="titleBox box">
+        <ul class="titleContainer container" data-name="title"></ul>
       </div>
-    </section>
-    <i class="fas fa-chevron-down mDown"></i>
-    <div class="current"><div class="now"></div></div>
-  </body>
-  <script>
-    const BREAD = [
-      {src:"./1.jpg",title:"Bread",sub:"Flour",desc:"Bread is a staple food prepared from a dough of flour and water, usually by baking<br>Throughout recorded history, it has been a prominent food in large parts of the world."},
-      {src:"./2.jpg",title:"Delicious",sub:"Liquids",desc:"Throughout recorded history, it has been a prominent food in large parts of the world.<br>It is one of the oldest man-made foods, having been of significant importance"},
-      {src:"./3.jpg",title:"Good",sub:"Fats",desc:"It is one of the oldest man-made foods, having been of significant importance<br>since the dawn of agriculture, and plays an essential role in both religious rituals and secular culture."},
-      {src:"./4.jpg",title:"Tasty",sub:"Shortenings",desc:"since the dawn of agriculture, and plays an essential role in both religious rituals and secular culture. Bread may be leavened by naturally occurring microbes, chemicals, industrially produced yeast"},
-      {src:"./5.jpg",title:"Sweet",sub:"Salt",desc:"Bread may be leavened by naturally occurring microbes, chemicals, industrially produced yeast<br>.Bread is a staple food prepared from a dough of flour and water, usually by baking"}
-    ]
+      <div class="descBox box">
+        <ul class="descContainer container" data-name="desc"></ul>
+      </div>
+    </div>
+  </section>
+  <i class="fas fa-chevron-down mDown"></i>
+  <div class="current">
+    <div class="now"></div>
+  </div>
+</body>
+<script>
+  const BREAD = [
+    { src: "./1.jpg", title: "Bread", sub: "Flour", desc: "Bread is a staple food prepared from a dough of flour and water, usually by baking<br>Throughout recorded history, it has been a prominent food in large parts of the world." },
+    { src: "./2.jpg", title: "Delicious", sub: "Liquids", desc: "Throughout recorded history, it has been a prominent food in large parts of the world.<br>It is one of the oldest man-made foods, having been of significant importance" },
+    { src: "./3.jpg", title: "Good", sub: "Fats", desc: "It is one of the oldest man-made foods, having been of significant importance<br>since the dawn of agriculture, and plays an essential role in both religious rituals and secular culture." },
+    { src: "./4.jpg", title: "Tasty", sub: "Shortenings", desc: "since the dawn of agriculture, and plays an essential role in both religious rituals and secular culture. Bread may be leavened by naturally occurring microbes, chemicals, industrially produced yeast" },
+    { src: "./5.jpg", title: "Sweet", sub: "Salt", desc: "Bread may be leavened by naturally occurring microbes, chemicals, industrially produced yeast<br>.Bread is a staple food prepared from a dough of flour and water, usually by baking" }
+  ]
 
-    const $slideContainer = document.querySelector(".slideContainer"),
-      $titleContainer = document.querySelector(".titleContainer"),
-      $subContainer = document.querySelector(".subContainer"),
-      $descContainer = document.querySelector(".descContainer"),
-      $scrollspy = document.querySelector(".scrollspy");
+  const $slideContainer = document.querySelector(".slideContainer"),
+    $titleContainer = document.querySelector(".titleContainer"),
+    $subContainer = document.querySelector(".subContainer"),
+    $descContainer = document.querySelector(".descContainer"),
+    $scrollspy = document.querySelector(".scrollspy");
 
-    let $target, $slide;
+  let $target, $slide;
 
-    let index = 0;
+  let index = 0;
 
-    const setSlideLi = (target,index) => {
-      $target = document.getElementsByClassName(target)[0];
-      $slide = Object.values($target.getElementsByTagName("li"));
+  const setSlideLi = (target, index) => {
+    $target = document.getElementsByClassName(target)[0];
+    $slide = Object.values($target.getElementsByTagName("li"));
 
-      var firstSlide = $slide[0],
+    var firstSlide = $slide[0],
       lastSlide = $slide[$slide.length - 1],
       cloneFirst = firstSlide.cloneNode(true),
       cloneLast = lastSlide.cloneNode(true);
 
-      cloneFirst.classList.add(`slide${$slide.length + 1}`)
-      cloneFirst.style.top = `100%`;
-      cloneFirst.style.position = "absolute";
-      cloneLast.classList.add(`slide0`)
-      cloneLast.style.bottom = `100%`;
-      cloneLast.style.position = "absolute";
+    cloneFirst.classList.add(`slide${$slide.length + 1}`)
+    cloneFirst.style.top = `100%`;
+    cloneFirst.style.position = "absolute";
+    cloneLast.classList.add(`slide0`)
+    cloneLast.style.bottom = `100%`;
+    cloneLast.style.position = "absolute";
 
-      $target.appendChild(cloneFirst);
-      $target.insertBefore(cloneLast, firstSlide);
+    $target.appendChild(cloneFirst);
+    $target.insertBefore(cloneLast, firstSlide);
+  }
+
+  function setSlide() {
+
+    for (let i = 0; i < BREAD.length; i++) {
+      //pic
+      var $li = document.createElement("li"),
+        $img = document.createElement("img");
+
+      $img.src = BREAD[i].src;
+      $img.draggable = false;
+
+      $li.classList.add("slide", `slide${i + 1}`)
+      $li.appendChild($img);
+      $slideContainer.appendChild($li)
+      //**pic
+
+      //scrollspy
+      var $li = document.createElement("li")
+
+      $li.dataset.scroll = i;
+      $li.classList.add(`scrollspy${i + 1}`)
+      $li.innerHTML = BREAD[i].title
+      $scrollspy.appendChild($li)
+      //**scrollspy
+
+      //titleContainer
+      var $li = document.createElement("li")
+      $li.classList.add(`title${i + 1}`)
+      $li.innerHTML = `<h2 class="text">${BREAD[i].title}</h2>`
+      $titleContainer.appendChild($li)
+      //**titleContainer
+
+      //subContainer
+      var $li = document.createElement("li")
+      $li.classList.add(`sub${i + 1}`)
+      $li.innerHTML = `<h5 class="text"><span>${BREAD[i].sub}</span></h5>`
+      $li.querySelector("h5").style.maxWidth = `${$titleContainer.querySelector(`.title${i + 1} h2`).clientWidth}px`
+      $subContainer.appendChild($li)
+      //**subContainer
+
+      //descContainer
+      var $li = document.createElement("li")
+      $li.classList.add(`desc${i + 1}`)
+      $li.innerHTML = `<p class="text">${BREAD[i].desc}</p>`
+      $descContainer.appendChild($li)
+      //**descContainer
+
     }
 
-    function setSlide(){ 
+    setSlideLi("slideContainer")
+    setSlideLi("titleContainer")
+    setSlideLi("subContainer")
+    setSlideLi("descContainer")
+  }
 
-      for(let i = 0; i < BREAD.length; i++){
-        //pic
-        var $li = document.createElement("li"),
-          $img = document.createElement("img");
+  function clickEvt() {
+    isLifting = false;
 
-        $img.src = BREAD[i].src;
-        $img.draggable = false;
+    function moveContainer() {
 
-        $li.classList.add("slide",`slide${i+1}`)
-        $li.appendChild($img);
-        $slideContainer.appendChild($li)
-        //**pic
+      $target = Object.values(document.getElementsByClassName("container"));
 
-        //scrollspy
-        var $li = document.createElement("li")
+      $target.map((item) => {
+        item.classList.add("lifting")
+        item.style.top = `${-index * 100}%`
+      })
 
-        $li.dataset.scroll = i;
-        $li.classList.add(`scrollspy${i+1}`)
-        $li.innerHTML = BREAD[i].title
-        $scrollspy.appendChild($li)
-        //**scrollspy
-
-        //titleContainer
-        var $li = document.createElement("li")
-        $li.classList.add(`title${i+1}`)
-          $li.innerHTML = `<h2 class="text">${BREAD[i].title}</h2>`
-          $titleContainer.appendChild($li)
-        //**titleContainer
-
-        //subContainer
-        var $li = document.createElement("li")
-          $li.classList.add(`sub${i+1}`)
-          $li.innerHTML = `<h5 class="text"><span>${BREAD[i].sub}</span></h5>`
-          $li.querySelector("h5").style.maxWidth = `${$titleContainer.querySelector(`.title${i+1} h2`).clientWidth}px`
-          $subContainer.appendChild($li)
-        //**subContainer
-
-        //descContainer
-        var $li = document.createElement("li")
-        $li.classList.add(`desc${i+1}`)
-          $li.innerHTML = `<p class="text">${BREAD[i].desc}</p>`
-          $descContainer.appendChild($li)
-        //**descContainer
-      
-      }
-
-      setSlideLi("slideContainer")
-      setSlideLi("titleContainer")
-      setSlideLi("subContainer")
-      setSlideLi("descContainer")
-    }
-
-    function clickEvt(){
-      isLifting = false;
-
-      function moveContainer (){
-        
-        $target = Object.values(document.getElementsByClassName("container"));
+      $target[$target.length - 1].addEventListener("transitionend", () => {
+        Object.values(document.getElementsByClassName("lifting")).map((item) => {
+          item.classList.remove("lifting")
+        })
 
         $target.map((item) => {
-          item.classList.add("lifting")
-          item.style.top = `${-index * 100}%`
-        })
-
-          $target[$target.length-1].addEventListener("transitionend",() => {
-            Object.values(document.getElementsByClassName("lifting")).map((item) => {
-              item.classList.remove("lifting")
-            })
-
-            $target.map((item) => {
-              Object.values(item.children).map((item) => {
-                item.classList.remove("active")
-              })
-              Object.values(item.getElementsByClassName(`${item.dataset.name}${parseInt(index) + 1}`)).map((item)=>{
-                item.classList.add("active")
-              })
-            })
-
-            if(index === BREAD.length){
-              $target.map((item) => {
-                item.style.top = `0%`      
-              })
-              index = 0
-              $target.map((item) => {
-                item.querySelector(`.${item.dataset.name}1`).classList.add("active")
-              })
-            }
-
-            if(index === -1){
-              $target.map((item) => {
-                item.style.top = `${(BREAD.length -1) * -100}%`     
-              })
-              index = BREAD.length -1
-              $target.map((item) => {
-                item.querySelector(`.${item.dataset.name}${BREAD.length}`).classList.add("active")
-              })
-            }
-            
-            isLifting= false
-
-            Object.values(document.querySelector(".scrollspy").children).map((item)=>{
-              item.classList.remove("active")
-            })
-            document.querySelector(".scrollspy").children[index].classList.add("active")
-
-            document.body.querySelector(".now").style.height = `${(index + 1)/BREAD.length * 100}%`
+          Object.values(item.children).map((item) => {
+            item.classList.remove("active")
           })
-      }
-
-      Object.values(document.querySelector(".scrollspy").children).map((item)=>{
-        item.addEventListener("click",(e)=>{
-          index = e.target.dataset.scroll;
-          moveContainer()
+          Object.values(item.getElementsByClassName(`${item.dataset.name}${parseInt(index) + 1}`)).map((item) => {
+            item.classList.add("active")
+          })
         })
-      })
-      
-      window.addEventListener("wheel", function (event) {
-        if (event.deltaY < 0) {
-          if(!isLifting){
-            isLifting = true;
-            index--;
-            moveContainer()
-          }
-        } else if (event.deltaY > 0) {
-          if(!isLifting){
-            isLifting = true;
-            index++;
-            moveContainer()
-          }
-        }
-      });
 
-      
+        if (index === BREAD.length) {
+          $target.map((item) => {
+            item.style.top = `0%`
+          })
+          index = 0
+          $target.map((item) => {
+            item.querySelector(`.${item.dataset.name}1`).classList.add("active")
+          })
+        }
+
+        if (index === -1) {
+          $target.map((item) => {
+            item.style.top = `${(BREAD.length - 1) * -100}%`
+          })
+          index = BREAD.length - 1
+          $target.map((item) => {
+            item.querySelector(`.${item.dataset.name}${BREAD.length}`).classList.add("active")
+          })
+        }
+
+        isLifting = false
+
+        Object.values(document.querySelector(".scrollspy").children).map((item) => {
+          item.classList.remove("active")
+        })
+        document.querySelector(".scrollspy").children[index].classList.add("active")
+
+        document.body.querySelector(".now").style.height = `${(index + 1) / BREAD.length * 100}%`
+      })
+    }
+
+    Object.values(document.querySelector(".scrollspy").children).map((item) => {
+      item.addEventListener("click", (e) => {
+        index = parseInt(e.target.dataset.scroll);
+        moveContainer()
+      })
+    })
+
+    window.addEventListener("wheel", function (event) {
+      if (event.deltaY < 0) {
+        if (!isLifting) {
+          isLifting = true;
+          index--;
+          moveContainer()
+        }
+      } else if (event.deltaY > 0) {
+        if (!isLifting) {
+          isLifting = true;
+          index++;
+          moveContainer()
+        }
+      }
+    });
+
+
     window.addEventListener(
       "touchstart",
       function (event) {
@@ -238,56 +238,57 @@
           touchoffsetX = touchendX - touchstartX;
           touchoffsetY = touchendY - touchstartY;
 
-            if (Math.abs(touchoffsetY) > 100) {
-              if (touchoffsetY > 100) {
-                if(!isLifting){
-                  isLifting = true;
-                  index--;
-                  moveContainer()
-                }
+          if (Math.abs(touchoffsetY) > 100) {
+            if (touchoffsetY > 100) {
+              if (!isLifting) {
+                isLifting = true;
+                index--;
+                moveContainer()
               }
-              if (touchoffsetY < 100) {
-                if(!isLifting){
-                  isLifting = true;
-                  index++;
-                  moveContainer()
-                }
+            }
+            if (touchoffsetY < 100) {
+              if (!isLifting) {
+                isLifting = true;
+                index++;
+                moveContainer()
+              }
 
-              }
-            }          
+            }
+          }
         }
       },
       false
     );
 
-    }
+  }
 
-    window.addEventListener("resize",() => {
-      resize()
+  window.addEventListener("resize", () => {
+    resize()
+  })
+
+  function resize() {
+    Object.values(document.getElementsByClassName("box")).map((item) => {
+      item.style.height = `${item.querySelector(".text").clientHeight}px`
     })
 
-    function resize(){
-      Object.values(document.getElementsByClassName("box")).map((item)=>{
-        item.style.height = `${item.querySelector(".text").clientHeight}px`
-      })
-
-      for(let i = 0; i<BREAD.length;i++){
-        document.querySelector(`.sub${i+1} h5`).style.maxWidth = `${$titleContainer.querySelector(`.title${i+1} h2`).clientWidth}px`
-      }
+    for (let i = 0; i < BREAD.length; i++) {
+      document.querySelector(`.sub${i + 1} h5`).style.maxWidth = `${$titleContainer.querySelector(`.title${i + 1} h2`).clientWidth}px`
     }
+  }
 
 
-    init()
-    function init(){
-      setSlide()
-      clickEvt()
-      resize()
-      
-      const first = [".slide1",".scrollspy1",".title1",".sub1",".desc1"]
+  init()
+  function init() {
+    setSlide()
+    clickEvt()
+    resize()
 
-      first.map((item)=>{
-        document.querySelector(item).classList.add("active")
-      })
-    }
-  </script>
+    const first = [".slide1", ".scrollspy1", ".title1", ".sub1", ".desc1"]
+
+    first.map((item) => {
+      document.querySelector(item).classList.add("active")
+    })
+  }
+</script>
+
 </html>
