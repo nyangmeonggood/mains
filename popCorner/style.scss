@@ -291,6 +291,10 @@ header {
 
       li {
         font-size: 19px;
+
+        @media screen and (max-width: 1000px) {
+          font-size: 3.5vw;
+        }
       }
 
       .title {

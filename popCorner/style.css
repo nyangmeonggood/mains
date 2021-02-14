@@ -197,6 +197,9 @@ header {
           height: 70%; } }
       .part .content ul li {
         font-size: 19px; }
+        @media screen and (max-width: 1000px) {
+          .part .content ul li {
+            font-size: 3.5vw; } }
       .part .content ul .title {
         font-size: 80px;
         font-family: "Anton", sans-serif;
