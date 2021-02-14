@@ -76,20 +76,21 @@ body {
     position: absolute;
     right: 20px;
     transform: translateY(-50%);
-    width: 24px;
-    height: 24px;
     cursor: pointer;
     animation: swipe 1s infinite; }
     @media screen and (min-width: 900px) {
       #main .box {
-        top: 50%; } }
+        top: 50%;
+        width: 24px;
+        height: 24px; } }
     @media screen and (max-width: 900px) {
       #main .box {
-        bottom: 10px; } }
+        bottom: 3.5%;
+        width: 18px;
+        height: 18px; } }
     #main .box::before {
       content: "SWIPE";
       position: absolute;
-      bottom: calc(100% + 4px);
       left: 50%;
       transform: translateX(-50%);
       color: white;
@@ -97,9 +98,11 @@ body {
       letter-spacing: 0.1em; }
       @media screen and (min-width: 900px) {
         #main .box::before {
+          bottom: calc(100% + 4px);
           font-size: 12px; } }
       @media screen and (max-width: 900px) {
         #main .box::before {
+          bottom: 100%;
           font-size: 1vw; } }
 @keyframes swipe {
   0% {

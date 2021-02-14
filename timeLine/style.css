@@ -49,12 +49,12 @@ body {
     .slideContainer .slide.active .right {
       opacity: 1;
       transform: rotate(30deg) translateX(10%);
-      transition: transform 0.2s 0.25s; }
+      transition: transform 0.5s 0.25s; }
       .slideContainer .slide.active .right img.imgShadow {
         transform: translate(-30%, -44%) scale(0.9);
         filter: blur(8px) brightness(0);
         opacity: 0.5;
-        transition: transform 0.2s 0.4s; }
+        transition: transform 0.5s 0.4s; }
     .slideContainer .slide > div {
       position: absolute;
       top: 50%;
@@ -95,7 +95,7 @@ body {
         .slideContainer .slide > div .left p {
           transform: translateX(-30px);
           opacity: 0;
-          transition: transform 0.3s, opacity 0.3s; }
+          transition: transform 0.5s, opacity 0.3s; }
         .slideContainer .slide > div .left > span {
           display: inline-block;
           margin-bottom: 4px;

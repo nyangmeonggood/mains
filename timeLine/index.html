@@ -1,46 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1"
-    />
-    <title>timeLine</title>
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
-      integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp"
-      crossorigin="anonymous"
-    />
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Staatliches&family=Rajdhani:wght@300&family=Roboto:wght@300&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="../scss/css reset.css" />
-    <link rel="stylesheet" href="./style.css" />
-  </head>
-  <body>
-    <section id="main">
-      <svg
-        version="1.1"
-        id="logo"
-        xmlns="http://www.w3.org/2000/svg"
-        xmlns:xlink="http://www.w3.org/1999/xlink"
-        x="0px"
-        y="0px"
-        viewBox="0 0 382.2 93.4"
-        xml:space="preserve"
-      >
-        <style type="text/css">
-          .st0 {
-            fill: #ffffff;
-          }
-        </style>
-        <path
-          class="st0"
-          d="M42,41.8L37.4,61h15.7c-1.5,10.3-26.9,14.7-23-10.2C32.8,33.4,54.6,24,59.4,37.5l27-6.8
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <title>timeLine</title>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+    integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Staatliches&family=Rajdhani:wght@300&family=Roboto:wght@300&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="../scss/css reset.css" />
+  <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+  <section id="main">
+    <svg version="1.1" id="logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+      y="0px" viewBox="0 0 382.2 93.4" xml:space="preserve">
+      <style type="text/css">
+        .st0 {
+          fill: #ffffff;
+        }
+      </style>
+      <path class="st0" d="M42,41.8L37.4,61h15.7c-1.5,10.3-26.9,14.7-23-10.2C32.8,33.4,54.6,24,59.4,37.5l27-6.8
 	C82.5,13.9,67.6,5.6,51.3,5.6c-22.5,0-47.7,15.7-51,46.6c-2.8,25.9,16.7,40.2,39.2,39.8c16.1-0.3,28.7-6.1,34.9-10.5l9.4-39.8
 	C83.8,41.8,42,41.8,42,41.8z M91,32.8L77.5,90.3h28L119,32.8C119,32.8,91,32.8,91,32.8z M131.8,0l-21.3,90.3h28L159.8,0H131.8z
 	 M124.9,8.3h-28l-4.8,21l29.9-7.4L124.9,8.3z M354.2,29c-11.4,0-21,5.2-27.5,13.2c1-4.2,2.2-9.1,2.3-9.1h-11.6l5.9-24.8h-28
@@ -49,335 +33,370 @@
 	c-6,0-7.7-5.1-6.5-9.7l40.7,0c0.4-1.4,1.3-2.9,1.6-7.9c0.1-1.5,0-2.9,0-4.3h7.8l-8.9,37.4h28l8.9-37.4h6.2l-8.8,37.4h28l8.9-37.4
 	h7.6c0,0.1,0,0.1,0,0.1c-1.4,3.3-2.3,6.9-2.8,10.6l0,0c-1.4,10,1.9,29.8,27.9,29.8c12.6,0,28.8-8.2,32.7-19.6L356.1,70
 	c-2.4,3.2-6.1,5.1-9.7,5.1c-6,0-7.7-5.1-6.5-9.7l0,0l40.7,0c0.3-1.4,1.2-2.9,1.5-8C383.5,37.9,368.3,29,354.2,29 M218.9,53.8
-	l-15.5-0.1C205.8,45.6,220.1,43.8,218.9,53.8 M358.5,53.8l-15.5,0C345.4,45.8,359.7,43.9,358.5,53.8"
-        />
-      </svg>
-      <ul class="slideContainer"></ul>
-      <i class="far fa-hand-pointer swipe"></i>
-      <div class="timeLine">
-        <ul></ul>
-        <div class="timeBar"></div>
-      </div>
-    </section>
-    <script>
-      const shaver = [
-        {
-          year: "1900",
-          src: "./1900.png",
-          title: "PROTOTYPE",
-          desc:
-            "King C. Gillette has the revolutionary idea of disposable blades so thin and so strong they were deemed impossible to forge by MIT-trained scientists. By 1901, he’d proven them wrong with his breakthrough innovation.",
-        },
-        {
-          year: "1920",
-          src: "./1920.png",
-          title: "NEW AND IMPROVED",
-          desc: `Gillette® set out to create the first mechanical innovation since the creation of the company — to make the blade angle more accurate and improve the grip, as well as the opening and closing adjustments. The first "instrument of precision”.`,
-        },
-        {
-          year: "1957",
-          src: "./1957.png",
-          title: "ADJUSTABLE",
-          desc:
-            "The first adjustable razor with three settings was introduced for light, medium, and heavy beards. Over time more settings were added, totaling nine. This was the company’s first distinctly mechanical effort at making a razor “share the work” of adjusting the blade angle to the face.",
-        },
-        {
-          year: "1965",
-          src: "./1965.png",
-          title: "TECHMATIC",
-          desc:
-            "This was the first system razor with a ‘continuous band,’ spooled and retractable. It meant that the user would no longer have to touch the blade. This design was a highly stylized evolution of the original Techmatic, which had been a Gillette staple razor for over 30 years; an expression of the industrial design experimentation of the era.",
-        },
-        {
-          year: "1998",
-          src: "./1998.png",
-          title: "MACH3®",
-          desc:
-            "Gillette breaks the performance barrier with the MACH3®, the first 3-blade technology, for an even smoother, closer shave.",
-        },
-        {
-          year: "2006",
-          src: "./2006.png",
-          title: "FUSION5™",
-          desc:
-            "Gillette Fusion5™ razors debut in Manual and Power versions. They feature five blades and beat the MACH3 on every attribute, providing Gillette’s closest and most comfortable shave ever.",
-        },
-        {
-          year: "2014",
-          src: "./2014.png",
-          title: "PROGLIDE® WITH FLEXBALL™",
-          desc:
-            "The Gillette Fusion5™ ProGlide® with FlexBall™ Technology Razor is the next evolution in our shaving revolution — a pivoting razor built to maximize contact with every contour of a man’s face.",
-        },
-        {
-          year: "2015",
-          src: "./2015.png",
-          title: "FUSION5™ PROSHIELD®",
-          desc:
-            "Gillette Fusion5™ ProShield® with lubrication BEFORE and after the blades, shields from irritation. ProShield razors also feature FlexBall technology.",
-        },
-      ];
+	l-15.5-0.1C205.8,45.6,220.1,43.8,218.9,53.8 M358.5,53.8l-15.5,0C345.4,45.8,359.7,43.9,358.5,53.8" />
+    </svg>
+    <ul class="slideContainer"></ul>
+    <i class="far fa-hand-pointer swipe"></i>
+    <div class="timeLine">
+      <ul></ul>
+      <div class="timeBar"></div>
+    </div>
+  </section>
+  <script>
+    const shaver = [
+      {
+        year: "1900",
+        src: "./1900.png",
+        title: "PROTOTYPE",
+        desc:
+          "King C. Gillette has the revolutionary idea of disposable blades so thin and so strong they were deemed impossible to forge by MIT-trained scientists. By 1901, he’d proven them wrong with his breakthrough innovation.",
+      },
+      {
+        year: "1920",
+        src: "./1920.png",
+        title: "NEW AND IMPROVED",
+        desc: `Gillette® set out to create the first mechanical innovation since the creation of the company — to make the blade angle more accurate and improve the grip, as well as the opening and closing adjustments. The first "instrument of precision”.`,
+      },
+      {
+        year: "1957",
+        src: "./1957.png",
+        title: "ADJUSTABLE",
+        desc:
+          "The first adjustable razor with three settings was introduced for light, medium, and heavy beards. Over time more settings were added, totaling nine. This was the company’s first distinctly mechanical effort at making a razor “share the work” of adjusting the blade angle to the face.",
+      },
+      {
+        year: "1965",
+        src: "./1965.png",
+        title: "TECHMATIC",
+        desc:
+          "This was the first system razor with a ‘continuous band,’ spooled and retractable. It meant that the user would no longer have to touch the blade. This design was a highly stylized evolution of the original Techmatic, which had been a Gillette staple razor for over 30 years; an expression of the industrial design experimentation of the era.",
+      },
+      {
+        year: "1998",
+        src: "./1998.png",
+        title: "MACH3®",
+        desc:
+          "Gillette breaks the performance barrier with the MACH3®, the first 3-blade technology, for an even smoother, closer shave.",
+      },
+      {
+        year: "2006",
+        src: "./2006.png",
+        title: "FUSION5™",
+        desc:
+          "Gillette Fusion5™ razors debut in Manual and Power versions. They feature five blades and beat the MACH3 on every attribute, providing Gillette’s closest and most comfortable shave ever.",
+      },
+      {
+        year: "2014",
+        src: "./2014.png",
+        title: "PROGLIDE® WITH FLEXBALL™",
+        desc:
+          "The Gillette Fusion5™ ProGlide® with FlexBall™ Technology Razor is the next evolution in our shaving revolution — a pivoting razor built to maximize contact with every contour of a man’s face.",
+      },
+      {
+        year: "2015",
+        src: "./2015.png",
+        title: "FUSION5™ PROSHIELD®",
+        desc:
+          "Gillette Fusion5™ ProShield® with lubrication BEFORE and after the blades, shields from irritation. ProShield razors also feature FlexBall technology.",
+      },
+    ];
 
-      const $timeLine = document.querySelector(".timeLine"),
-        $slideContainer = document.querySelector(".slideContainer");
+    const $timeLine = document.querySelector(".timeLine"),
+      $slideContainer = document.querySelector(".slideContainer");
 
-      const $currentBall = document.createElement("div");
+    const $currentBall = document.createElement("div");
 
-      var $timelineHalf,
-        $timeLineImg,
-        $timeLineYear,
-        $timeLineBall,
-        $slide,
-        $currentBallPos = -1;
+    let isLifting = false, liftTimeout;
 
-      function setTimeline() {
-        shaver.map((item, index) => {
-          let $li = document.createElement("li"),
-            $img = document.createElement("img"),
-            $p = document.createElement("p"),
-            $ball = document.createElement("div");
+    var $timelineHalf,
+      $timeLineImg,
+      $timeLineYear,
+      $timeLineBall,
+      $slide,
+      $currentBallPos = -1;
 
-          $li.style.width = `calc(100% / ${shaver.length})`;
-          $li.classList.add("timelineYear", `timelineYear${index}`);
-          $img.src = item.src;
-          $img.classList.add("timelineImg", `timelineImg${index}`);
-          $img.draggable = false;
-          $p.innerHTML = item.year;
-          $ball.classList.add("ball", `ball${index}`);
-          $li.dataset.time = index;
-          $img.dataset.time = index;
-          $p.dataset.time = index;
-          $ball.dataset.time = index;
+    function setTimeline() {
+      shaver.map((item, index) => {
+        let $li = document.createElement("li"),
+          $img = document.createElement("img"),
+          $p = document.createElement("p"),
+          $ball = document.createElement("div");
 
-          $li.appendChild($img);
-          $li.appendChild($p);
-          $timeLine.querySelector("ul").appendChild($li);
+        $li.style.width = `calc(100% / ${shaver.length})`;
+        $li.classList.add("timelineYear", `timelineYear${index}`);
+        $img.src = item.src;
+        $img.classList.add("timelineImg", `timelineImg${index}`);
+        $img.draggable = false;
+        $p.innerHTML = item.year;
+        $ball.classList.add("ball", `ball${index}`);
+        $li.dataset.time = index;
+        $img.dataset.time = index;
+        $p.dataset.time = index;
+        $ball.dataset.time = index;
 
-          $timeLine.querySelector(".timeBar").appendChild($ball);
-        });
+        $li.appendChild($img);
+        $li.appendChild($p);
+        $timeLine.querySelector("ul").appendChild($li);
 
-        $currentBall.classList.add("currentBall");
-        $currentBall.style.left = `${$timelineHalf / 2}px`;
-        $timeLine.querySelector(".timeBar").appendChild($currentBall);
+        $timeLine.querySelector(".timeBar").appendChild($ball);
+      });
+
+      $currentBall.classList.add("currentBall");
+      $currentBall.style.left = `${$timelineHalf / 2}px`;
+      $timeLine.querySelector(".timeBar").appendChild($currentBall);
+    }
+
+    function setSlide() {
+      shaver.map((item, index) => {
+        let $li = document.createElement("li"),
+          $content = document.createElement("div"),
+          $blur = document.createElement("div"),
+          $left = document.createElement("div"),
+          $right = document.createElement("div"),
+          $img = document.createElement("img"),
+          $imgShadow = document.createElement("img"),
+          $year = document.createElement("span"),
+          $title = document.createElement("h3"),
+          $desc = document.createElement("p");
+
+        $content.classList.add("content");
+        $blur.classList.add("blur");
+        $left.classList.add("left");
+        $right.classList.add("right");
+        $imgShadow.classList.add("imgShadow");
+        $year.classList.add("year");
+        $title.classList.add("title");
+        $desc.classList.add("desc");
+        $li.classList.add("slide", `slide${index}`);
+
+        $year.innerHTML = item.year;
+        $title.innerHTML = `<span>${item.title}</span>`;
+        $desc.innerHTML = item.desc;
+        $img.src = item.src;
+        $img.draggable = false;
+        $imgShadow.src = item.src;
+        $imgShadow.draggable = false;
+        //   $content.style.backgroundImage = `url(${item.src})`;
+
+        $left.appendChild($year);
+        $left.appendChild($title);
+        $left.appendChild($desc);
+
+        $right.appendChild($imgShadow);
+        $right.appendChild($img);
+
+        $content.appendChild($blur);
+        $content.appendChild($left);
+        $content.appendChild($right);
+        $li.appendChild($content);
+        $slideContainer.appendChild($li);
+      });
+    }
+
+    function moveSlide() {
+      console.log(isLifting)
+
+      if ($currentBallPos < -1) $currentBallPos = -1;
+      if ($currentBallPos > shaver.length - 1)
+        $currentBallPos = shaver.length - 1;
+
+      if ($currentBallPos === -1) {
+        $timeLine.classList.remove("active");
+        document.querySelector(".swipe").classList.remove("active");
+        document.querySelector("svg").classList.remove("active");
+        $currentBall.style.opacity = 0;
+      } else {
+        $timeLine.classList.add("active");
+        document.querySelector(".swipe").classList.add("active");
+        document.querySelector("svg").classList.add("active");
+        $currentBall.style.opacity = 1;
       }
 
-      function setSlide() {
-        shaver.map((item, index) => {
-          let $li = document.createElement("li"),
-            $content = document.createElement("div"),
-            $blur = document.createElement("div"),
-            $left = document.createElement("div"),
-            $right = document.createElement("div"),
-            $img = document.createElement("img"),
-            $imgShadow = document.createElement("img"),
-            $year = document.createElement("span"),
-            $title = document.createElement("h3"),
-            $desc = document.createElement("p");
-
-          $content.classList.add("content");
-          $blur.classList.add("blur");
-          $left.classList.add("left");
-          $right.classList.add("right");
-          $imgShadow.classList.add("imgShadow");
-          $year.classList.add("year");
-          $title.classList.add("title");
-          $desc.classList.add("desc");
-          $li.classList.add("slide", `slide${index}`);
-
-          $year.innerHTML = item.year;
-          $title.innerHTML = `<span>${item.title}</span>`;
-          $desc.innerHTML = item.desc;
-          $img.src = item.src;
-          $img.draggable = false;
-          $imgShadow.src = item.src;
-          $imgShadow.draggable = false;
-          //   $content.style.backgroundImage = `url(${item.src})`;
-
-          $left.appendChild($year);
-          $left.appendChild($title);
-          $left.appendChild($desc);
-
-          $right.appendChild($imgShadow);
-          $right.appendChild($img);
-
-          $content.appendChild($blur);
-          $content.appendChild($left);
-          $content.appendChild($right);
-          $li.appendChild($content);
-          $slideContainer.appendChild($li);
-        });
-      }
-
-      function moveSlide() {
-        if ($currentBallPos < -1) $currentBallPos = -1;
-        if ($currentBallPos > shaver.length - 1)
-          $currentBallPos = shaver.length - 1;
-
-        if ($currentBallPos === -1) {
-          $timeLine.classList.remove("active");
-          document.querySelector(".swipe").classList.remove("active");
-          document.querySelector("svg").classList.remove("active");
-          $currentBall.style.opacity = 0;
-        } else {
-          $timeLine.classList.add("active");
-          document.querySelector(".swipe").classList.add("active");
-          document.querySelector("svg").classList.add("active");
-          $currentBall.style.opacity = 1;
-        }
-
-        $currentBall.style.left = `${
-          $timelineHalf / 2 + $timelineHalf * $currentBallPos
+      $currentBall.style.left = `${$timelineHalf / 2 + $timelineHalf * $currentBallPos
         }px`;
-        $slideContainer.style.left = `${-100 * $currentBallPos}%`;
+      $slideContainer.style.left = `${-100 * $currentBallPos}%`;
 
-        const moveArray = [$slide, $timeLineYear];
+      const moveArray = [$slide, $timeLineYear];
 
-        moveArray.map((item) => {
-          item.map((item2) => {
-            item2.classList.remove("active");
-          });
-          if ($currentBallPos > -1) {
-            document
-              .querySelector(`.timelineYear${$currentBallPos}`)
-              .classList.add("active");
-            document
-              .querySelector(`.slide${$currentBallPos}`)
-              .classList.add("active");
-          }
+      moveArray.map((item) => {
+        item.map((item2) => {
+          item2.classList.remove("active");
         });
-      }
+        if ($currentBallPos > -1) {
+          document
+            .querySelector(`.timelineYear${$currentBallPos}`)
+            .classList.add("active");
+          document
+            .querySelector(`.slide${$currentBallPos}`)
+            .classList.add("active");
+        }
+      });
 
-      function clickEvent() {
-        $timeLineImg = Object.values(
-          document.getElementsByClassName("timelineImg")
-        );
-        $timeLineYear = Object.values(
-          document.getElementsByClassName("timelineYear")
-        );
-        $timeLineBall = Object.values(document.getElementsByClassName("ball"));
-        $slide = Object.values(document.getElementsByClassName("slide"));
+      $slideContainer.addEventListener("transitionend", () => {
+        clearTimeout(liftTimeout)
+        liftTimeout = setTimeout(() => {
+          isLifting = false;
+          console.log(isLifting)
+        }, 150)
+      })
+    }
 
-        const setTimelineArray = [$timeLineImg, $timeLineBall, $timeLineYear];
+    function clickEvent() {
+      $timeLineImg = Object.values(
+        document.getElementsByClassName("timelineImg")
+      );
+      $timeLineYear = Object.values(
+        document.getElementsByClassName("timelineYear")
+      );
+      $timeLineBall = Object.values(document.getElementsByClassName("ball"));
+      $slide = Object.values(document.getElementsByClassName("slide"));
 
-        setTimelineArray.map((item) => {
-          item.map((item2) => {
-            item2.addEventListener("click", (e) => {
-              $currentBallPos = e.target.dataset.time;
-              moveSlide();
-            });
-          });
-        });
+      const setTimelineArray = [$timeLineImg, $timeLineBall, $timeLineYear];
 
-        document.querySelector("svg").addEventListener("click", () => {
-          $currentBallPos = -1;
-          moveSlide();
-        });
-      }
-
-      function wheelEvent() {
-        var prevX, nextX, prevY, nextY;
-
-        var touchstartX,
-          touchstartY,
-          touchendX,
-          touchendY,
-          touchoffsetX,
-          touchoffsetY;
-
-        window.addEventListener("pointerdown", function (event) {
-          event.preventDefault();
-
-          prevX = event.clientX;
-          prevY = event.clientY;
-        });
-        window.addEventListener("pointermove", function (event) {
-          event.preventDefault();
-
-          nextX = event.clientX;
-          nextY = event.clientY;
-        });
-        window.addEventListener("pointerup", function (event) {
-          if (prevX - nextX < 100 && prevX - nextX > -100) {
-            return;
-          }
-
-          if (prevX > nextX) {
-            $currentBallPos++;
+      setTimelineArray.map((item) => {
+        item.map((item2) => {
+          item2.addEventListener("click", (e) => {
+            $currentBallPos = e.target.dataset.time;
             moveSlide();
-          }
-          if (prevX < nextX) {
+          });
+        });
+      });
+
+      document.querySelector("svg").addEventListener("click", () => {
+        $currentBallPos = -1;
+        moveSlide();
+      });
+    }
+
+    function wheelEvent() {
+      var prevX, nextX, prevY, nextY;
+
+      var touchstartX,
+        touchstartY,
+        touchendX,
+        touchendY,
+        touchoffsetX,
+        touchoffsetY;
+
+      window.addEventListener("wheel", function (event) {
+        if (event.deltaY < 0) {
+          if (!isLifting) {
+            isLifting = true;
             $currentBallPos--;
             moveSlide();
           }
+        } else if (event.deltaY > 0) {
+          if (!isLifting) {
+            isLifting = true;
+            $currentBallPos++;
+            moveSlide();
+          }
+        }
+      });
 
-          prevX = nextX = prevY = nextY = 0;
-        });
+      window.addEventListener("pointerdown", function (event) {
+        event.preventDefault();
 
-        window.addEventListener(
-          "touchstart",
-          function (event) {
-            var touch = event.touches[0];
-            touchstartX = touch.clientX;
-            touchstartY = touch.clientY;
-          },
-          false
-        );
-        window.addEventListener(
-          "touchend",
-          function (event) {
-            if (event.touches.length == 0) {
-              var touch = event.changedTouches[event.changedTouches.length - 1];
-              touchendX = touch.clientX;
-              touchendY = touch.clientY;
+        prevX = event.clientX;
+        prevY = event.clientY;
+      });
+      window.addEventListener("pointermove", function (event) {
+        event.preventDefault();
 
-              touchoffsetX = touchendX - touchstartX;
-              touchoffsetY = touchendY - touchstartY;
+        nextX = event.clientX;
+        nextY = event.clientY;
+      });
+      window.addEventListener("pointerup", function (event) {
+        if (prevX - nextX < 100 && prevX - nextX > -100) {
+          return;
+        }
 
-              if (Math.abs(touchoffsetX) > 100) {
-                if (touchoffsetX > 100) {
+        if (prevX > nextX && !isLifting) {
+          isLifting = true
+          $currentBallPos++;
+          moveSlide();
+
+        }
+        if (prevX < nextX && !isLifting) {
+          isLifting = true
+          $currentBallPos--;
+          moveSlide();
+
+        }
+
+        prevX = nextX = prevY = nextY = 0;
+      });
+
+      window.addEventListener(
+        "touchstart",
+        function (event) {
+          var touch = event.touches[0];
+          touchstartX = touch.clientX;
+          touchstartY = touch.clientY;
+        },
+        false
+      );
+      window.addEventListener(
+        "touchend",
+        function (event) {
+          if (event.touches.length == 0) {
+            var touch = event.changedTouches[event.changedTouches.length - 1];
+            touchendX = touch.clientX;
+            touchendY = touch.clientY;
+
+            touchoffsetX = touchendX - touchstartX;
+            touchoffsetY = touchendY - touchstartY;
+
+            if (Math.abs(touchoffsetX) > 100) {
+              if (touchoffsetX > 100) {
+                if (!isLifting) {
+                  isLifting = true;
                   $currentBallPos--;
                   moveSlide();
                 }
-                if (touchoffsetX < 100) {
+              }
+              if (touchoffsetX < 100) {
+                if (!isLifting) {
+                  isLifting = true;
                   $currentBallPos++;
                   moveSlide();
                 }
               }
             }
-          },
-          false
-        );
-      }
+          }
+        },
+        false
+      );
+    }
 
-      function resize() {
-        $timelineHalf =
-          $timeLine.querySelector("ul").clientWidth / shaver.length;
-        $currentBall.style.left = `${
-          $timelineHalf / 2 + $timelineHalf * $currentBallPos
+    function resize() {
+      $timelineHalf =
+        $timeLine.querySelector("ul").clientWidth / shaver.length;
+      $currentBall.style.left = `${$timelineHalf / 2 + $timelineHalf * $currentBallPos
         }px`;
 
-        $slideContainer.style.width = `${
-          document.body.clientWidth * shaver.length
+      $slideContainer.style.width = `${document.body.clientWidth * shaver.length
         }px`;
-        $slide.map((item) => {
-          item.style.width = `calc(100% / ${shaver.length})`;
-        });
-      }
-
-      window.addEventListener("resize", () => {
-        resize();
+      $slide.map((item) => {
+        item.style.width = `calc(100% / ${shaver.length})`;
       });
+    }
 
-      init();
-      function init() {
-        setSlide();
-        setTimeline();
-        clickEvent();
-        wheelEvent();
-        resize();
-        $slideContainer.style.left = `100%`;
-        $currentBall.style.left = `-10%`;
-      }
-    </script>
-  </body>
+    window.addEventListener("resize", () => {
+      resize();
+    });
+
+    init();
+    function init() {
+      setSlide();
+      setTimeline();
+      clickEvent();
+      wheelEvent();
+      resize();
+      $slideContainer.style.left = `100%`;
+      $currentBall.style.left = `-10%`;
+    }
+  </script>
+</body>
+
 </html>
