@@ -1,106 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1"
-    />
-    <title>AutoBGandGauge</title>
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500;700&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
-      integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="../scss/css reset.css" />
-    <link rel="stylesheet" href="./style.css" />
-  </head>
-  <body>
-    <header>
-      <ul>
-        <li>LOGO</li>
-        <li>ABOUT</li>
-        <li>COLLECTION</li>
-        <li>CONTACT</li>
-      </ul>
-    </header>
-    <section id="main">
-      <div class="textBox">
-        <h2>schildtroete_</h2>
-        <p>
-          Eine Schildkröte, die sich mit Bildern trösten möchte.
-          <br class="m" />Schildtröte.. Schildtröte!
-          <br class="pc" />
-          Ich male alles, was ich liebe! <br class="m" />🇩🇪Derzeit in
-          Deutschland. Schildkröte.
-        </p>
-        <a href="https://www.instagram.com/schildtroete_/" target="_blank"
-          >VIEW MORE</a
-        >
-      </div>
-      <ul class="gaugeSlide">
-        <li data-gauge="0">
-          <div class="imgBox" data-gauge="0">
-            <img src="./1.jpg" alt />
-          </div>
-          <p>01. <b>Title Name</b></p>
-          <span>129mm * 84mm | Watercolor on Canvas</span>
 
-          <div class="gauge"></div>
-        </li>
-        <li data-gauge="1">
-          <div class="imgBox" data-gauge="1">
-            <img src="./2.jpg" alt />
-          </div>
-          <p>02. <b>Title Name</b></p>
-          <span>129mm * 84mm | Watercolor on Canvas</span>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <title>AutoBGandGauge</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+    integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous" />
+  <link rel="stylesheet" href="../scss/css reset.css" />
+  <link rel="stylesheet" href="./style.css" />
+</head>
 
-          <div class="gauge"></div>
-        </li>
-        <li data-gauge="2">
-          <div class="imgBox" data-gauge="2">
-            <img src="./3.jpg" alt />
-          </div>
-          <p>03. <b>Title Name</b></p>
-          <span>129mm * 84mm | Watercolor on Canvas</span>
+<body>
+  <header>
+    <ul>
+      <li>LOGO</li>
+      <li>ABOUT</li>
+      <li>COLLECTION</li>
+      <li>CONTACT</li>
+    </ul>
+  </header>
+  <section id="main">
+    <div class="textBox">
+      <h2>schildtroete_</h2>
+      <p>
+        Eine Schildkröte, die sich mit Bildern trösten möchte.
+        <br class="m" />Schildtröte.. Schildtröte!
+        <br class="pc" />
+        Ich male alles, was ich liebe! <br class="m" />🇩🇪Derzeit in
+        Deutschland. Schildkröte.
+      </p>
+      <a href="/" target="_blank" onclick="return false">VIEW MORE</a>
+    </div>
+    <ul class="gaugeSlide">
+      <li data-gauge="0">
+        <div class="imgBox" data-gauge="0">
+          <img src="./1.jpg" alt />
+        </div>
+        <p>01. <b>Title Name</b></p>
+        <span>129mm * 84mm | Watercolor on Canvas</span>
 
-          <div class="gauge"></div>
-        </li>
-      </ul>
-    </section>
+        <div class="gauge"></div>
+      </li>
+      <li data-gauge="1">
+        <div class="imgBox" data-gauge="1">
+          <img src="./2.jpg" alt />
+        </div>
+        <p>02. <b>Title Name</b></p>
+        <span>129mm * 84mm | Watercolor on Canvas</span>
 
-    <script>
-      const $gaugeSlide = document.querySelector(".gaugeSlide"),
-        $gaugeSlideLi = Object.values($gaugeSlide.children),
-        $main = document.getElementById("main");
+        <div class="gauge"></div>
+      </li>
+      <li data-gauge="2">
+        <div class="imgBox" data-gauge="2">
+          <img src="./3.jpg" alt />
+        </div>
+        <p>03. <b>Title Name</b></p>
+        <span>129mm * 84mm | Watercolor on Canvas</span>
 
-      const bgArray = ["./1.jpg", "./2.jpg", "./3.jpg"];
+        <div class="gauge"></div>
+      </li>
+    </ul>
+  </section>
 
-      let i = 0;
-      var intervalFunc;
-      var timeoutFunc;
+  <script>
+    const $gaugeSlide = document.querySelector(".gaugeSlide"),
+      $gaugeSlideLi = Object.values($gaugeSlide.children),
+      $main = document.getElementById("main");
+
+    const bgArray = ["./1.jpg", "./2.jpg", "./3.jpg"];
+
+    let i = 0;
+    var intervalFunc;
+    var timeoutFunc;
+
+    $gaugeSlideLi[i].classList.add("active");
+
+    function change() {
+      i++;
+
+      if (i > $gaugeSlideLi.length - 1) {
+        i = 0;
+      }
+      if (i < 0) {
+        i = $gaugeSlideLi.length - 1;
+      }
+
+      $gaugeSlideLi.map((item) => {
+        item.classList.remove("active");
+      });
 
       $gaugeSlideLi[i].classList.add("active");
+      $main.style.backgroundImage = `url(${bgArray[i]})`;
+    }
 
-      function change() {
-        i++;
+    setintervalFunc();
+    function setintervalFunc() {
+      intervalFunc = setInterval(() => {
+        change();
+      }, 5000);
+    }
 
-        if (i > $gaugeSlideLi.length - 1) {
-          i = 0;
-        }
-        if (i < 0) {
-          i = $gaugeSlideLi.length - 1;
-        }
+    $gaugeSlideLi.map((item) => {
+      item.addEventListener("click", (e) => {
+        i = e.target.parentElement.dataset.gauge;
 
         $gaugeSlideLi.map((item) => {
           item.classList.remove("active");
@@ -108,33 +114,15 @@
 
         $gaugeSlideLi[i].classList.add("active");
         $main.style.backgroundImage = `url(${bgArray[i]})`;
-      }
 
-      setintervalFunc();
-      function setintervalFunc() {
-        intervalFunc = setInterval(() => {
-          change();
-        }, 5000);
-      }
-
-      $gaugeSlideLi.map((item) => {
-        item.addEventListener("click", (e) => {
-          i = e.target.parentElement.dataset.gauge;
-
-          $gaugeSlideLi.map((item) => {
-            item.classList.remove("active");
-          });
-
-          $gaugeSlideLi[i].classList.add("active");
-          $main.style.backgroundImage = `url(${bgArray[i]})`;
-
-          clearInterval(intervalFunc);
-          clearTimeout(timeoutFunc);
-          timeoutFunc = setTimeout(() => {
-            setintervalFunc();
-          }, 8000);
-        });
+        clearInterval(intervalFunc);
+        clearTimeout(timeoutFunc);
+        timeoutFunc = setTimeout(() => {
+          setintervalFunc();
+        }, 8000);
       });
-    </script>
-  </body>
+    });
+  </script>
+</body>
+
 </html>
